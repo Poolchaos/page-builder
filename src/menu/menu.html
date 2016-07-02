@@ -1,3 +1,9 @@
 <template>
-  menu
+  
+  <ul>
+    <li repeat.for="option of menuStore.menuOptions" style="${option.active ? 'color:#bbb; cursor:default;': 'cursor:pointer;'}" click.delegate="navigate(option.view)">
+      ${option.text}
+    </li>
+  </ul>
+  
 </template>

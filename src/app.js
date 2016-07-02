@@ -33,8 +33,9 @@ export class App {
     config.title = 'Page builder';
     config.options.pushState = true;
     config.map([
-      {route: ['', 'menu'],  name: 'menu',    moduleId: 'menu/menu',    nav: false, title: 'Menu',         auth: false},
-      {route: 'builder',     name: 'builder', moduleId: 'builder/builder', nav: false, title: 'Page Builder', auth: true}
+      {route: '', redirect: 'menu'},
+      {route: ['menu'],  name: 'menu',        moduleId: 'menu/menu',       nav: false, title: 'Menu'},
+      {route: 'builder',     name: 'builder', moduleId: 'builder/builder', nav: false, title: 'Page Builder'}
     ]);
 
     this.router = router;
