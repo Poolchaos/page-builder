@@ -1,20 +1,5 @@
 <template>
 
-  <div class="circularLoader aurelia-hide" show.bind="showLoader">
-    <div class="part">
-      <div class="part">
-        <div class="part">
-          <div class="part">
-            <div class="part"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <span class="label u-text-style__size--medium">LOADING...</span>
-  </div>
-
-  <div class="aurelia-hide" show.bind="!showLoader">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 
 </template>

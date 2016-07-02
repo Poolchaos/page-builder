@@ -47,32 +47,32 @@ export function configure(aurelia) {
         staging:     ['staging.zailab.com'],
         prod:        ['conversations.zailab.com']
       });
-    })
-    .globalResources(
-      'hud/dashboard/_custom/dashboard.vessel',
-      'hud/dashboard/_custom/dashboard.vessel.header',
-      'hud/dashboard/_custom/dashboard.camp',
-      'hud/dashboard/_custom/dashboard.camp.title',
-      'hud/dashboard/_custom/dashboard.camp.header',
-      'hud/dashboard/_custom/dashboard.camp.body',
-      'hud/dashboard/_custom/dashboard.camp.label',
-      'hud/dashboard/_custom/dashboard.camp.footer',
-      'hud/dashboard/_custom/dashboard.camp.pager',
-      'hud/dashboard/_prompts/prompt.pager',
-      '_custom/crud',
-      '_custom/crud.header',
-      '_custom/crud.body',
-      '_custom/crud.footer',
-      '_custom/guide/guide',
-      '_custom/guide/guide.header',
-      '_custom/guide/guide.header',
-      '_custom/picture',
-      '_custom/steps',
-      '_custom/zai_footer/zai.footer',
-      '_custom/wizard'
+    });
+//    .globalResources(
+//      'hud/dashboard/_custom/dashboard.vessel',
+//      'hud/dashboard/_custom/dashboard.vessel.header',
+//      'hud/dashboard/_custom/dashboard.camp',
+//      'hud/dashboard/_custom/dashboard.camp.title',
+//      'hud/dashboard/_custom/dashboard.camp.header',
+//      'hud/dashboard/_custom/dashboard.camp.body',
+//      'hud/dashboard/_custom/dashboard.camp.label',
+//      'hud/dashboard/_custom/dashboard.camp.footer',
+//      'hud/dashboard/_custom/dashboard.camp.pager',
+//      'hud/dashboard/_prompts/prompt.pager',
+//      '_custom/crud',
+//      '_custom/crud.header',
+//      '_custom/crud.body',
+//      '_custom/crud.footer',
+//      '_custom/guide/guide',
+//      '_custom/guide/guide.header',
+//      '_custom/guide/guide.header',
+//      '_custom/picture',
+//      '_custom/steps',
+//      '_custom/zai_footer/zai.footer',
+//      '_custom/wizard'
 //    '_custom/gem'
 
-    );
+//    );
     
   let configure = aurelia.container.get(Configure);
   if (configure.environment !== 'prod') {
