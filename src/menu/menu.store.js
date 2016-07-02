@@ -5,7 +5,7 @@ import {LogManager} from 'aurelia-framework';
 */
 const logger = LogManager.getLogger('MenuStore');
 
-const STATE = {
+let STATE = {
   menuOptions: [{
     text: 'menu',
     active: true,
