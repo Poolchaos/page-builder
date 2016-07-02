@@ -1,0 +1,380 @@
+@import "../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@import "../../../_common/styles/_variables.scss";
+
+/* ------- Start Prompt Pager ---------------------------*/
+
+@include object('prompt-pager') {
+  position: absolute;
+  top: calc(50% - 49px);
+  z-index: 4;
+  height: 72px;
+  width: 21px;
+  border: none;
+  outline: none;
+  background: url(../img/crud_pager_icon.png) no-repeat;
+  @include element('previous') {
+    left: -8px;
+    background-position: 0px 0;
+    transform: scaleX(1);
+    &:hover {}
+    @include modifier('small'){
+      left: 7px;
+      background-position: left center ;
+      background-size: cover;
+      transform: translate(0, -50%) scaleX(1);
+    }
+  }
+  @include element('next') {
+    right: -8px;
+    background-position: -21px 0px;
+    /*transform: scaleX(-1);*/
+    &:hover {}
+    @include modifier('small'){
+      right: 6px;
+      background-position: left center;
+      background-size: cover;
+      transform: translate(0, -50%) scaleX(-1);
+    }
+  }
+  @include modifier('small') {
+    top: 37%;
+    position: absolute;
+    height: 50%;
+    width: 0;
+    padding: 0 2.7%;
+  }
+}
+
+@include object('prompt-row') {
+  position: relative;
+}
+@include object('prompt-utility') {
+  height: 64px;
+}
+
+@include object('prompt-list') {
+  margin-top: 20px;
+  @include element('list-item') {
+    text-align: center;
+  }
+  @include element('item') {
+    padding-top: 19px;
+  }
+  @include element('gem') {
+    position: relative;
+    z-index: 1;
+    width: 120%;
+    padding: 60%;
+    margin-left: -10%;
+    content: '';
+    border: 0;
+    cursor: default;
+    background: {
+      image: url(../img/crud/gem-btns.png);
+      position: 0 50%;
+      size: cover;
+      color: transparent;
+      repeat: no-repeat;
+    }
+    border: 0;
+    cursor: default;
+    &:focus {
+      outline: none;
+    }
+    @include modifier('camp') {
+      height: calc(100% - 54px);
+    }
+    @include modifier('non-selectable') {
+      cursor: default!important;
+//      background-position: 0 0!important;
+      &:hover {
+        background-position: 0 50%!important;
+      }
+    }
+    @include modifier('profile-picture') {
+      background-image: url(../img/crud/gem-btns-profile-picture.png);
+    }
+    @include state('selected') {
+      background-position: 0 50%!important;
+      &:hover {
+        background-position: 0 25%!important;
+      }
+    }
+    @include state('marked') {
+      background-position: 0 100%!important;
+      &:hover {
+        background-position: 0 75%!important;
+      }
+    }
+    @include state('disabled') {
+      cursor: default!important;
+      opacity: 0.4;
+      &:hover {
+        background-position: 0 0!important;
+      }
+    }
+  }
+  //badge
+  @include element('badge') {
+    position: absolute;
+    top: 90px;
+    z-index: 1;
+    display: inline-block;
+    width: 30%;
+    height: 46px;
+    @include modifier('left') {
+      left: 21px;
+    }
+    @include modifier('right') {
+      right: 21px;
+    }
+  }
+  @include element ('badge-icon') {
+    position: absolute;
+    /* top: 9px; */
+    /* left: 9px; */
+    /* top: 50%; */
+    display: block;
+    width: 100%;
+    /* background-color: red; */
+    height: 100%;
+    text-align: center;
+    background-position: center;
+    background-size: 62%;
+    background: {
+      repeat: no-repeat;
+    }
+    @include modifier ('agent') {
+      background-image: url("../img/crud/icon_badge_role_agent.png");
+    }
+    @include modifier ('office-employee') {
+      background-image: url("../img/crud/icon_badge_role_office-employee.png");
+    }
+    @include modifier ('administrator') {
+      background-image: url("../img/crud/icon_badge_role_admin.png");
+    }
+    @include modifier ('team-leader') {
+      background-image: url("../img/crud/icon_badge_role_team-leader.png");
+    }
+  }
+  @include element ('gem-badge') {
+    width: 100%;
+    background-image: url(../img/crud/gem_badge.png);
+    height: 100%;
+    display: block;
+    background-size: contain;
+  }
+  @include modifier('selectable') {
+    @include modifies-element('item') {
+      @include modifies-element('list-item') {
+        @include modifies-element('gem') {
+          background-position: 0 0%;
+          cursor: pointer;
+          &:hover {
+            background-position: 0 25%;
+          }
+        }
+      }
+    }
+  }
+  @include modifier('editable') {
+    @include modifies-element('item') {
+      @include modifies-element('list-item') {
+        @include modifies-element('gem') {
+          cursor: pointer;
+          &:hover {
+            background-position: 0 25%;
+          }
+        }
+      }
+    }
+  }
+  @include state('delete-state') {
+    @include modifies-element('item') {
+      @include modifies-element('list-item') {
+        @include modifies-element('gem') {
+          &:hover {
+            background-position: 0 75%;
+          }
+        }
+      }
+    }
+  }
+  // profile picture
+  @include element('profile-picture-clipping-mask') {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1px 0px 0px 0px;
+    overflow: hidden;
+    -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    overflow: hidden;
+  }
+  @include element('profile-picture') {
+    width: 100%;
+    height: 100%;
+    display: block;
+     margin: 0 auto;
+    text-align: center;
+    -webkit-clip-path: polygon(50% 3%,89% 26%,89% 72%,50% 94%,11% 71%,11% 26%);
+  }
+  // icon
+  @include element('icon') {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    border: none;
+    outline: 0;
+    background-color: transparent;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: .65;
+    width: 50%;
+    height: 100%;
+    @include modifier('service') {
+      background-image: url("../img/icon_services.png");
+    }
+    @include modifier('skills') {
+      background-image: url(../img/icon_group-skills.png);
+    }
+    @include modifier('skill') {
+      background-image: url(../img/icon_skills.png);
+    }
+    @include modifier('sites') {
+      background-image: url(../img/icon_sites.png);
+    }
+    @include modifier('invitations') {
+      background-image: url(../img/icon_invitations.png);
+    }
+    // Members roles
+    @include modifier('administrator') {
+      background-image: url(../img/icon_role_admin.png);
+    }
+    @include modifier('team-leader') {
+      background-image: url(../img/icon_role_team-leader.png);
+    }
+    @include modifier('agent') {
+      background-image: url(../img/icon_role_agent.png);
+    }
+    @include modifier('office-employee') {
+      background-image: url(../img/icon_role_office-employee.png);
+    }
+    // Phone numbers gem icons 
+    @include modifier('member') {
+      background-image: url(../img/icon_number-member.png);
+    }
+    @include modifier('flow') {
+      background-image: url(../img/icon_number-flow.png);
+    }
+    @include modifier('sms') {
+      background-image: url(../img/icon_number-sms.png);
+    }
+    @include modifier('assign') {
+      background-image: url(../img/icon_number-assign.png);
+    }
+    // Interaction Manager flow icons
+    @include modifier('office-flow') {
+      background-image: url(../img/pabx_flow_icon.png);
+    }
+    @include modifier('contact-centre-flow') {
+      background-image: url(../img/cc_flow_icon.png);
+    }
+    @include modifier('channel-outgoing') {
+      background-image: url(../img/icon_outbound_call.png);
+    }
+    @include modifier('channel-incoming') {
+      background-image: url(../img/icon_inbound_call.png);
+    }
+    @include modifier('channel-kiosk') {
+      background-image: url(../img/icon_kiosks.png);
+    }
+    @include modifier('channel-website') {
+      background-image: url(../img/icon_website_call.png);
+    }
+    @include modifier('channel-sms') {
+      background-image: url(../img/icon_conversation-name.png);
+    }
+  }
+  @include element('description') {
+    display: block;
+    margin-top: 10px;
+    line-height: 16px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    @include modifier ('underline') {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #00afef; // neeed to move this to the deleted modifier
+    }
+    @include modifier('camp') {
+      margin-top: 5px;
+    }
+  }
+  @include element('information') {
+    display: block;
+    margin: 0;
+    // margin-top: 8px;
+    line-height: 16px;
+    height: 16px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: normal;
+    @include modifier ('noData') {
+      height: 32px;
+    }
+  }
+}
+
+.headhover {
+  display: block;
+  &:hover {
+    display: none;
+  }
+}
+
+.crud_item_icon {
+  position: absolute;
+  top: 0;
+  left: 28%;
+  width: 44%;
+  height: 160px;
+  margin: 0 auto;
+  border: none;
+  outline: 0;
+  //used in: invitations list
+  $crudIconClassName: ("role_agent", "role_team-leader", "role_administrator", "role_office-employee", "gem-icon--email", "gem-icon--services", "gem-icon--member", "gem-icon--skills", "gem-icon--sites");
+  $crudIconImage: ("../img/gem_icon_role_agent.png", "../img/gem_icon_role_team_leader.png", "../img/gem_icon_role_admin.png", "../img/gem_icon_role_office_emplyee.png", "../img/gem_icon_email.png", "../img/gem_icon_services.png", "../img/gem_icon_member.png", "../img/gem_icon_skills.png", "../img/gem_icon_sites.png");
+  @for $i from 1 to length($crudIconClassName) + 1 {
+    $thisCrudIconClassName: nth($crudIconClassName, $i);
+    $thisCrudIconImage: nth($crudIconImage, $i); // This is working. Looks like a syntax error but the compiler accepts it.
+    &.#{nth($crudIconClassName, $i)} {
+//      @extend .crudItemImage;
+      background-image: $thisCrudIconImage;
+    }
+  }
+}
+
+@include object('divider') {
+  margin-top: 30px;
+  position: relative;
+  @include element('horizontal') {
+    position: absolute;
+    height: 2px;
+    left: -23px;
+    right: -23px;
+    border-top: 1px solid #F4F4F4;
+    box-shadow: inset 0px -2px 0px 0px #7c7c7c;
+  }
+}
+
+/* ------- End Prompt Pager ---------------------------*/

@@ -1,0 +1,552 @@
+@font-face {
+  font-family: Orbitron;
+  src: url(../fonts/orbitron-light.otf) format("opentype");
+}
+
+
+/* FONT // NEUROPOL */
+
+@font-face {
+  font-family: Neuropol;
+  src: url(../fonts/NEUROPOL.ttf);
+}
+
+
+/* FONT // NEOGREY REGULAR */
+
+@font-face {
+  font-family: Neogrey;
+  src: url(../fonts/NeogreyRegular.otf) format("opentype");
+}
+
+
+/* FONT // NEOGREY MEDIUM */
+
+@font-face {
+  font-family: Neogrey;
+  src: url(../fonts/NeogreyMedium.otf) format("opentype");
+}
+
+
+/* FONT // NEOTECH LIGHT */
+
+@font-face {
+  font-family: 'NeoTech Light';
+  src: url('../fonts/NeoTech-Light.otf') format("opentype");
+}
+
+
+/* FONT // NEOTECH REGULAR */
+
+@font-face {
+  font-family: 'NeoTech';
+  src: url('../fonts/NeoTech.otf') format("opentype");
+}
+
+
+/* FONT // NEOTECH MEDIUM */
+
+@font-face {
+  font-family: 'NeoTech Medium';
+  src: url('../fonts/NeoTech-Medium.otf') format("opentype");
+}
+
+
+/* FONT // NEOTECH BOLD */
+
+@font-face {
+  font-family: 'NeoTech Bold';
+  src: url('../fonts/NeoTech-Bold.otf') format("opentype");
+}
+
+
+/* FONT // FOUNDRY GRIDNIK LIGHT */
+
+@font-face {
+  font-family: 'FoundryGridnik W01-Light';
+  src: url('../fonts/FoundryGridnikW01-Light.otf') format("opentype");
+}
+
+
+/* FONT // FOUNDRY GRIDNIK REGULAR */
+
+@font-face {
+  font-family: 'FoundryGridnik W01-Regular';
+  src: url('../fonts/FoundryGridnikW01-Regular.otf') format("opentype");
+}
+
+
+/* FONT // OCR A TRIBUTE */
+
+@font-face {
+  font-family: 'OCR-A BT';
+  src: url('../fonts/OCR-a___.ttf');
+}
+
+
+/* FONT // LAB SANS THIN */
+
+@font-face {
+  font-family: 'LabSansPro-Thin';
+  src: url('../fonts/LabSansProThin.otf') format("opentype");
+}
+
+
+/* FONT // LAB SANS LIGHT */
+
+@font-face {
+  font-family: 'LabSansPro-Light';
+  src: url('../fonts/LabSansProLight.otf') format("opentype");
+}
+
+
+/* FONT // LAB SANS REGULAR */
+
+@font-face {
+  font-family: 'LabSansPro';
+  src: url('../fonts/LabSansPro.otf') format("opentype");
+}
+
+
+/* FONT // LAB SANS MEDIUM */
+
+@font-face {
+  font-family: 'LabSansPro-Medium';
+  src: url('../fonts/LabSansProMedium.otf') format("opentype");
+}
+
+
+/* FONT // LAB SANS BOLD */
+
+@font-face {
+  font-family: 'LabSansPro-Bold';
+  src: url('../fonts/LabSansProBold.otf') format("opentype");
+}
+
+
+/* FONT // PRIME LIGHT */
+
+@font-face {
+  font-family: 'Prime-Light';
+  src: url('../fonts/PrimeLight.otf') format("opentype");
+}
+
+
+/* FONT // PRIME REGULAR */
+
+@font-face {
+  font-family: 'Prime-Regular';
+  src: url('../fonts/PrimeRegular.otf') format("opentype");
+}
+
+
+/* FONT // MYRIAD PRO LIGHT */
+
+@font-face {
+  font-family: 'Prime-Regular';
+  src: url('../fonts/PrimeRegular.otf') format("opentype");
+}
+
+
+/* FONT // MYRIAD PRO LIGHT */
+
+@font-face {
+  font-family: 'MyriadPro-Light';
+  src: url('../fonts/Myriad-Pro-Light.ttf');
+}
+
+
+/* FONT // MYRIAD PRO REGULAR */
+
+@font-face {
+  font-family: 'MyriadPro-Regular';
+  src: url('../fonts/Myriad-Pro-Regular.ttf');
+}
+
+
+/* FONT // MYRIAD PRO BOLD */
+
+@font-face {
+  font-family: 'MyriadPro-Bold';
+  src: url('../fonts/Myriad-Pro-Bold.ttf');
+}
+
+
+/* FONT // NEO SANS PRO LIGHT */
+
+@font-face {
+  font-family: 'Neo Sans Pro Light';
+  src: url('../fonts/Neo-Sans-Pro-Light.ttf');
+}
+
+
+/* FONT // NEO SANS PRO REGULAR */
+
+@font-face {
+  font-family: 'Neo Sans Pro';
+  src: url('../fonts/Neo-Sans-Pro.ttf');
+}
+
+
+/* FONT // NEO SANS PRO MEDIUM */
+
+@font-face {
+  font-family: 'Neo Sans Pro Medium';
+  src: url('../fonts/Neo-Sans-Pro-Medium.ttf');
+}
+
+
+/* FONT // NEO SANS PRO BOLD */
+
+@font-face {
+  font-family: 'Neo Sans Pro Bold';
+  src: url('../fonts/Neo-Sans-Pro-Bold.ttf');
+}
+
+
+/*---------------------- font base style ------------------*/
+
+html,
+body {
+  font-family: $primary-font-regular;
+  font-size: $font-size-base; //14px
+  color: $primary-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+
+/*---------------------- font size mixin ------------------*/
+
+@mixin fontsize($size) {
+  @if $size=="xsmall" {
+    font-size: 0.714rem; //10px
+    line-height: 0.857rem; //12px
+    @media screen and (max-width: 1400px) {
+      font-size: 0.643rem; //9px
+      line-height: 0.786rem; //11px
+    }
+    @media screen and (min-width: 1921px) {
+      font-size: 1rem; //14px
+      line-height: 1.143rem; //16px
+    }
+  }
+  @else if $size=="small" {
+    font-size: 0.857rem; //12px
+    line-height: 1rem; //14px
+    @media screen and (max-width: 1400px) {
+      font-size: 0.714rem; //10px
+      line-height: 0.857rem; //12px
+    }
+    @media screen and (min-width: 1921px) {
+      font-size: 1.143rem; //16px
+      line-height: 1.286rem; //18px
+    }
+  }
+  @else if $size=="medium" {
+    font-size: 1rem; //14px 
+    line-height: 1.143rem; //16px
+    @media screen and (max-width: 1400px) {
+      font-size: 0.857rem; //12px
+      line-height: 1rem; //14px
+    }
+    @media screen and (min-width: 1921px) {
+      font-size: 1.286rem; //18px
+      line-height: 1.429rem; //20px
+    }
+  }
+  @else if $size=="large" {
+    font-size: 1.143rem; //16px
+    line-height: 1.286rem; //18px
+    @media screen and (max-width: 1400px) {
+      font-size: 1rem; //14px
+      line-height: 1.143rem; //16px
+    }
+    @media screen and (min-width: 1921px) {
+      font-size: 1.429rem; //20px
+      line-height: 1.571rem; //22px
+    }
+  }
+  @else if $size=="xlarge" {
+    font-size: 1.786rem; //25px
+    line-height: 1.929rem; //27px
+    @media screen and (max-width: 1400px) {
+      font-size: 1.643rem; //23px
+      line-height: 1.786rem; //25px
+    }
+    @media screen and (min-width: 1921px) {
+      font-size: 1.929rem; //27px
+      line-height: 2.071rem; //29px
+    }
+  }
+  /* Use in special cases */
+  @else if $size=="xxlarge" {
+    font-size: 2rem; //28px
+    line-height: 2.4rem; //34px
+    @media screen and (max-width: 1400px) {
+      font-size: 1.786rem; //25px
+      line-height: 1.929rem; //27px
+    }
+    @media screen and (min-width: 1921px) {
+      font-size: 2.143rem; //30px
+      line-height: 2.571rem; //36px
+    }
+  }
+}
+
+
+/*---------------------- font style objects ------------------*/
+
+@include object("text") {
+  font-family: $primary-font-regular;
+  @include fontsize("medium");
+  color: $primary-color;
+  @include element("header") {
+    font-family: $primary-font-regular;
+    @include fontsize("large");
+    color: $primary-color;
+    text-transform: uppercase;
+    @include modifier("xlarge") {
+      @include fontsize("xlarge");
+      text-transform: uppercase;
+    }
+    @include modifier ("total") {
+      color: $info-color;
+      text-align: right;
+    }
+  }
+  @include element("guide") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $primary-color;
+    text-align: center;
+  }
+  @include element("system") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $system-color;
+  }
+  @include element("label") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    font-weight: 500;
+    color: $primary-color;
+    line-height: 1rem; //14px
+    @include modifier("large") {
+      font-family: $primary-font-regular;
+      @include fontsize("large");
+      font-weight: 500;
+      color: $primary-color;
+    }
+  }
+  @include element("gem") {
+    font-family: $primary-font-regular;
+    @include fontsize("small");
+    line-height: 1.143rem; //16px
+    text-overflow: ellipsis;
+    text-align: center;
+    white-space: nowrap;
+  }
+  @include element("status-bar") {
+    font-family: $primary-font-bold;
+    @include fontsize("medium");
+    color: $primary-color;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  @include element("button") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $primary-color;
+    text-transform: uppercase;
+    @include modifier('small') {
+      font-family: $primary-font-regular;
+      @include fontsize("small");
+      color: $primary-color;
+      text-transform: uppercase;
+    }
+    @media screen and (min-width: 1024px) {
+      line-height: inherit;
+    }
+  }
+  @include element('button-label') {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $primary-color;
+    text-transform: uppercase;
+    font-weight: 500;
+    @include modifier('small') {
+      font-family: $primary-font-regular;
+      @include fontsize("small");
+      color: $primary-color;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+  }
+  @include element("link") {
+    font-family: $primary-font-regular;
+    @include fontsize("small");
+    color: $link-color;
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: $primary-color;
+    }
+  }
+  @include element("input") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $primary-color;
+    @media screen and (min-width: 1024px) {
+      line-height: 2rem; //28px
+    }
+  }
+  @include element("validation") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $error-color;
+  }
+  @include element("dropdown") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $primary-color;
+    text-transform: uppercase;
+    @include modifier("label") {
+      font-weight: 500;
+      text-transform: none;
+    }
+  }
+  @include element("conversation-guide") {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $tertiary-color;
+    text-align: center;
+  }
+  @include element('conversation-list-title') {
+    font-family: $primary-font-regular;
+    @include fontsize("medium");
+    color: $primary-color;
+    text-align: left;
+  }
+}
+
+
+/*---------------------- font style utilities ------------------*/
+
+@include utility("text-style") {
+  @include modifier("uppercase") {
+    text-transform: uppercase;
+  }
+  @include modifier("capitalize") {
+    text-transform: capitalize;
+  }
+  @include modifier("none") {
+    text-transform: none;
+  }
+  @include modifier("underline") {
+    text-decoration: underline;
+  }
+  @include modifier('ellipses') {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  // u-text-style__size
+  @include element("size") {
+    @include modifier("xsmall") {
+      @include fontsize("xsmall");
+    }
+    @include modifier("small") {
+      @include fontsize("small");
+    }
+    @include modifier("medium") {
+      @include fontsize("medium");
+    }
+    @include modifier("large") {
+      @include fontsize("large");
+    }
+    @include modifier("xlarge") {
+      @include fontsize("xlarge");
+    }
+    @include modifier("xxlarge") {
+      @include fontsize("xxlarge");
+    }
+  }
+  // u-text-style__align
+  @include element("align") {
+    @include modifier("left") {
+      text-align: left;
+    }
+    @include modifier("center") {
+      text-align: center;
+    }
+    @include modifier("right") {
+      text-align: right;
+    }
+  }
+  // u-text-style__weight
+  @include element("weight") {
+    @include modifier("medium") {
+      font-family: $primary-font-medium;
+    }
+    @include modifier("bold") {
+      font-family: $primary-font-bold;
+    }
+  }
+  // u-text-style__color
+  @include element("color") {
+    @include modifier("secondary") {
+      color: $secondary-color;
+    }
+    @include modifier("tertiary") {
+      color: $tertiary-color;
+    }
+    @include modifier("info") {
+      color: $info-color;
+    }
+    @include modifier("system") {
+      color: $system-color;
+    }
+    @include modifier("accept") {
+      color: $accept-color;
+    }
+    @include modifier("warning") {
+      color: $warning-color;
+    }
+    @include modifier("delete") {
+      color: $delete-color;
+    }
+    @include modifier("error") {
+      color: $error-color;
+    }
+    @include modifier("validation") {
+      color: $validation-color;
+    }
+    @include modifier('grey') {
+      color: #9b9ea5;
+    }
+  }
+	// u-text-style__border
+	@include element("border") {
+		@include modifier("top") {
+			border-top: 1px solid $secondary-color;
+			padding-bottom: 5px;
+			margin-bottom: 3px;
+		}
+		@include modifier("bottom") {
+			border-bottom: 1px solid $secondary-color;
+			padding-bottom: 5px;
+			margin-bottom: 3px;
+		}
+	}
+	// u-text-style__space
+	@include element("space") {
+		@include modifier("none") {
+			margin: 0;
+		}
+		@include modifier("below") {
+			margin-bottom: 1rem;
+		}
+	}
+}

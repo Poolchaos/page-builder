@@ -1,0 +1,12 @@
+{
+  "user": {
+    "person": {
+      "views": [
+        {
+          "display": "PersonInformation",
+          "findBy": "personId"
+        }
+      ]
+    }
+  }
+}

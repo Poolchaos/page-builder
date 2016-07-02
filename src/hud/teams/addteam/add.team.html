@@ -1,0 +1,17 @@
+<template>
+  <div class="modalWrap col-lg-4 col-md-4 col-sm-4">
+    <button class="close_btn" click.trigger="controller.cancel()"></button>
+    <ai-dialog>
+      <ai-dialog-body>
+        <h6>Add team</h6>
+
+        <input class="line_input" value.bind="team.name" />
+
+        <div class="">
+          <button class="hexSmall" click.delegate="addTeam()">Accept</button>
+          <button class="hexSmall" click.delegate="controller.cancel()">Cancel</button>
+        </div>
+      </ai-dialog-body>
+    </ai-dialog>
+  </div>
+</template>

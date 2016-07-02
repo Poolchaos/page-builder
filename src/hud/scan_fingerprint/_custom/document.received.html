@@ -1,0 +1,26 @@
+<template>
+
+  <h6 class="instructions_header">${scanFingerprintStore.document.title}</h6>
+
+  <div class="document_preview_area fp_preview clearfix">
+    <span class="preview_area_left"></span>
+    <span class="preview_area_right"></span>
+    <div class="instruction_guide">
+      <img class="doc_preview" src.bind="scanFingerprintStore.document.documentContent">
+    </div>
+  </div>
+  
+  <div class="scan_state clearfix toBeNoticed">
+
+    ${scanFingerprintStore.document !== null ? '' : 'If you see this you have encountered an aurelia animator bug see details here: https://github.com/aurelia/animator-css/issues/29 IF THE BUTTONS SHOW INCORRECTLY WITHOUT THIS MESSAGE THEN LOG A BUG PLEASE!'}
+
+    <div class="pull-left">
+      <button class="hexSmall" click.delegate="cancel()">Cancel</button>
+      <button class="hexSmall" click.delegate="redo()">Redo</button>
+    </div>
+    <div class="pull-right">
+      <button class="hexSmall" click.delegate="ok()">Accept</button>
+    </div>
+  </div>
+  
+</template>

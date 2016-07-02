@@ -1,0 +1,18 @@
+{
+  "user": {
+    "dashboard": {
+      "repos": [
+        {
+          "display": "UserDashboard",
+          "findBy": "membersMemberIdOrderByEndTimeStampDesc",
+          "params": [
+            "memberId"
+          ]
+        }
+      ],
+      "events": [
+        "TaskHistoryUpdated"
+      ]
+    }
+  }
+}

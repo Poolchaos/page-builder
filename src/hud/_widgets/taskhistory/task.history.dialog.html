@@ -1,0 +1,70 @@
+<template>
+
+  <div style="width:760px">
+    <div class="o-view-border o-view-border--prompt">
+      <div class="o-prompt">
+        <ai-dialog>
+
+          <ai-dialog-header>
+            <div class="o-prompt-header clearfix">
+              <div class="o-prompt-header__icon-container pull-left">
+                <img class="o-prompt-header__icon" src="/target/_assets/img/icon_interactionlog.png" />
+              </div>
+              <h6 class="o-prompt-header__title pull-left">${taskHistoryStore.selectedTask.title1}</h6>
+            </div>
+          </ai-dialog-header>
+
+          <ai-dialog-body class="o-dialog__body clearfix">
+            <div class="row">
+              <div class="o-message-prompt clearfix">
+
+                <div class="row">
+                  <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9">
+                      <div class="o-message-prompt__text ">
+                          <span>${taskHistoryStore.selectedTask.description1}</span>
+                          <img src="/target/_assets/img/callType_arrow-white.png"/>
+                          <span>${taskHistoryStore.selectedTask.description2}</span>
+                      </div>
+                      <div class="o-message-prompt__text o-message-prompt__text--highlight">Call Duration: ${taskHistoryStore.selectedTask.duration}</div>
+                  </div>
+                  <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3">
+                    <div class="o-message-prompt__text o-message-prompt__text--text-right">${taskHistoryStore.selectedTask.date}</div>
+                    <div class="o-message-prompt__text o-message-prompt__text--highlight o-message-prompt__text--text-right">${taskHistoryStore.selectedTask.startTime}</div>
+                  </div>
+                </div>
+
+                  <div class="row">
+                      <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9">
+                          <div class="au-target o-dashboard-item__outcome o-dashboard-item__outcome--${taskHistoryStore.selectedTask.outcome}" style="float: left;"></div>
+                      </div>
+                  </div>
+
+                <div show.bind="taskHistoryStore.selectedTask.audioElement">
+                  <div class="row">
+                    <div class="col-sm-12 o-message-prompt__audio clearfix">
+                      <div class="aurelia-hide u-text-style__size--medium" show.bind="!taskHistoryStore.selectedTask.recordingId">No recording.</div>
+                      <div class="o-message-prompt__audio o-message-prompt__audio--player" innerHTML.bind="taskHistoryStore.selectedTask.audioElement" show.bind="taskHistoryStore.selectedTask.recordingId"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="o-divider">
+                  <div class="o-divider__horizontal"></div>
+                </div>
+                <div class="row aurelia-hide" show.bind="taskHistoryStore.selectedTask.members.length === 0 || !taskHistoryStore.selectedTask.members">
+                  <div class="col-sm-12 o-message-prompt__audio u-text-style__size--medium clearfix" style="margin-top: 70px;">
+                    No agents to display.
+                  </div>
+                </div>
+                <prompt-pager if.bind="taskHistoryStore.selectedTask.members.length > 0" items.bind="taskHistoryStore.selectedTask.members" display.bind="display" settings.bind="settings" pagesize.bind="_pagesize" class="o-crud-pager__task"></prompt-pager>
+
+              </div>
+            </div>
+
+          </ai-dialog-body>
+
+        </ai-dialog>
+      </div>
+    </div>
+  </div>
+
+</template>

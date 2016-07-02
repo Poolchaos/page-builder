@@ -1,0 +1,27 @@
+@import "../../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@include component('call-prompt') {
+  margin-top: 45px;
+  text-align: center;
+  @include element ('call-type') {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  @include element ('caller-id') {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  @include element ('image-wrap') {
+    display: inline-block;
+    height: 5.357em; //75px
+    width: 5.357em; //75px
+    padding: 1.143em; //16px
+    margin: 25px 0;
+    border: 2px solid #fff; //2px
+    border-radius: 50%;
+    @media screen and (min-width: 1921px) {
+      height: 6.429em; //90px
+      width: 6.429em; //90px
+      padding: 1.429em; //20px
+    }
+  }
+}

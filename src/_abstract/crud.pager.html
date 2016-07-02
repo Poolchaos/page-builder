@@ -1,0 +1,60 @@
+<template>
+
+    <require from="../_custom/picture"></require>
+
+    <div class="row">
+      <button class="o-crud-pager o-crud-pager__previous aurelia-hide" show.bind="showPrev" click.delegate="prev()">
+        <!-- prev -->
+      </button>
+      <div class="o-crudlist__row"> <!-- col-xl-12 col-lg-12 col-md-12 col-sm-12 -->
+
+        <!-- The list below should only show when labels are enabled -->
+
+        <ul class="o-crud-list clearfix ${settings.select.enabled ? 'o-crud-list--selectable' : settings.edit.enabled ? 'o-crud-list--editable' : ''} col-xl-12 col-lg-12 col-md-12 col-sm-12" class.bind="deleting ? 'is-delete-state' : ''">
+
+          <li class="o-crud-list__item col-xl-2 col-lg-2 col-md-2 col-sm-4" repeat.for="item of pagedItems">
+            <!-- pagedItems -->
+            <div class="o-crud-list__list-item">
+              
+              <button class="o-crud-list__gem ${createClass(item)}" class.bind="!deleting && item.isSelected ? 'is-selected' : item.isMarked ? 'is-marked' :  getDisabledState(item)" disabled.bind="item.isDisabled" click.delegate="select(item)">
+                <div class="o-crud-list__icon ${item.labelClassName}">
+                </div>
+              </button>
+
+
+              <div class="o-crud-list__badge o-crud-list__badge--left" if.bind="item.badges.left">
+                <span class="o-crud-list__badge-icon o-crud-list__badge-icon--${item.badges.left}"></span>
+                <span class="o-crud-list__gem-badge"></span>
+              </div>
+
+              <div class="o-crud-list__badge o-crud-list__badge--right" if.bind="item.badges.right">
+                <span class="o-crud-list__badge-icon o-crud-list__badge-icon--${item.badges.right}"></span>
+                <span class="o-crud-list__gem-badge"></span>
+              </div>
+
+              <picture class="o-crud-list__profile-picture-clipping-mask" id="${item.pictureId}" defaultpicture="${item.defaultPicture}" picturestyle="o-crud-list__profile-picture" if.bind="item.pictureId"></picture>
+
+              <label class="o-crud-list__description o-crud-list__description--underline u-text-style__size--small" title="${getFirstDataLabel(item)}">${getFirstDataLabel(item)}</label>
+              <!-- cruditem__crudlabel--label -->
+
+              <label class="o-crud-list__information u-text-style__size--small" title="${getInformationLabels(item,1)}">${getInformationLabels(item,1)}</label>
+              <label class="o-crud-list__information u-text-style__size--small" title="${getInformationLabels(item,2)}">${getInformationLabels(item,2)}</label>
+              
+            </div>
+          </li>
+
+        </ul>
+
+        <div class="aurelia-hide no_data_wrap" show.bind="!pagedItems || pagedItems.length === 0">
+          <div class="no_data_inner u-text-style__size--medium">
+            ${noDataMessage ? noDataMessage : 'No data to display.'}
+          </div>
+        </div>
+
+      </div>
+      <button class="o-crud-pager o-crud-pager__next aurelia-hide" show.bind="showNext" click.delegate="next()">
+        <!-- next -->
+      </button>
+    </div>
+  
+</template>

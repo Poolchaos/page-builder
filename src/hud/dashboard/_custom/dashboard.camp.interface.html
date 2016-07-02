@@ -1,0 +1,41 @@
+<template>
+
+  <section css="text-align:${properties.position}">
+
+    <a style="color:white" click.trigger="showCamp = !showCamp">
+      ${properties.title}
+    </a>
+
+    <hr/>
+
+    <br/>
+
+    <div class="aurelia-hide" show.bind="isShowCamp" style="text-align:left">
+
+      <div>
+
+        <input style="margin-top:10px; color:black; width:235px" type="text" placeholder="Enter search here" ref="dashboardCampSearchInput" value.bind="name" keyup.trigger="search()" />
+
+        <!--      <button class="hexSmall" click.trigger="add()" show.bind="promptStore.settings.add.enabled">Add</button>-->
+        <button class="hexSmall aurelia-hide" click.trigger="deleteCancel()" show.bind="deleting" show.bind="promptStore.settings.delete.enabled">Cancel</button>
+        <button class="hexSmall aurelia-hide" click.trigger="delete()" show.bind="settings.delete.enabled">${deleting ? 'Ok' : 'Delete'}</button>
+
+      </div>
+
+      <br/>
+
+      <br/>
+
+      <div class="button_container">
+
+        <button class="hexMedium aurelia-hide" repeat.for="item of items" show.bind="item.isSelected" click.trigger="select(item)">
+          ${item.isMarked ? '*' + item[display] + '*' : item[display]}
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</template>

@@ -1,0 +1,97 @@
+@import "../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@import "../_common/styles/_variables.scss";
+@include object('crud-page-header') {
+  padding: 0 34px;
+  margin: 3% 0 0;
+  display: inline-block;
+  width: 100%;
+  height: 38px;
+  @media screen and (max-width: 1400px) {
+    margin: 5% 0 0;
+  }
+  @media screen and (min-width: 1921px) {
+    margin: 3% 0 4px;
+  }
+  @include element('title') {
+    margin: 10px 0;
+    text-transform: uppercase;
+  }
+  @include element('border') {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 1px;
+    margin: {
+      top: 40px;
+      left: -18px;
+      right: -18px;
+    }
+    clear: both;
+    background-color: #fff;
+  }
+  @include element('breadcrum') {
+    color: $info-color;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      color: $info-color;
+      cursor: pointer;
+    }
+  }
+  @include element('total-counter') {
+    color: $info-color;
+    text-transform: uppercase;
+  }
+  @include element('icon') {
+    width: 35px;
+    margin-right: 10px;
+  }
+  @include element('icon-small') {
+    margin-top: 3px;
+  }
+}
+.guide_padding {
+    padding: 0 10px;
+}
+.crud_header_guide {
+  background-position: center bottom;
+  background-size: cover;
+  background-image: url(../img/crud_header_guide_bg.png);
+  background-repeat: no-repeat;
+  margin-top: 30px;
+  position: relative;
+  box-shadow: inset 0 -1px 4px 0 rgba(255,255,255,.2);
+  height: 90px;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: -26px;
+    bottom: -26px;
+    display: block;
+    background: {
+      image: url(../img/crud_header_guide_particles.png);
+      size: contain;
+      position: left center;
+      repeat: no-repeat;
+  }
+  }
+  &:before {
+    left: -45px;
+    right: 50%;
+  }
+  &:after {
+    transform: scale(-1);
+    left: 50%;
+    right: -45px;
+  }
+  .crud_header_guide_text {
+    text-align: center;
+    max-width: 95%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

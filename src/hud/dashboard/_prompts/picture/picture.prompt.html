@@ -1,0 +1,17 @@
+<template>
+
+  <div show.bind="!hasImage" style="position: absolute;margin-top: 127px;top: 445px;left: 0;right: 0;margin: 0 auto;margin-top: 20px;width: 58px;">no image</div>
+  
+  <div ref="filePreview" style="margin-top:40px;"></div>
+  
+  <div style="position:relative;">
+    <div style="border: 1px solid rgb(22, 77, 115); width: 212px;padding: 8px;margin: 0 auto;">
+      <input type="file" accept="image/x-png, image/jpeg" change.delegate="selectPicture($event)" class="custom-file-input" style="margin: 0 auto;width:189px;"/>
+    </div>
+    <button id="acceptBtn" class="o-button o-button--in-prompt-footer o-button__action o-button__action--accept pull-right" style="z-index:2;" show.bind="hasImage" click.delegate="accept()"></button>
+  </div>
+
+<!--  <button class="o-button o-button__action o-button__action--accept pull-right" show.bind="hasImage" click.delegate="accept()"></button>-->
+  
+  
+</template>

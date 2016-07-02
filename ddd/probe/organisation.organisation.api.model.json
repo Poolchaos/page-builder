@@ -1,0 +1,97 @@
+{
+  "organisation": {
+    "organisation": {
+      "commands": [
+        {
+          "name": "SelectService",
+          "params": [
+            "organisationId",
+            "serviceId"
+          ]
+        },
+        {
+          "name": "DeselectService",
+          "params": [
+            "organisationId",
+            "serviceId"
+          ]
+        },
+        {
+          "name": "AddService",
+          "params": [
+            "organisationId",
+            "serviceId",
+            "serviceName",
+            "taskDataSLA"
+          ]
+        },
+        {
+          "name": "RemoveService",
+          "params": [
+            "organisationId",
+            "serviceId"
+          ]
+        },
+        {
+          "name": "AddSkillGroup",
+          "params": [
+            "organisationId",
+            "skillGroupId",
+            "skillGroupName"
+          ]
+        },
+        {
+          "name": "AddSkill",
+          "params": [
+            "organisationId",
+            "skillGroupId",
+            "skillId",
+            "skillName"
+          ]
+        }
+      ],
+      "views": [
+        {
+          "display": "Channels",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "Organisation",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "SelectedServices",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "Sites",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "Services",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "SkillGroups",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "Skills",
+          "findBy": "skillGroupId"
+        },
+        {
+          "display": "Roles",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "ClassesOfService",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "Sites",
+          "findBy": "organisationId"
+        }
+      ]
+    }
+  }
+}

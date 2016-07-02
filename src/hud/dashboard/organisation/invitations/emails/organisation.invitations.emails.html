@@ -1,0 +1,21 @@
+<template>
+  <div show.bind="organisationInvitationsStore.error" class="u-text-style__size--medium o-error--invitation">${organisationInvitationsStore.error}</div>
+  <crud>
+
+    <crud-header itemcount.bind="itemcount">
+
+      <img src="/target/_assets/img/icon_invitations.png" class="o-crud-page-header__icon pull-left" />
+      <h6 class="o-crud-page-header__title o-text__header pull-left">
+        <a class="o-crud-page-header__breadcrum u-text-style__color--info" click.delegate="cancel()">Invitations</a>
+        | Send Invitations
+      </h6>
+    </crud-header>
+
+    <crud-body items.bind="organisationInvitationsStore.emails" display.bind="display" settings.bind="settings" options.bind="options">
+
+
+    </crud-body>
+
+  </crud>
+  <wizard intercept.bind="intercept"></wizard>
+</template>

@@ -1,0 +1,1310 @@
+{
+  "organisation": {
+
+    "form": {
+      "commands": [
+        {
+          "name": "PublishForm",
+          "params": [
+            "formId",
+            "organisationId",
+            "name",
+            "passRequirement",
+            "channels",
+            "sections",
+            "createdBy"
+          ]
+        }
+      ]
+    },
+    "dashboard": {
+      "views": [
+        {
+          "display": "ServiceDashboard",
+          "findBy": "serviceIdAndOrganisationIdAndDate",
+          "params": [
+            "date",
+            "serviceId",
+            "organisationId"
+          ]
+        },
+        {
+          "display": "Organisation",
+          "findBy": "organisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    },
+    "member": {
+      "updates": [
+        {
+          "authenticate": "Signup",
+          "params": [
+            "token"
+          ]
+        }],
+      "commands": [
+        {
+          "name": "AllocateServiceToMember",
+          "params": [
+            "memberId",
+            "serviceId",
+            "serviceName"
+          ]
+        },
+        {
+          "name": "AllocateSkillToMember",
+          "params": [
+            "memberId",
+            "organisationId",
+            "data"
+          ]
+        },
+        {
+          "name": "DeallocateSkillFromMember",
+          "params": [
+            "memberId",
+            "skillId"
+          ]
+        },
+        {
+          "name": "DeallocateServiceFromMember",
+          "params": [
+            "memberId",
+            "serviceId",
+            "serviceName"
+          ]
+        },
+        {
+          "name": "AllocateSkillsToMember",
+          "params": [
+            "memberId",
+            "organisationId",
+            "skills"
+          ]
+        },
+        {
+          "name": "SelectOutboundFlowOptionForMember",
+          "params": [
+            "memberId",
+            "flowId"
+          ]
+        }, {
+          "name": "ChangeChannelsOfMember",
+          "params": [
+            "memberId",
+            "organisationId",
+            "channelsNames"
+          ]
+        },
+        {
+          "name": "AllocateChannelToMember",
+          "params": [
+            "memberId",
+            "channelName"
+          ]
+        },
+        {
+          "name": "DeallocateChannelFromMember",
+          "params": [
+            "memberId",
+            "organisationId",
+            "channelName"
+          ]
+        },
+        {
+          "name": "AllocateMemberToSite",
+          "params": [
+            "memberId",
+            "siteId",
+            "siteName"
+          ]
+        },
+        {
+          "name": "AllocateClassOfServiceToMember",
+          "params": [
+            "memberId",
+            "classOfService"
+          ]
+        },
+        {
+          "name": "RemoveMember",
+          "params": [
+            "memberId",
+            "personId",
+            "email",
+            "extension",
+            "firstName",
+            "surname",
+            "roleName"
+          ]
+        },
+        {
+          "name": "ChangeServicesOfMember",
+          "params": [
+            "memberId",
+            "organisationId",
+            "services"
+          ]
+        },
+        {
+          "name": "AllocateRoleToMember",
+          "params": [
+            "memberId",
+            "role"
+          ]
+        },
+        {
+          "name": "DeallocateRoleFromMember",
+          "params": [
+            "memberId",
+            "role"
+          ]
+        }
+      ],
+      "events": [
+        "RoleAllocatedToMember",
+        "OutboundFlowOptionSelectedForMember"
+      ]
+    },
+    "mailbox": {
+      "commands": [
+        {
+          "name": "PlayMailboxMessage",
+          "params": [
+            "mailboxId",
+            "mailboxMessageId"
+          ]
+        }
+      ],
+      "views": [
+        {
+          "display": "Messages",
+          "findBy": "recipientsRecipientIdOrderByMailboxMessagesDateAsc",
+          "params": [
+            "recipientId"
+          ]
+        },
+        {
+          "display": "UnplayedMessageCount",
+          "findBy": "recipientId"
+        }
+      ],
+      "events": [
+        "UnplayedMessageCountUpdated"
+      ]
+    },
+    "workforcemanagement": {
+      "views": [
+        {
+          "display": "WorkforceDashboard",
+          "findBy": "organisationIdAndDateAndServiceId",
+          "params": [
+            "organisationId",
+            "date",
+            "serviceId"
+          ]
+        }
+      ]
+    },
+    "team": {
+      "commands": [
+        {
+          "name": "CreateTeam",
+          "params": [
+            "organisationId",
+            "teamId",
+            "teamName"
+          ]
+        },
+        {
+          "name": "AddAgentToTeam",
+          "params": [
+            "teamId",
+            "memberId",
+            "firstName",
+            "surname",
+            "profilePicture"
+          ]
+        },
+        {
+          "name": "AddTeamLeaderToTeam",
+          "params": [
+            "teamId",
+            "memberId",
+            "firstName",
+            "surname",
+            "profilePicture"
+          ]
+        }
+      ],
+      "events": [
+        "TeamCreated",
+        "AgentAddedToTeam",
+        "TeamLeaderAddedToTeam"
+      ],
+      "views": [
+        {
+          "display": "Teams",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "TeamMembers",
+          "findBy": "teamId"
+        }
+      ]
+    },
+    "organisation": {
+
+      "rootIgnore": "organisation",
+      "commands": [
+        {
+          "name": "SelectService",
+          "params": [
+            "organisationId",
+            "serviceId"
+          ]
+        },
+        {
+          "name": "DeselectService",
+          "params": [
+            "organisationId",
+            "serviceId"
+          ]
+        },
+        {
+          "name": "AddService",
+          "params": [
+            "organisationId",
+            "serviceId",
+            "serviceName",
+            "taskDataSLA"
+          ]
+        },
+        {
+          "name": "RemoveService",
+          "params": [
+            "organisationId",
+            "serviceId",
+            "serviceName",
+            "taskDataSLA"
+          ]
+        },
+        {
+          "name": "AddSkillGroup",
+          "params": [
+            "organisationId",
+            "skillGroupId",
+            "skillGroupName"
+          ]
+        },
+        {
+          "name": "RemoveSkillGroup",
+          "params": [
+            "organisationId",
+            "skillGroupId",
+            "skillGroupName"
+          ]
+        },
+        {
+          "name": "AddSkill",
+          "params": [
+            "organisationId",
+            "skillGroupId",
+            "skillId",
+            "skillName"
+          ]
+        },
+        {
+          "name": "RemoveSkill",
+          "params": [
+            "organisationId",
+            "skillGroupId",
+            "skillId",
+            "skillName"
+          ]
+        },
+        {
+          "name": "AddSite",
+          "params": [
+            "organisationId",
+            "siteId",
+            "siteName"
+          ]
+        },
+        {
+          "name": "RemoveSite",
+          "params": [
+            "organisationId",
+            "siteId",
+            "siteName"
+          ]
+        },
+        {
+          "name": "ChangeOrganisationInformation",
+          "params": [
+            "organisationId",
+            "organisationName"
+          ]
+        }
+      ],
+      "views": [
+        {
+          "display": "Channels",
+          "findBy": "organisationId"
+        }
+      ]
+    },
+    "kiosk": {
+      "views": [
+        {
+          "display": "Kiosks",
+          "findBy": "organisationId"
+        }
+      ]
+    }
+  },
+  "user": {
+    "dashboard": {
+      "events": [
+        "TaskHistoryUpdated"
+      ]
+    },
+    "passport": {
+      "views": [
+        {
+          "display": "CurrentStatus",
+          "findBy": "userId"
+        },
+        {
+          "display": "UserInformation",
+          "findBy": "userId"
+        }
+      ],
+      "commands": [
+        {
+          "name": "ReportLoginFailed",
+          "params": [
+            "error",
+            "passportId"
+          ]
+        },
+        {
+          "name": "ReportLoginSucceeded",
+          "params": [
+            "passportId"
+          ]
+        },
+        {
+          "name": "Logout",
+          "params": [
+            "passportId"
+          ]
+        },
+        {
+          "name": "ChangeUsername",
+          "params": [
+            "previousUsername",
+            "newUsername",
+            "passportId",
+            "password"
+          ]
+        },
+        {
+          "name": "ChangeEmail",
+          "params": [
+            "previousEmail",
+            "newEmail",
+            "passportId"
+          ]
+        },
+        {
+          "name": "ChangePassword",
+          "params": [
+            "previousPassword",
+            "newPassword",
+            "passportId"
+          ]
+        },
+        {
+          "name": "RequestPasswordReset",
+          "params": [
+            "email",
+            "passportId"
+          ]
+        },
+        {
+          "name": "ResetPassword",
+          "params": [
+            "newPassword",
+            "passportId"
+          ]
+        }
+      ],
+      "events": [
+        "UsernameChanged",
+        "EmailChanged",
+        "PasswordChanged",
+        "PasswordResetRequested",
+        "PasswordReset",
+        "StatusChanged"
+      ]
+    },
+    "invitation": {
+      "commands": [
+        {
+          "name": "AcceptInvitation",
+          "params": [
+            "invitationId"
+          ]
+        },
+        {
+          "name": "RevokeInvitation",
+          "params": [
+            "invitationId",
+            "email",
+            "role"
+          ]
+        }
+      ]
+    },
+    "registration": {
+      "commands": [
+        {
+          "name": "RegisterOrganisation",
+          "params": [
+            "organisationRegistrationId",
+            "organisationName",
+            "creator"
+          ]
+        },
+        {
+          "name": "CompleteUserRegistration",
+          "params": [
+            "userRegistrationId",
+            "token",
+            "firstName",
+            "surname",
+            "password",
+            "acceptedTerms"
+          ]
+        },
+        {
+          "name": "SubmitUserRegistration",
+          "params": [
+            "userRegistrationId",
+            "email",
+            "invitationId"
+          ]
+        },
+        {
+          "name": "RequestVerification",
+          "params": [
+            "userRegistrationId",
+            "email"
+          ]
+        }
+      ],
+      "events": [
+        "OrganisationRegistered",
+        "UserRegistrationSubmitted",
+        "UserRegistrationAccepted",
+        "UserRegistrationRejected",
+        "UserRegistrationCompleted",
+        "VerificationRequested"
+      ]
+    },
+    "user": {
+      "commands": [
+        {
+          "name": "ChangeUserInformation",
+          "params": [
+            "firstName",
+            "surname",
+            "userId",
+            "gender",
+            "dateOfBirth",
+            "telephoneNumbers"
+          ]
+        },
+        {
+          "name": "ChangeProfilePicture",
+          "params": [
+            "userId",
+            "profilePicture"
+          ]
+        }
+      ],
+      "events": [
+        "UserInformationChanged",
+        "ProfilePictureChanged"
+      ],
+      "updates": [
+        {
+          "authenticate": "Login",
+          "params": [
+            "email",
+            "password"
+          ]
+        },
+        {
+          "authenticate": "Verify",
+          "params": [
+            "identity",
+            "password"
+          ]
+        }
+      ]
+    }
+  },
+  "account": {
+    "refreshToken": {
+      "customQueries": [
+        {
+          "uri": "user/loginView/refreshToken",
+          "findBy": "",
+          "params": []
+        }
+      ]
+    },
+    "refreshAccessCode": {
+      "customQueries": [
+        {
+          "uri": "user/loginView/refreshAccessCode",
+          "findBy": "",
+          "params": []
+        }
+      ]
+    },
+    "interactionLog": {
+      "views": [
+        {
+          "display": "CallLog",
+          "findAllBy": "OrganisationIdOrderByDateDesc",
+          "params": [
+            "organisationId",
+            "size",
+            "page"
+          ]
+        },
+        {
+          "display": "AgentCallLog",
+          "findBy": "membersMemberIdOrderByEndTimestampDesc",
+          "params": [
+            "memberId"
+          ]
+        }
+      ],
+      "customQueries": [
+        {
+          "uri": "displayCallLogViewRepository/findByCriteria",
+          "findBy": "Criteria",
+          "params": [
+            "fromDate",
+            "toDate",
+            "organisationId",
+            "callType",
+            "channel",
+            "memberName",
+            "fromNumber",
+            "toNumber",
+            "size",
+            "page"
+          ]
+        }
+      ]
+    }
+  },
+  "finance": {
+    "telephonenumber": {
+      "commands": [
+        {
+          "name": "AssignTelephoneNumberToMember",
+          "params": [
+            "telephoneNumberId",
+            "telephoneNumber",
+            "memberId",
+            "userId",
+            "firstName",
+            "surname",
+            "email",
+            "organisationId"
+          ]
+        }, {
+          "name": "UnassignTelephoneNumberFromMember",
+          "params": [
+            "telephoneNumberId",
+            "telephoneNumber",
+            "memberId",
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "member": {
+    "member": {
+      "views": [
+        {
+          "display": "OutboundFlowOptions",
+          "findBy": "memberId"
+        },
+        {
+          "display": "TeamLeaderAgents",
+          "findBy": "organisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "interaction": {
+    "interactionflow": {
+      "commands": [
+        {
+          "name": "CreateInteractionFlow",
+          "params": [
+            "interactionFlowId",
+            "organisationId",
+            "flowName",
+            "flowType",
+            "channel",
+            "isCopiedFlow"
+          ]
+        },
+        {
+          "name": "RemoveInteractionFlow",
+          "params": [
+            "interactionFlowId"
+          ]
+        }
+      ]
+    }
+  },
+  "userInfo": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/person/displayPersonInformationView/search/findByPersonId",
+          "findBy": "personId",
+          "params": [
+            "personId"
+          ]
+        }
+      ]
+    }
+  },
+  "playVoicemail": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "recording/playVoiceMail",
+          "findBy": "userId",
+          "params": [
+            "organisationId",
+            "mailboxId",
+            "mailboxMessageId"
+          ]
+        }
+      ]
+    }
+  },
+  "retrieveMailboxMessages": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/mailbox/findDisplayMessagesListByRecipientId",
+          "params": [
+            "recipientId"
+          ]
+        }
+      ]
+    }
+  },
+  "retrieveOrganisationInfo": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displayOrganisationView/search/findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "retrieveRegistrationStatusByEmail": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/registration/registrationStatusView",
+          "params": [
+            "email"
+          ]
+        }
+      ]
+    }
+  },
+  "retrieveRegistrationCompletionStatus": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "/user/registration/registrationCompletionView",
+          "params": [
+            "userRegistrationId",
+            "token"
+          ]
+        }
+      ]
+    }
+  },
+  "playCallLog": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "recording/playRecording",
+          "findBy": "userId",
+          "params": [
+            "interactionId",
+            "organisationId",
+            "type"
+          ]
+        }
+      ]
+    }
+  },
+  "displayConversationCard": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/conversationCardView/search/findByConversationId",
+          "findBy": "findByConversationId",
+          "params": [
+            "conversationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayConversationAttributes": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/conversationContactsView/search/findByOrganisationIdAndConversationIdsIn",
+          "findBy": "findByOrganisationIdAndConversationIdsIn",
+          "params": [
+            "organisationId",
+            "conversationId"
+          ]
+        }
+      ]
+    }
+  },
+  "searchContacts": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/contact/search",
+          "findBy": "",
+          "params": [
+            "firstName",
+            "surname",
+            "email",
+            "number"
+          ]
+        }
+      ]
+    }
+  },
+  "formName": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "qualityassurance/validate/formname",
+          "findBy": "",
+          "params": [
+            "searchText"
+          ]
+        }
+      ]
+    }
+  },
+  "findByContactId": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/contactSearchView/search/findByContactId",
+          "findBy": "findByContactId",
+          "params": [
+            "contactId"
+          ]
+        }
+      ]
+    }
+  },
+  "selectContact": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/conversationSearchView/search/findByOrganisationIdAndContactIdAndStatusOrderByLatestInteractionTimestampDesc",
+          "findBy": "findByOrganisationIdAndContactIdAndStatusOrderByLatestInteractionTimestampDesc",
+          "params": [
+            "organisationId",
+            "contactId",
+            "status"
+          ]
+        }
+      ]
+    }
+  },
+  "searchConversations": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/conversationSearchView/search/findByOrganisationIdAndConversationNameIgnoreCaseLike",
+          "findBy": "findByOrganisationIdAndConversationNameIgnoreCaseLike",
+          "params": [
+            "organisationId",
+            "conversationName"
+          ]
+        }
+      ]
+    }
+  },
+  "displayOrganisationSelectedServices": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displaySelectedServicesView/search/findByOrganisationId",
+          "findBy": "OrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayOrganisationAgents": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/team/displayOrganisationAgentsViews/search/findByOrganisationIdAndFirstNameLikeIgnoreCaseOrSurnameLikeIgnoreCase",
+          "findBy": "findByOrganisationIdAndFirstNameLikeOrSurnameLike",
+          "params": [
+            "organisationId",
+            "searchText"
+          ]
+        }
+      ]
+    }
+  },
+  "displayOrganisationTeamLeaders": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/team/displayOrganisationTeamLeadersViews/search/findByOrganisationIdAndFirstNameLikeIgnoreCaseOrSurnameLikeIgnoreCase",
+          "findBy": "findByOrganisationIdAndFirstNameLikeOrSurnameLike",
+          "params": [
+            "organisationId",
+            "searchText"
+          ]
+        }
+      ]
+    }
+  },
+  "findTeamForMember": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/team/findTeamForMemberViews/search/findByMemberId",
+          "findBy": "findByMemberId",
+          "params": [
+            "memberId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayTeamMembers": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/team/displayTeamMembersView/search/findByTeamId",
+          "findBy": "findByTeamId",
+          "params": [
+            "teamId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayOrganisationMembers": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "member/displayOrganisationMembersView",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displaySites": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displaySitesView/search/findByOrganisationId?organisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayServices": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displayServicesView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displaySkillGroups": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displaySkillGroupsView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displaySkills": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displaySkillsView/search/findBySkillGroupId",
+          "findBy": "findBySkillGroupId",
+          "params": [
+            "skillGroupId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayRoles": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displayRolesView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayClassesOfService": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displayClassesOfServiceView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayTelephoneNumbers": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "account/displayTelephoneNumbersView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displaySites": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/displaySitesView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayPendingInvitations": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/registration/pendingInvitationsView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "acceptInvitation": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/registration/invitationStatusView/search/findByInvitationId",
+          "findBy": "findByInvitationId",
+          "params": [
+            "invitationId"
+          ]
+        }
+      ]
+    }
+  },
+  "organisationTelephoneNumbers": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "finance/telephonenumber/displayOrganisationTelephoneNumbersView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "organisationTelephoneNumbersMembers": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "finance/telephonenumber/displayMemberView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "organisationInteractions": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "interaction/displayInteractionFlowsView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "changeOrganisation": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/changeOrganisationView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "validateEmail": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/registration/validate/email",
+          "findBy": "email",
+          "params": [
+              "email"
+            ]
+        }
+      ]
+    }
+  },
+  "rules": {
+    "common": {
+      "events": [
+        "BusinessRuleViolated"
+      ]
+    }
+  },
+  "resetUserPassword": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/passport/resetPasswordView/search/findByEmail",
+          "findBy": "findByEmail",
+          "params": [
+            "email"
+          ]
+        }
+      ]
+    }
+  },
+  "conversationJourneyView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/conversationJourneyView/search/findByConversationId",
+          "findBy": "conversationId",
+          "params": [
+            "conversationId"
+          ]
+        }
+      ]
+    }
+  },
+  "unlinkInteractions": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/conversationInteractionsView/search/findByConversationIdOrderByTimestampDesc",
+          "findBy": "findByConversationIdOrderByTimestampDesc",
+          "params": [
+            "conversationId"
+          ]
+        }
+      ]
+    }
+  },
+  "interactionJourneyView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/contactJourneyView/search/findByConversationIdsInOrderByTimestampDesc",
+          "findBy": "findByConversationIdsInOrderByTimestampDesc",
+          "params": [
+            "conversationId"
+          ]
+        }
+      ]
+    }
+  },
+  "interactionListView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/interactionListViews/search/findByOrganisationIdAndMemberIdsInOrderByTimestampDesc",
+          "findBy": "findByOrganisationIdAndMemberIdsInOrderByTimestampDesc",
+          "params": [
+            "memberId",
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "conversationHistoryView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "conversation/displayConversationHistoryViewRepository/findAllByCriteria",
+          "findBy": "findAllByCriteria",
+          "params": [
+            "memberId",
+            "channel",
+            "fromDate",
+            "toDate",
+            "conversationName",
+            "contactName"
+          ]
+        }
+      ]
+    }
+  },
+  "qaListView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "qualityassurance/QAListView/search/findByOrganisationId",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "performQaView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "qualityassurance/performQAView/search/findByFormId",
+          "findBy": "findByFormId",
+          "params": [
+            "formId"
+          ]
+        }
+      ]
+    }
+  },
+  "displayOrganisationMembersView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "member/displayOrganisationMembersView/search/findByOrganisationIdAndMembersServicesServiceName",
+          "findBy": "findByOrganisationIdAndMembersServicesServiceName",
+          "params": [
+            "organisationId",
+            "serviceName"
+          ]
+        }
+      ]
+    }
+  },
+  "agentAssessedFormsView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "qualityassurance/agentAssessedFormsView/search/findByOrganisationIdAndMemberId",
+          "findBy": "findByOrganisationIdAndMemberId",
+          "params": [
+            "organisationId",
+            "memberId"
+          ]
+        }
+      ]
+    }
+  },
+  "agentAssessedFormView": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "qualityassurance/agentAssessedFormView/search/findByAssessmentId",
+          "findBy": "findByAssessmentId",
+          "params": [
+            "assessmentId"
+          ]
+        }
+      ]
+    }
+  }
+}

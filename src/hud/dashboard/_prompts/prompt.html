@@ -1,0 +1,71 @@
+<template>
+
+  <!--
+  <style>
+  
+    .small {
+      width:500px;
+    }
+  </style>
+  <div class="modalWrap small" style="width:500px">
+  <div class="modalWrap" css/style="width:${promptStore.width}">
+  <div class="modalWrap" ref="frame">
+-->
+
+  <!-- class="aurelia-hide" show.bind="rendered"  -->
+  <div style="width:760px">
+    <!--<div class="o-view-border--animated ${openPromptClass}" style="width:760px">-->
+    <div class="o-view-border o-view-border--prompt" show.bind="rendered">
+      <div class="o-prompt">
+        <ai-dialog>
+
+          <ai-dialog-header if.bind="!promptStore.settings.header || !promptStore.settings.header.disabled">
+            <div class="o-prompt-header clearfix">
+              <!--          <div class="o-prompt-header clearfix aurelia-hide" show.bind="rendered">-->
+              <div class="o-prompt-header__icon-container pull-left">
+                <img class="o-prompt-header__icon" src="/target/_assets/img/icon_${promptStore.icon}.png" />
+              </div>
+              <h6 class="o-prompt-header__title o-text__header pull-left">${promptStore.title}</h6>
+            </div>
+          </ai-dialog-header>
+
+          <ai-dialog-body class="o-dialog__body">
+            <!--        <ai-dialog-body class="o-dialog__body aurelia-hide" show.bind="rendered">-->
+
+            <!--<form>-->
+            <form role="form" validate.bind="validation" class="o-form">
+
+              <div class="row" if.bind="isView">
+                
+                <compose view="${promptStore.view}"></compose>
+
+              </div>
+                
+              <div class="row" if.bind="isViewModel">
+                
+                <compose view-model="${promptStore.viewModel}"></compose>
+                
+                <span show.bind="errors.noSelection">Please select at least 1 item.</span>
+
+              </div>
+
+            </form>
+
+          </ai-dialog-body>
+
+          <ai-dialog-footer>
+            <div class="row">
+              <div class="o-prompt-button-row">
+                <button id="acceptBtn" class="o-button o-button--in-prompt-footer o-button__action o-button__action--accept pull-right aurelia-hide" show.bind="showAccept" click.trigger="validate()"></button>
+                <!--            <button class="hexSmall " click.trigger="controller.ok()">Accept</button>-->
+                <!--<button id="cancelBtn" class="hexSmall" click.trigger="controller.cancel()">Cancel</button>-->
+              </div>
+            </div>
+          </ai-dialog-footer>
+
+        </ai-dialog>
+      </div>
+    </div>
+  </div>
+
+</template>

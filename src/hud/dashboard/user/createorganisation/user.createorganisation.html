@@ -1,0 +1,27 @@
+<template>
+	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 clearfix">
+		<div class="crud_header_guide">
+			<p class="crud_header_guide_text o-text__guide">
+				<span>Welcome to ZaiLab.</span>
+				<br>
+
+				<span>If you are waiting for an invitation please check your email or contact your administrator.</span>
+				<span>If you would like to create an organisation, you can get started by selecting the "Create" button.</span>
+
+			</p>
+		</div>
+
+		<div class="spaceship margin-top-fix col-sm-offset-4 col-sm-4 col-adjust-30-40">
+			<div class="spaceship_container">
+				<div class="create-org-container clearfix">
+					<div class="c-create-organisation">
+						<button class="btn-pos add_btn" click.delegate="createOrganisation()"></button>
+						<div class="c-create-organisation__button"></div>
+						<div class="c-create-organisation__label u-text-style__size--medium">Create Organisation</div>
+					</div>
+				</div>
+				<img src="/target/_assets/img/organisation.png" alt="" class="spaceship_signup" />
+			</div>
+		</div>
+	</div>
+</template>

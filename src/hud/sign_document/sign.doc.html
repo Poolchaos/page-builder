@@ -1,0 +1,238 @@
+<template>
+
+	<section class="col-lg-3 co2-md-3 col-sm-2">
+
+	</section>
+
+	<!-- LEFT CUSTOMER/CLIENT DETAILS PANEL -->
+
+	<section class="col-lg-2 col-md-2 col-sm-1 on_call_left">
+
+		<div class="on_call_left_inner clearfix">
+
+			<h6 class="title">Title</h6>
+
+			<div class="list_item_title_wrap col-lg-12 col-md-12 col-sm-12">
+				<div class="hex_bg_small">
+					<span class="search_icon"></span>
+				</div>
+				<h6 class="list_items_title pull-right">Client Name</h6>
+			</div>
+
+			<h6 style="text-align:center; display: none;">00:01:20</h6>
+
+			<div class="videoWrap video_small_wrap" show.bind="customerStore.isWrappingUp === false">
+
+				<!-- consider globalising -->
+				<require from="hud/_custom/peer.video"></require>
+				<peer-video></peer-video>
+
+			</div>
+
+			<div class="button_container left_col_msg_btn">
+				<button class="hexMedium"><span class="msg_icon fadedContent"></span></button>
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- MIDDLE SIGN DOCUMENT CONTROL PANEL -->
+
+	<section class="col-lg-5 col-md-5">
+
+		<!-- TOP DOCUMENT ACTION AND DISPLAY PANEL -->
+
+		<div class="row">
+
+			<!-- LEFT SIDE ACTIONS -->
+
+			<div class="col-lg-3 col-md-3 instructions_left">
+
+				<ul class="scan_instruct">
+
+					<!-- UPLOAD DOCUMENT ACTION -->
+
+					<li show.bind="signDocumentStore.showUploadDocument && customerStore.isWrappingUp === false">
+
+						<button class="hexMedium toBeNoticed">
+							<span class="docscan_icon"></span>
+							<form>
+								<input ref="fileSelector" type="file" change.delegate="uploadDocument($event)" accept="application/pdf" class="upload" />
+							</form>
+						</button>
+
+						<span class="text_line">
+              <span class="double_line"></span>
+						<span class="doc_type">Upload</span>
+						<span class="text_line_angle"></span>
+						</span>
+
+					</li>
+
+					<!-- OTHER DOCUMENT ACTION - NOT IMPLEMENTED YET -->
+
+					<!--
+          <li repeat.for="type of customerStore.signTypes" click.trigger="requestScan(type)" show.bind="signDocumentStore.instruction === 'request' && type.name !== 'Upload'">
+
+            <button class="hexMedium toBeNoticed"><span class="docscan_icon"></span></button>
+
+            <span class="text_line">
+              <span class="double_line"></span>
+              <span class="doc_type">${type.name}</span>
+              <span class="text_line_angle"></span>
+            </span>
+
+          </li>
+          -->
+
+				</ul>
+
+			</div>
+
+			<!-- DOCUMENT AND OTHER ACTIONS DISPLAY -->
+
+			<div class="col-lg-9 col-md-9 instruction_progress_area clearfix">
+
+				<div class="ruler_line_left">
+					<span class="ruler_square_top"></span>
+					<span class="ruler_line_center"></span>
+					<span class="ruler_square_bottom"></span>
+				</div>
+
+				<div class="ruler_line_right">
+					<span class="ruler_square_top"></span>
+					<span class="ruler_line_center"></span>
+					<span class="ruler_square_bottom"></span>
+				</div>
+
+				<!-- UPLOADED/PREVIEW/SCANNED DOCUMENT AND TITLE AND SCANNING IN PROGRESS AND SIGN ACTIONS DISPLAY -->
+
+				<div class="instruction_progress clearfix">
+
+					<!-- DOCUMENT AND TITLE -->
+
+					<section show.bind="signDocumentStore.showDocumentOrPreview">
+
+						<!-- TOP DOCUMENT TITLE AND MESSAGE DISPLAY HEADERS -->
+
+						<h6 class="instructions_header" show.bind='signDocumentStore.showMessageTitle && customerStore.isWrappingUp === false'>Please select a document to be signed.</h6>
+						<h6 class="instructions_header" show.bind='signDocumentStore.showMessageTitle && customerStore.isWrappingUp === true'>Please select a document to be viewed.</h6>
+
+						<h6 class="instructions_header" show.bind='signDocumentStore.showDocumentTitle'>${signDocumentStore.documentTitle}</h6>
+
+						<!-- UPLOADED DOCUMENT OBJECT -->
+
+						<object class="doc_preview_sign" src="#toolbar=false" show.bind="signDocumentStore.showDocument" data.bind="signDocumentStore.documentData" type="application/pdf" width="100%" height="400px"></object>
+						<!-- TODO move width="100%" height="400px" into CSS? -->
+
+						<!-- PREVIEW SELECTED DOCUMENT OBJECT -->
+
+						<object class="doc_preview_sign" src="#toolbar=false" show.bind="signDocumentStore.showPreview" data.bind="signDocumentStore.previewData" type="application/pdf" width="100%" height="400px"></object>
+						<!-- TODO move width="100%" height="400px" into CSS? -->
+
+						<!-- SIGN TYPE ACTION -->
+
+						<div class="request_scan_wrap" show.bind="signDocumentStore.showSignTypes">
+
+							<button id="signee_One" class="hexSmall" click.trigger="requestSignature(false)">
+								<span class="request_scan">One Signee</span>
+							</button>
+
+							<button id="signee_two" class="hexSmall" click.trigger="requestSignature(true)">
+								<span class="request_scan">Two Signees</span>
+							</button>
+
+						</div>
+						<!-- CLOSE SCAN DOCUMENTS ACTION -->
+						<div class="awaitingAction_backButton">
+							<button class="hexMedium" click.delegate="closeInstruction()" show.bind="signDocumentStore.showClose">Back</button>
+						</div>
+					</section>
+
+					<!-- SCANNING IN PROGRESS DISPLAY -->
+
+					<section show.bind="signDocumentStore.showWaiting">
+
+						<h6 class="instructions_header">Awaiting customer signature...</h6>
+
+						<div class="document_preview_area clearfix sign_preview">
+							<span class="preview_area_left"></span>
+							<span class="preview_area_right"></span>
+							<div class="instruction_guide">
+								<img src="target/_assets/img/signature.gif" />
+							</div>
+						</div>
+
+					</section>
+
+				</div>
+
+				<!-- SCANNED DOCUMENT ACTIONS -->
+
+				<div class="scan_state scanned_doc-buttons clearfix" show.bind="signDocumentStore.showDocumentActions">
+
+					${signDocumentStore.showDocumentActions ? '' : 'If you see this you have encountered an aurelia animator bug see details here: https://github.com/aurelia/animator-css/issues/29 IF THE BUTTONS SHOW INCORRECTLY WITHOUT THIS MESSAGE THEN LOG A BUG PLEASE!'}
+
+					<div class="pull-left">
+						<button class="hexSmall toBeNoticed" click.delegate="cancel()">Cancel</button>
+						<button class="hexSmall toBeNoticed" click.delegate="redo()">Redo</button>
+					</div>
+					<div class="pull-right">
+						<button class="hexSmall toBeNoticed" click.delegate="ok()">Accept</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- BOTTOM DISPLAY PANEL -->
+
+		<div class="row">
+			<div class="col-lg-3 col-md-3"></div>
+			<div class="col-lg-7 col-md-9">
+				<img style="width:133%; margin-top:10%; display: none;" src="target/_assets/img/audio_graph.png">
+			</div>
+		</div>
+
+	</section>
+
+	<!-- RIGHT DOCUMENT HISTORY PANEL -->
+
+	<section class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+		<div class="instruction_history">
+
+			<div class="instruction_history_panels clearfix" repeat.for="document of customerStore.signTypes">
+
+				<div class="no_click" show.bind="signDocumentStore.showNoClick"></div>
+
+				<h6 class="list_items_title pull-right instruction_history_title">Signed Documents</h6>
+
+				<div class="clearfix"></div>
+
+				<ul class="instruction_history_item_list clearfix">
+
+					<li class="instruction_history_items_signed" repeat.for="item of document.documents" click.trigger="previewDocument(item)">
+						<span class="list_item_container">
+              <span class="docscan_icon_thumbnail"></span>
+						<span class="instruction_history_items_number">${item.documentName}</span>
+						</span>
+					</li>
+
+				</ul>
+
+				<span class="delete" show.bind="document.documents.length > 0"></span>
+
+			</div>
+
+		</div>
+
+		<!-- SOME DOCUMENT LIST - NOT SURE WHAT THIS IS - NOT IMPLEMENTED YET -->
+
+		<!--    <div repeat.for="document of signDocumentStore.documentList">${document.documentName}</div>-->
+
+	</section>
+
+</template>

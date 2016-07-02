@@ -1,0 +1,63 @@
+<template>
+
+  <section class="row">
+
+    <section class="col-lg-4 col-md-4 col-sm-4">
+
+      <!-- port - items are listed to the left of the picture, when clicked trigger selected option -->
+
+      <ul class="scan_instruct">
+
+        <li repeat.for="portItem of dashboardStore.portItems">
+
+          <button class="hexMedium" click.delegate="selectPortOption(portItem.option)">${portItem.name}</button>
+
+          <!-- port - some options trigger an additional display that opens from the related item to the left -->
+
+          <compose view-model="${portItem.viewModel}"></compose> 
+          
+        </li>
+
+      </ul>
+
+    </section>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 instruction_progress_area clearfix">
+
+      <div class="instruction_progress clearfix">
+
+        <div class="request_scan_wrap">
+
+          <compose view-model="${dashboardStore.helmViewModel}"></compose>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <section class="col-lg-4 col-md-4 col-sm-4">
+
+      <!-- starboard - items are listed to the right of the picture, when clicked trigger selected option -->
+
+      <ul class="scan_instruct">
+
+        <!-- TODO list items underneath eath other ! class="scan_instruct" PULLS RIGHT :( -->
+
+        <li repeat.for="starboardItem of dashboardStore.starboardItems">
+
+          <button class="hexMedium" click.delegate="selectStarboardOption(starboardItem.option)">${starboardItem.name}</button>
+
+          <!-- starboard - some options trigger an additional display that opens from the related item to the right -->
+
+          <compose view-model="${starboardItem.viewModel}"></compose>
+
+        </li>
+
+      </ul>
+
+    </section>
+
+  </section>
+
+</template>

@@ -1,0 +1,107 @@
+<template>
+	
+	<!-- steps -->
+	<div class="row o-conversation-body__steps">
+		<div class="c-to-center">
+			<ul class="o-wizard clearfix">
+				<span class="o-wizard__line o-wizard__line--two"></span>
+				<li class="o-wizard__step o-wizard__step--two">
+					<div class="o-step-block is-active">
+						<div class="o-step-block__step-inner">
+							<span class="o-step-block__active-step"></span>
+						</div>
+					</div>
+					<div class="o-step-block__description o-step-block__description--active u-text-style__size--small u-text-style__align--center">Select Form</div>
+				</li>
+				<li class="o-wizard__step o-wizard__step--two">
+					<div class="o-step-block">
+						<div class="o-step-block__step-inner">
+							<span class="o-step-block__active-step"></span>
+						</div>
+					</div>
+					<div class="o-step-block__description u-text-style__size--small u-text-style__align--center">Perform QA</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- header -->
+	<div class="o-conversation-body__header">
+		<div class="c-to-center">
+			<h1 class="o-text__header--xlarge u-text-style--none u-text-style__space--none u-text-style__align--center">Please select a form.</h1>
+		</div>
+	</div>
+
+	<!-- content -->
+	<div class="row o-conversation-body__content o-conversation-body__content--with-steps">
+
+		<!-- UTILITY -->
+		<div class="o-conversation-utility o-conversation-utility--filter-padding-fix col-sm-12">
+			<!-- BUTTON - SEARCH -->
+			<div class="o-conversation-utility__button-wrap pull-left" click.delegate="toggleSearch()" show.bind="enableSearch">
+				<button class="o-button o-button__navigate o-button__navigate--primary-colour">
+					<span class="o-button o-button__navigate o-button__navigate-inner o-button__navigate-inner--thin">
+					<span class="o-icon-container o-icon-container--small-button o-button-navigate-icon--search"></span>
+					</span>
+				</button>
+			</div>
+			<!-- INPUT - SEARCH -->
+			<div class="o-conversation-form-field o-conversation-form-field--two-button-with-total pull-left" show.bind="showSearch">
+				<form submit.delegate="search()">
+					<span class="o-form-field__input-border-line"></span>
+					<input class="o-form-field__input o-text__input" value.bind="searchText" placeholder="Form Name" id="searchText" keyup.trigger="search()" />
+					<span class="o-form-field__input-border-line"></span>
+					<button style="display: none;" type="submit"></button>
+				</form>
+			</div>
+			<!-- SHOW - TOTAL -->
+			<div class="o-conversation-utility__total-wrap pull-right" show.bind="allItems.length > 0">
+				<div class="c-to-center c-to-center--vertical-only">
+					<div class="u-text-style__size--large u-text-style__align--right">Total: ${allItems.length}</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="o-conversation-search-list__parent-wrapper">
+
+			<div class="o-no-data aurelia-hide" style="width: 100%; height: 100%;" show.bind="!pagedItems || pagedItems.length === 0">
+				<div class="o-no-data__display" style="padding: 0;">
+					<div>
+						<span class="u-text-style__size--medium">No data to display.</span>
+					</div>
+				</div>
+			</div>
+
+			<ul class="o-conversation-search-list__child-wrapper">
+				<li class="o-conversation-search-list__item o-conversation-search-list__item--five o-conversation-search-list__item--align-top" repeat.for="form of pagedItems" click.delegate="selectForm(form)">
+					<ul class="o-conversation-search-list__nested-list o-view-border__solid-line--secondary" class.bind="form.isPlaceholder ? 'o-view-border__placeholder' : '' ">
+						<li class="o-conversation-search-list__nested-list-item u-text-style__size--medium u-text-style__align--center" title="${form.date}">${form.date}</li>
+						<!-- TODO - Icon -->
+						<li class="o-form-list__icon o-form-list__icon--form" show.bind="!form.isPlaceholder"></li>
+						<li class="o-conversation-search-list__nested-list-item u-text-style__size--large u-text-style__align--center" title="${form.name}">${form.name}</li>
+						<li class="o-conversation-search-list__nested-list-item u-text-style__size--large u-text-style__color--secondary u-text-style__align--center" title="${form.firstName} ${form.surname}">${form.firstName} ${form.surname}</li>
+
+					</ul>
+				</li>
+			</ul>
+
+			<button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--previous o-tile-list-view__pager--l-closer aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button>
+			<button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--next o-tile-list-view__pager--r-closer aurelia-hide" show.bind="showNext" click.delegate="next()"></button>
+
+		</div>
+
+	</div>
+	
+	<!-- footer -->
+		<div class="row o-conversation-body__footer">
+			<div class="c-to-center">
+				<div class="col-sm-12">
+					<div class="u-text-style__align--center">
+						<button class="o-button__glass-rectangle o-button__glass-rectangle--secondary-color o-button__glass-rectangle--respond o-text__button" click.delegate="cancel()">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+</template>

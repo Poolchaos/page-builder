@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>ZaiConversations</title>
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/vendor/croppie/croppie.css">
+  <link rel="stylesheet" href="/vendor/toastr/toastr.min.css">
+  <link rel="stylesheet" href="/target/_assets/styles/index.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <base href="/">
+
+  <style type="text/css">
+    input.stdin,
+    span.cursor {
+      font-family: monospace;
+    }
+    
+    input.stdin {
+      width: 0;
+    }
+  </style>
+
+</head>
+
+<body aurelia-app="main">
+
+  <!-- Preloader -->
+
+  <div class="circularLoader">
+    <div class="part">
+      <div class="part">
+        <div class="part">
+          <div class="part">
+            <div class="part">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="label u-text-style__size--medium">LOADING...</span>
+  </div>
+
+  <script src="/jspm_packages/system.js"></script>
+  <script src="/config.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <!-- Google charts AJAX API (not available offline) -->
+  <script src="vendor/screen_share/getScreenId.js"></script>
+  <script src="vendor/screen_share/screen.js"></script>
+
+  <script type="text/javascript" src="vendor/clock/coolclock.js"></script>
+  <script type="text/javascript" src="vendor/clock/moreskins.js"></script>
+  <script type="text/javascript" src="vendor/croppie/croppie.min.js"></script>
+  <script type="text/javascript" src="jspm_packages/github/travist/jsencrypt@2.3.0/bin/jsencrypt.js"></script>
+  <script type="text/javascript" src="jspm_packages/github/Stuk/jszip@3.0.0/dist/jszip.js"></script>
+  <!-- Use import instead -->
+
+  <script>
+    System.import('aurelia-bootstrapper');
+  </script>
+
+</body>
+
+</html>

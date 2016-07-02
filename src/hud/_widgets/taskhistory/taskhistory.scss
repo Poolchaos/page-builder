@@ -1,0 +1,321 @@
+@import "../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@import "../../../_common/styles/_variables.scss";
+
+/* task history scss */
+
+
+/* ---- Task History styling start ---- */
+
+.task_history::-webkit-scrollbar,
+.instruction_history_item_list::-webkit-scrollbar,
+.instruction_history::-webkit-scrollbar
+ {
+  width: 6px;
+}
+
+.task_history::-webkit-scrollbar-track,
+.instruction_history_item_list::-webkit-scrollbar-track,
+.instruction_history::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgb(59, 244, 255);
+  border-radius: 5px;
+}
+
+.task_history::-webkit-scrollbar-thumb,
+.instruction_history_item_list::-webkit-scrollbar-thumb,
+.instruction_history::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgb(59, 244, 255);
+}
+
+.instruction_history::-webkit-scrollbar-track {
+  margin-top: 45px;
+}
+
+ul.task_history {
+  width: 100%;
+  height: 227px;
+  margin-bottom: 0;
+  //  overflow-y: overlay;
+  //  overflow-x: hidden;
+  @media screen and (max-width: 1024px) {
+    height: 70px;
+  }
+  span.no_tasks {
+    line-height: 111px;
+    color: #eda700;
+    width: 100%;
+    height: 111px;
+    display: block;
+    text-align: center;
+  }
+}
+
+ul.task_history .no_tasks {
+  @media screen and (max-width: 1024px) {
+    height: 70px;
+  }
+}
+
+@include object('dashboard-list') {
+  height: 640px;
+  padding-top: 0px;
+}
+
+@include object('dashboard-item') {
+  text-align: center;
+  margin-bottom: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+  @include element('wrap') {
+    width: 100%;
+    height: 270px;
+    padding: 50px 15px;
+    display: block;
+    @include modifier('cancel-padding') {
+      padding: 15px !important;
+    }
+  }
+  @include element('is-recorded') {
+    color: red;
+    position: absolute;
+    top: 7px;
+    left: 9px;
+    @media screen and (max-width: 1400px) {
+      top: 3px;
+      left: 4px;
+    }
+    &:before {
+      content: '';
+      position: relative;
+      bottom: 2px;
+      display: inline-block;
+      height: 6px;
+      width: 6px;
+      margin-right: 3px;
+      line-height: -7px;
+      background-color: red;
+      border-radius: 50%;
+    }
+  }
+  @include element('icon') {
+    margin: 0 auto 10px;
+    width: 42px;
+    @include modifier('internal-icon') {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url(../img/icon_internal-calls.png);
+    }
+    @include modifier('incoming-icon') {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url(../img/icon_inbound_call.png);
+    }
+    @include modifier('outgoing-icon') {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url(../img/icon_outbound_call.png);
+    }
+
+
+/*    @include modifier('kiosk_call') {
+      background: url(../img/icon_kiosk_call.png) no-repeat;
+      margin: 15% auto;
+      width: 35px;
+      height: 35px;
+      background-size: cover;
+      @media screen and (max-width: 1400px) {
+        margin: 6% auto;
+        width: 27px;
+        height: 27px;
+      }
+      @media screen and (min-width: 1921px) {
+        width: 43px;
+        height: 43px;
+      }
+    }*/
+
+
+
+
+    @include modifier('kiosk_call') {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url(../img/icon_kiosk_call.png);
+    }
+    @include modifier('website-icon') {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url(../img/icon_internal-calls.png);
+    }
+    @include modifier('contact-centre-flow') {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url(../img/cc_flow_icon.png);
+    }
+    @include modifier('office-flow') {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url(../img/pabx_flow_icon.png);
+    }
+  }
+  @include element('description') {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: pre;
+    margin-bottom: 5px;
+    line-height: 26px;
+    border-bottom: 1px solid $tertiary-color;
+  }
+  @include element('information') {
+    display: block;
+    width: 103px;
+    line-height: 26px;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: pre;
+    img {
+      width: 14px;
+    }
+    @include modifier('task-time') {
+      color: $tertiary-color;
+    }
+    @include modifier('task-date') {
+      color: $tertiary-color;
+    }
+  }
+  @include element('outcome') {
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    background-size: 100%;
+    @media screen and (max-width: 1400px) {
+      width: 32px;
+      height: 32px;
+    }
+    @media screen and (min-width: 1921px) {
+      width: 72px;
+      height: 72px;
+    }
+    @include modifier('answered') {
+      background-image: url(../img/interaction_log_icons.png);
+      background-position: 0px 0px;
+    }
+    @include modifier('rejected') {
+      background-image: url(../img/interaction_log_icons.png);
+      background-position: 0px 64.5%;
+    }
+    @include modifier('mailbox') {
+      background-image: url(../img/interaction_log_icons.png);
+      background-position: 0 32%;
+    }
+    @include modifier('abandoned') {
+      background-image: url(../img/interaction_log_icons.png);
+      background-position: -2px 99.5%;
+    }
+  }
+}
+
+
+/*.task_details {
+	width: 78px;
+	display: block;
+	margin: {
+		top: 36px;
+		left: -20px;
+	}
+	text-align: center;
+	.task_name {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: pre;
+	}
+	.task_from,
+	.task_to {
+		display: block;
+		width: 76px;
+		line-height: 19px;
+		word-break: break-word;
+		@extend .task_name; // common property value pairs in .task_name, .task_from, .task_to
+		img {
+			width: 16px;
+		}
+	}
+	.task_time {
+		color: $tertiary-color;
+	}
+}*/
+
+.taskname_placeholder {
+  opacity: 0;
+}
+
+.tasks_none {
+  .noDataDisplay {
+    width: 110px;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    border: 1px solid #2087c4;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: inset -1px 1px 17px -2px #2087C4, 0px 0px 0px 0px #DDDDDD;
+    -webkit-box-shadow: inset -1px 1px 17px -2px #2087C4, 0px 0px 0px 0px #DDDDDD;
+    -moz-box-shadow: inset -1px 1px 17px -2px #2087C4, 0px 0px 0px 0px #DDDDDD;
+    -o-box-shadow: inset -1px 1px 17px -2px #2087C4, 0px 0px 0px 0px #DDDDDD;
+    @media screen and (max-width: 1024px) {
+      width: 65px;
+      height: 65px;
+    }
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      @media screen and (max-width: 1024px) {
+        display: block;
+        margin-top: 25px;
+      }
+    }
+    p {
+      font-size: 1em;
+      line-height: normal;
+      margin: 0;
+      @media screen and (max-width: 1024px) {
+        font-size: 0.7em;
+      }
+    }
+  }
+}
+
+@include object('video-recording') {
+  width: 50% !important;
+  height: auto !important;
+}
+
+@include object('agent-task-history-form-field') {
+  width: 25%;
+  @media screen and (max-width:1366px) {
+    width:20%;
+  }
+}

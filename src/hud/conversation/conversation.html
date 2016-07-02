@@ -1,0 +1,24 @@
+<template>
+
+  <div class="o-conversation">
+
+    <div class="o-conversation-content o-conversation-content--${ viewLoaded ? 'extended' : 'retracted' }">
+      <router-view></router-view>
+    </div>
+    
+    <div class="o-conversation__wing o-conversation__wing--${ viewLoaded ? 'extended' : 'retracted' }">
+      <div class="o-wing-extension o-wing-extension--left">
+        <div class="o-wing-extension__left-top-tile"></div>
+        <div class="o-wing-extension__left-center-tile"></div>
+        <div class="o-wing-extension__left-bottom-tile"></div>
+      </div>
+      <div class="o-wing-extension o-wing-extension--right">
+        <div class="o-wing-extension__right-top-tile"></div>
+        <div class="o-wing-extension__right-center-tile"></div>
+        <div class="o-wing-extension__right-bottom-tile"></div>
+      </div>
+    </div>
+    
+  </div>
+
+</template>

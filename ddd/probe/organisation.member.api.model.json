@@ -1,0 +1,14 @@
+{
+  "organisation": {
+    "member": {
+      "updates": [
+        {
+          "authenticate": "Signup",
+          "params": [
+            "token"
+          ]
+        }
+      ]
+    }
+  }
+}

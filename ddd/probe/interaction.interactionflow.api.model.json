@@ -1,0 +1,17 @@
+{
+  "interaction": {
+    "interactionflow": {
+      "commands": [
+        {
+          "name": "CreateInteractionFlow",
+          "params": [
+            "interactionFlowId",
+            "organisationId",
+            "flowName",
+            "flowType"
+          ]
+        }
+      ]
+    }
+  }
+}

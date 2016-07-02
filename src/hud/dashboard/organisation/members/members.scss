@@ -1,0 +1,197 @@
+@import "../../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@import "../../../../_common/styles/_variables.scss";
+@include object('custom-camp') {
+  margin: -40px;
+  ul {
+    margin-top: 0;
+    padding: 0 8%;
+  }
+  li {
+    padding: 0 3%;
+  }
+  @include element('header') {
+    width: calc(100% + 15px);
+    margin: -10px 0 10px -7px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid white;
+  }
+  @include element('icon') {
+    width: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    @media screen and (min-width: 1200px) and (max-width: 1400px) {
+      width: 20px;
+      margin-left: 19px;
+    }
+  }
+  @include element('title') {
+    text-align: left;
+    text-transform: uppercase;
+    margin: 5px 0 0 0;
+    @include modifier('edit') {
+      width: 30px;
+      height: 32px;
+      background: url("../img/vessel_edit.png") no-repeat;
+      margin-right: 15px;
+      margin-top: -5px;
+      border: none;
+      &:hover {
+        background-position: -30px 0;
+      }
+      &:active {
+        background-position: -60px 0;
+      }
+    }
+  }
+  @include element('body') {
+    text-align: left;
+    margin: 7px 0 0 0;
+    display: inline-block;
+    width: 100%;
+  }
+  @include element('label') {
+    text-align: left;
+    margin-left: 38px;
+  }
+}
+
+// member details block styling
+@include object('member-details') {
+  position: absolute;
+  width: 15%;
+  top: 50%;
+  left: -171px;
+  padding: 0;
+	transform: translate(0, -30%);
+  @media screen and (min-width:1366px) and (max-width: 1400px) {
+  	width: 20%;
+  	left: -170px;
+  }
+  @media screen and (min-width: 1200px) and (max-width: 1365px) {
+    width: 20%;
+  	left: -120px;
+  }
+  @include element('name') {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    border-width: 1px 0;
+    border-style: solid;
+    background-color: rgba(11, 164, 166, .2);
+    box-shadow: inset 2px 2px 30px 10px rgba(11, 164, 166, .3);
+  }
+  @include element('body') {
+    border: solid rgba(11, 164, 166, .5);
+    border-width: 1px 1px 1px;
+    box-shadow: inset 2px 2px 30px 10px rgba(11, 164, 166, .2);
+    padding: 8.2% 20%;
+    @media screen and (min-width: 1024px) and (max-width: 1200px) {
+      padding: 5% 10%;
+    }
+    @media screen and (min-width: 1201px) and (max-width: 1400px) {
+      padding: 10%;
+    }
+  }
+  @include element('profile-picture-clipping-mask') {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    left: 0;
+    width: 97%;
+    height: 126px;
+    margin: -6.5% auto;
+    -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    overflow: hidden;
+    //    @media screen and (min-width: 1024px) and (max-width: 1200px) {
+    //      height: 104px;
+    //    }
+    //    @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    //      height: 127px;
+    //    }
+    //    @media screen and (min-width: 1921px) {
+    //      height: 155px;
+    //    }
+  }
+  @include element('profile-item') {
+    position: relative;
+    height: 129px;
+    @include modifier('gem') {
+      height: 119px;
+      //      @media screen and (min-width: 1024px) and (max-width: 1200px) {
+      //        height: 104px;
+      //      }
+      //      @media screen and (min-width: 1201px) and (max-width: 1400px) {
+      //        height: 127px;
+      //      }
+      //      @media screen and (min-width: 1921px) {
+      //        height: 156px;
+      //      }
+    }
+    //    @media screen and (min-width: 1921px) {
+    //      height: 160px;
+    //    }
+  }
+  @include element('list-item') {
+    width: 100%;
+    text-align: center;
+    line-height: 18px;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    /*display: block;*/
+    li {
+      width: 100%;
+    }
+    @include modifier('blue-line') {
+      height: 10px;
+      width: 35%;
+      float: left;
+      display: block;
+      border-top: 1px solid $secondary-color;
+      margin-top: 14px;
+      @media screen and (min-width: 1200px) and (max-width: 1400px) {
+        width: 37%;
+      }
+    }
+    @include modifier('left') {
+      padding-left: 20%;
+    }
+    @include modifier('right') {
+      padding-right: 20%;
+    }
+    @include modifier('personal_info_phone') {
+      width: 32px;
+      padding: 5px;
+      float: left;
+      @media screen and (min-width: 1200px) and (max-width: 1400px) {
+        width: 28px;
+      }
+    }
+    @include modifier('device-details') {
+      font-weight: normal;
+    }
+    @include modifier('device-labels') {
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+  }
+  @include modifier('profile-picture-dimension') {
+    height: 119px;
+  }
+  //  @media screen and (min-width: 1024px) and (max-width: 1200px) {
+  //    width: 18%;
+  //    top: 34%;
+  //    left: -17%;
+  //  }
+  //  @media screen and (min-width: 1201px) and (max-width: 1400px) {
+  //    width: 18%;
+  //    top: 34%;
+  //    left: -10%;
+  //  }
+  //  @media screen and (min-width: 1401px) and (max-width: 1680px) {
+  //    height: 84px;
+  //  }
+  //  @media screen and (min-width: 1921px) {
+  //    height: 180px;
+  //  }
+}

@@ -1,0 +1,78 @@
+<template>
+
+  <div class="o-conversation-content__inner">
+
+    <div class="o-conversation-body col-sm-10 col-sm-offset-1 ">
+
+      <!-- header -->
+      <div class="row o-conversation-body__header">
+      </div>
+
+      <!-- content -->
+      <div class="row o-conversation-body__content">
+
+        <div class="row">
+          <h1 class="col-sm-12 o-text__header--xlarge u-text-style__align--center">${viewConversationStore.conversationCard.conversationName}</h1>
+        </div>
+
+        <div class="row c-to-center c-conversation-status__result-buttons-wrap">
+          <p class="col-sm-12 u-text-style__size--large u-text-style__align--center" style="margin-bottom: 32px">Please select the status of this conversation</p>
+
+          <div class="col-sm-2 col-sm-offset-3" click.delegate="updateStatus('successful')">
+            <button class="o-button o-button__navigate o-text__button c-conversation-status__result-button">
+              <span class="o-button o-button__navigate o-button__navigate-inner">
+						<span class="o-icon-container o-dashbaord-button__icon--status-successful"></span>
+              </span>
+            </button>
+            <label class="o-text__button-label o-button__status-bottom-label u-text-style--ellipses u-text-style__align--center" title="Initiate Conversation">Successful</label>
+          </div>
+          <div class="col-sm-2" click.delegate="updateStatus('unsuccessful')">
+            <button class="o-button o-button__navigate o-text__button c-conversation-status__result-button">
+              <span class="o-button o-button__navigate o-button__navigate-inner">
+						<span class="o-icon-container o-dashbaord-button__icon--status-unsuccessful"></span>
+              </span>
+            </button>
+            <label class="o-text__button-label o-button__status-bottom-label u-text-style--ellipses u-text-style__align--center" title="Initiate Conversation">Unsuccessful</label>
+          </div>
+          <div class="col-sm-2" click.delegate="updateStatus('pending')">
+            <button class="o-button o-button__navigate o-text__button c-conversation-status__result-button">
+              <span class="o-button o-button__navigate o-button__navigate-inner">
+						<span class="o-icon-container o-dashbaord-button__icon--status-pending"></span>
+              </span>
+            </button>
+            <label class="o-text__button-label o-button__status-bottom-label u-text-style--ellipses u-text-style__align--center" title="Initiate Conversation">Pending</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12  c-conversation-status__nav-buttons u-text-style__align--center">
+            <button class="o-button__glass-rectangle o-text__button" click.delegate="back()">Back</button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- side-bar -->
+    <div class="o-conversation-content__side">
+      <div class="c-side-panel__content-inner">
+<!--        <div class="c-side-panel c-side-panel&#45;&#45;buttons">
+          <div class="c-side-panel__button"></div>
+          <div class="c-side-panel__button c-side-panel__button&#45;&#45;second"></div>
+        </div>-->
+        <div class="c-side-panel c-side-panel--title">
+          <div class="c-side-panel__title">
+            <span class="c-side-panel__text" title="${conversationStore.selectedContact.firstName + ' ' + conversationStore.selectedContact.surname}">
+              ${sidePanelTitle}
+            </span>
+            <span class="c-side-panel__text c-side-panel__text--seperator"></span>
+            <span class="c-side-panel__text c-side-panel__text--highlight">${sidePanelConversation}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</template>

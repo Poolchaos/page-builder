@@ -1,0 +1,30 @@
+{
+  "organisation": {
+    "agent": {
+      "commands": [
+        {
+          "name": "SelectOutboundCallOption",
+          "params": [
+            "agentId",
+            "flowId",
+            "username"
+          ]
+        }
+      ],
+      "events": [
+        "OutboundPrivateCallOptionSelected",
+        "OutboundFlowCallOptionSelected"
+      ],
+      "views": [
+        {
+          "display": "OutboundCallOptions",
+          "findBy": "agentId"
+        },
+        {
+          "display": "SelectedOutboundCallOption",
+          "findBy": "agentId"
+        }
+      ]
+    }
+  }
+}

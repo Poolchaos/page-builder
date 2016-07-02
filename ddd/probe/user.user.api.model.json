@@ -1,0 +1,52 @@
+{
+  "user": {
+    "user": {
+      "commands": [
+        {
+          "name": "ChangeUserInformation",
+          "params": [
+            "firstName",
+            "surname",
+            "userId",
+            "gender",
+            "dateOfBirth",
+            "telephoneNumbers"
+          ]
+        },
+        {
+          "name": "ChangeProfilePicture",
+          "params": [
+            "userId",
+            "profilePicture"
+          ]
+        }
+      ],
+      "events": [
+        "UserInformationChanged",
+        "ProfilePictureChanged"
+      ],
+      "views": [
+        {
+          "reset": "Password",
+          "findBy": "email"
+        }
+      ],
+      "updates": [
+        {
+          "authenticate": "Login",
+          "params": [
+            "email",
+            "password"
+          ]
+        },
+        {
+          "authenticate": "Verify",
+          "params": [
+            "identity",
+            "password"
+          ]
+        }
+      ]
+    }
+  }
+}

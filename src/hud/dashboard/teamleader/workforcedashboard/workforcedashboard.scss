@@ -1,0 +1,161 @@
+@import "../../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+
+/* workforce dashboard scss */
+
+.pull-btn {
+  position: relative !important;
+  top: -99px;
+  left: 22px;
+}
+
+.pull-btn-left {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 72px;
+}
+
+.pull-btn-up {
+  position: relative;
+  top: 31px;
+  right: 26px !important;
+}
+
+.hexMedium.backWorkforce {
+  position: absolute;
+  right: -233px;
+  bottom: -103px;
+  z-index: 500;
+}
+
+// Chart Tooltips
+.google-visualization-tooltip {
+  width: 300px!important;
+  border: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip-wrapper {
+  float: left;
+  width: 23%;
+  margin-left: 2%;
+}
+
+.tooltip-icon {
+  width: 34%;
+  margin-left: 33%;
+  float: left;
+  clear: both;
+}
+
+.tooltipText {
+  text-align: center;
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-top: 7px;
+  padding: 10px;
+  color: $primary-color;
+  border: 1px solid $secondary-color;
+  background-color: black;
+  /* margin: 25px 6px 0px; */
+}
+
+@include object('chart') {
+  margin-bottom: 12px;
+  @include element('sla') {
+    margin-top: 40px;
+    margin-left: 80px;
+    @media screen and (max-width: 1400px) {
+      margin-top: 19px;
+    }
+  }
+  @include element('wrapper') {
+    height: 49vh;
+    margin-top: 16px;
+    @media screen and (max-width: 1400px) {
+      margin-top: 10px;
+    }
+    @media screen and (min-width: 1921px) {
+      height: 60vh;
+    }
+  }
+}
+
+@include object('chart-legend') {
+  margin-top: 15px;
+  @media screen and (max-width: 1400px) {
+    margin-top: 0px;
+  }
+  @include element('line') {
+    width: calc(20% - 70px);
+    height: 1px;
+    background-color: $secondary-color;
+    float: left;
+    top: 59px;
+    position: relative;
+    transform: translateY(-50%);
+    @media screen and (max-width: 1400px) {
+      top: 44px;
+      width: calc(20% - 50px);
+    }
+    @include modifier('left') {
+      width: calc(20% - 35px);
+      @media screen and (max-width: 1400px) {
+        width: calc(20% - 25px);
+      }
+      &:before {
+        right: 0;
+        content: '';
+        width: 30px;
+        height: 13px;
+        background-color: $secondary-color;
+        display: inline-block;
+        position: relative;
+        float: left;
+        bottom: 6px;
+      }
+    }
+    @include modifier('right') {
+      width: calc(20% - 35px);
+      @media screen and (max-width: 1400px) {
+        width: calc(20% - 25px);
+      }
+      &:before {
+        right: 0;
+        content: '';
+        width: 30px;
+        height: 13px;
+        background-color: $secondary-color;
+        display: inline-block;
+        position: relative;
+        float: right;
+        bottom: 6px;
+      }
+    }
+  }
+  @include element('description-wrapper') {
+    float: left;
+    width: 70px;
+    @media screen and (max-width: 1400px) {
+      width: 50px;
+    }
+  }
+  @include element('description') {
+    position: relative;
+    width: 150px;
+    display: inline-block;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+  }
+  @include element('icon-wrapper') {
+    padding: 25%;
+    border: 1px solid $secondary-color;
+    border-radius: 50%;
+  }
+  @include element('icon') {
+    width: 100%;
+  }
+}

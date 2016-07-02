@@ -1,0 +1,81 @@
+<template>
+
+  <div class="o-conversation-content__inner o-conversation-content__inner--full" show.bind="viewActivated">
+
+    <div class="o-conversation-body col-sm-12">
+      <!-- header -->
+      <div class="o-conversation-body__header o-conversation-body__header--agent-dashboard">
+        <h1 class="o-text__header--xlarge u-text-style__align--center c-relative-vertical-align">Conversation History</h1>
+      </div>
+
+      <!-- utility bar -->
+      <div class="o-conversation-body__utility-bar o-conversation-body__utility-bar--agent-dashboard">
+       <!-- seacrh button -->
+        <div class="o-conversation-utility__button-wrap o-conversation-utility__button-wrap--hover c-relative-vertical-align pull-left" click.delegate="search()" show.bind="showSearch">
+          <button class="o-button o-button__navigate o-button__navigate--primary-colour">
+            <span class="o-button o-button__navigate o-button__navigate-inner o-button__navigate-inner--thin">
+						      <span class="o-icon-container o-icon-container--small-button o-button-navigate-icon--search"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="row o-conversation-body__content o-conversation-body__content--agent-dashboard">
+
+        <div class="o-conversation-search-list__parent-wrapper o-conversation-search-list__parent-wrapper--agent-dashboard">
+
+          <!-- no data -->
+          <div class="o-no-data aurelia-hide" show.bind="!pagedItems || pagedItems.length === 0">
+            <div class="o-no-data__display">
+              <div>
+                <span class="u-text-style__size--medium">No conversations to display.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- conversation history list -->
+          <button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--previous o-tile-list-view__pager--l-closer aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button>
+
+          <ul class="o-conversation-search-list__child-wrapper">
+            <li class="o-conversation-search-list__item o-conversation-search-list__item--five" repeat.for="task of pagedItems" click.delegate="selectConversation(task.conversationId)">
+              <ul class="o-conversation-search-list__nested-list u-text-style__align--center o-view-border__solid-line--read">
+                <li class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--large" title="${task.conversationName}">${task.conversationName}</li>
+                <li class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--large ${!task.contactFirstName && !task.contactSurname ? 'o-conversation-history-list__names-blank' : ''}" title="${task.initiator.primaryName}">${task.contactFirstName} ${task.contactSurname}</li>
+
+                <li class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__color--secondary u-text-style__size--medium" title="${task.lastInteractionDetail.member.name}">${task.lastInteractionDetail.member.name}</li>
+                <li class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--medium" title="${task.icon ? task.icon + ' call' : 'no-interaction'}">
+                  <div class="o-conversation-search-list__icon  o-conversation-history-list__icon o-conversation-search-list__icon--round-${task.icon ? task.icon : 'no-interaction'} o-conversation-search-list__icon--hover"></div>
+                </li>
+                <li class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--large" title="${task.lastInteractionDetail.channel}">
+                  ${task.lastInteractionDetail.channel ? task.lastInteractionDetail.channel : 'No Interaction'}
+                </li>
+                <li class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--small" title="${task.dateTime.date} @ ${task.dateTime.time}">${task.formattedDateTime ? task.formattedDateTime : '-'}
+                </li>
+                <ul class="u-text-style__color--secondary u-text-style__align--left u-text-style__size--medium o-conversation-search-list__details-list">
+                  <li class="u-display-list-item o-conversation-search-list__nested-list-item o-conversation-search-list__nested-list-item--with-icon u-text-syle__size--medium" title="${task.number}"><img src="/target/_assets/img/icon_conversation-contact-detail.png" class="o-conversation-search-list__details-icon">${task.number}
+                    <span show.bind="!task.number" class="o-conversation-search-list__no-interaction-dash u-text-style__align--center">-</span></li>
+
+
+                  <li class="u-display-list-item o-conversation-search-list__nested-list-item o-conversation-search-list__nested-list-item--with-icon u-text-syle__size--medium" title="${task.lastInteractionDetail.member.firstName} ${task.lastInteractionDetail.member.surname}"><img src="/target/_assets/img/icon_conversation-agent.png" class="o-conversation-search-list__details-icon">${task.lastInteractionDetail.member.firstName}
+
+                    <span show.bind="!task.lastInteractionDetail.member.firstName" class="o-conversation-search-list__no-interaction-dash u-text-style__align--center">-</span></li>
+                </ul>
+                <li class="u-display-list-item o-conversation-search-list__nested-list-item o-conversation-search-list__call-outcome u-text-style__size--medium" title="${task.status}"><span class="o-conversation-search-list__call-outcome-icon o-conversation-search-list__call-outcome-icon--${task.status.toLowerCase()}"></span>${task.status}</li>
+              </ul>
+
+            </li>
+          </ul>
+
+          <button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--next o-tile-list-view__pager--r-closer aurelia-hide" show.bind="showNext" click.delegate="next()"></button>
+
+        </div>
+
+      </div>
+      <!-- / o-conversation-body__content -->
+    </div>
+    <!-- / o-conversation-body -->
+  </div>
+  <!-- / o-conversation-content__inner -->
+
+</template>

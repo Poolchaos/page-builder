@@ -1,0 +1,405 @@
+/* profile scss */
+
+// ---- Profile Dialog
+#profileDialog {
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
+  input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 500;
+    width: 129px;
+    height: 129px;
+    margin: 0 auto;
+    border-radius: 47%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  button.updateProfilePicture {
+    position: absolute;
+    top: 291px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    font-size: 12px;
+  }
+}
+
+.edit_profile_node {
+  position: relative;
+  height: 240px;
+  .nodeWindow {
+    .line_input {
+      width: 100%;
+      padding: 3px 3px 3px 10px;
+    }
+    label {
+      display: block;
+      padding-left: 10px;
+      font-size: 10px;
+      line-height: 10px;
+    }
+    p.help-block {
+      font-size: 10px;
+    }
+    .has-warning {
+      .help-block {
+        margin: 0;
+        color: #eda700;
+      }
+    }
+    button.hexSmall {
+      width: 29px;
+      height: 31px;
+      margin-left: 6px;
+    }
+    .cross_icon {
+      position: relative;
+      top: 1px;
+      display: block;
+      width: 13px;
+      height: 14px;
+      margin: 0 auto;
+      background: url(../img/cross_icon.png) no-repeat;
+      background-size: contain;
+      cursor: pointer;
+    }
+    .tick_icon {
+      position: relative;
+      top: 2px;
+      display: block;
+      width: 17px;
+      height: 15px;
+      margin: 0 auto;
+      cursor: pointer;
+      background: url(../img/tick_icon.png) no-repeat;
+      background-size: contain;
+    }
+  }
+  .profile_icon_hex {
+    display: block;
+    width: 88px;
+    height: 88px;
+    float: left;
+    padding: 30px;
+    background: url("../img/nodeHex.png") no-repeat;
+  }
+  .nodeTitle {
+    width: 170px;
+    margin-top: 33px;
+    float: left;
+    color: #ffffff;
+    font-size: 14px;
+  }
+}
+
+.nodeWindow {
+  z-index: 0;
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  border-style: solid;
+  border-width: 12px 15px;
+  &.left {
+    -moz-border-image: url(../img/node_window_left.png) 12 15 stretch;
+    -webkit-border-image: url(../img/node_window_left.png) 12 15 stretch;
+    -o-border-image: url(../img/node_window_left.png) 12 15 stretch;
+    border-image: url(../img/node_window_left.png) 12 15 fill stretch;
+  }
+  &.right {
+    -moz-border-image: url(../img/node_window_right.png) 12 15 stretch;
+    -webkit-border-image: url(../img/node_window_right.png) 12 15 stretch;
+    -o-border-image: url(../img/node_window_right.png) 12 15 stretch;
+    border-image: url(../img/node_window_right.png) 12 15 fill stretch;
+  }
+}
+
+#name_nodeContent {
+  position: relative;
+  top: 40px;
+  z-index: 1;
+  float: left;
+}
+
+#userName_nodeContent {
+  position: relative;
+  top: 40px;
+  float: left;
+  ul.device_pin {
+    .detail {
+      padding: 0 0 10px 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+#email_nodeContent, #password_nodeContent {
+  position: relative;
+  top: 30px;
+  float: left;
+}
+
+.edit_nameNode {
+  position: absolute;
+  right: -30px;
+  top: -13px;
+  z-index: 2;
+  cursor: pointer;
+  .nodeTitle {
+    position: absolute;
+    left: -155px;
+    display: block;
+    text-align: right;
+  }
+}
+
+.edit_usernameNode {
+  position: absolute;
+  left: -27px;
+  top: -13px;
+  z-index: 1;
+  cursor: pointer;
+  .nodeTitle {
+    position: absolute;
+    left: 75px;
+    display: block;
+    text-align: left;
+  }
+  .profile_icon_hex {
+    padding: {
+      top: 33px;
+      left: 28px;
+    }
+  }
+}
+
+.edit_emailNode {
+  position: absolute;
+  right: -30px;
+  top: -22px;
+  z-index: 1;
+  cursor: pointer;
+  .nodeTitle {
+    position: absolute;
+    left: -155px;
+    display: block;
+    text-align: right;
+  }
+  .profile_icon_hex {
+    padding: {
+      top: 33px;
+      left: 28px;
+    }
+  }
+}
+
+.edit_passwordNode {
+  position: absolute;
+  left: -27px;
+  top: -22px;
+  z-index: 1;
+  cursor: pointer;
+  .nodeTitle {
+    position: absolute;
+    left: 74px;
+    display: block;
+    text-align: left;
+  }
+  .profile_icon_hex {
+    padding: {
+      top: 33px;
+      left: 28px;
+    }
+  }
+}
+
+// Node Lines
+.nodeLine_wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 33.33333333%;
+  display: block;
+  margin: 29px auto 0;
+  height: 235px;
+  
+}
+
+.nodeBoxModel {
+  position: absolute;       // These property value pairs are common values share across                             
+  width: 45%;               // .nodeline_topLeft, .nodeline_topRight, .nodeline_botLeft,
+  height: 26%;              // .nodeline_botRight
+}
+
+
+.nodeline_topLeft {
+  top: 0;
+  left: 0;
+}
+
+.nodeline_topRight {
+  top: 0;
+  right: 0;
+  transform: scale(-1, 1);
+}
+
+.nodeline_botLeft {
+  bottom: 0;
+  left: 0;
+  transform: scale(1, -1);
+}
+
+.nodeline_botRight {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1, -1);
+}
+
+.line_input {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid #02fbf5;
+  background: none;
+}
+
+.line_input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #2087c4;
+}
+
+// Flow Selection 
+.flow_selectors_wrapper {
+  width: 100%;
+  float: left;
+  .outbound_flow_selectors {
+    display: inline-block;
+  }
+  li {
+    display: block;
+    float: left;
+    width: 102px;
+    height: 122px;
+    margin: 3px 6px;
+    overflow: hidden;
+    @media screen and (max-width: 1024px) {
+      width: 77px;
+      height: 90px;
+    }
+  }
+  .flow_status_name {
+    display: -webkit-box;
+    font-size: 11px;
+    letter-spacing: 1px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.flow_icon {
+  display: block;
+  height: 35px;
+  width: 35px;
+  margin: 0 auto;
+}
+
+.flow_icon_bg-size {
+  background-size: contain; // background-size property is common in .flow_icon.outbound and .flow_icon.private.
+  display: block;
+  @media screen and (max-width: 1024px) {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.flow_icon.outbound {
+  background: url("../img/flow_outbound_icon.png") center no-repeat;
+}
+
+.flow_icon.private {
+  background: url("../img/flow_private_icon.png") center no-repeat;
+}
+
+button.hexStatus.selectedStatus {
+  background-position: 0 100%;
+}
+
+.profileStoreError,
+.businessRuleError {
+  position: relative;
+  top: 40px;
+  padding: 0 22px;
+  color: #eda700;
+  font-size: 12px;
+}
+
+// Profile Picture 
+.profile_dialog_pic {
+  position: absolute;
+  top: 69px;
+  right: 0;
+  left: 0;
+  display: block;
+  margin: auto;
+  @media screen and (max-width: 1024px) {
+    top: 80px;
+  }
+  .rhex {
+    &:before,
+    &:after {
+      left: 0;
+    }
+    .rhex_inner {
+      &:before,
+      &:after {
+        left: 0;
+      }
+      .profile_picture {
+        &:before,
+        &:after {
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+// Image cropper 
+.imageCropper {
+  position: absolute;
+  top: 11px;
+  right: 0;
+  left: 0;
+  z-index: 99999999;
+  width: 350px;
+  margin: 0 auto;
+}
+
+.imageCropper .cr-vp-circle {
+  border: 0;
+}
+
+.croppie-container {
+  .cr-slider-wrap {
+    width: 50%;
+    input[type="range"] {
+      background-color: #2087c4;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      background-color: #2087c4;
+      cursor: pointer;
+      &:hover,
+      &:active {
+        background-color: #02fbf5;
+      }
+    }
+  }
+}
+
+// ---- Profile Dialog End

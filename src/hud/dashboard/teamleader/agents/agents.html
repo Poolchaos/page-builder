@@ -1,0 +1,198 @@
+<template>
+
+	<div class="row">
+
+		<div class="o-dashboard-stats">
+		<div class="o-dashboard-stats__stats-wrap">
+			<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+				<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+				<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Total Successful Outcomes</div>
+			</div>
+			<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+				<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+				<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">First Call Resolutions</div>
+			</div>
+			<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+				<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+				<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Abandonment Rate</div>
+			</div>
+			<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+				<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+				<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Training Score</div>
+			</div>
+			<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+				<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+				<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Quality Assessment Score</div>
+			</div>
+		</div>
+	</div>
+	<div class="scroller">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="row">
+						<div class="o-crud-page-header clearfix">
+								<div class="pull-left">
+										<img src="/target/_assets/img/icon_interactionlog.png" class="o-crud-page-header__icon pull-left" />
+										<h6 class="o-crud-page-header__title o-text__header pull-left ">My Agents</h6>
+								</div>
+								<h6 class="o-crud-page-header__total-counter o-text__header o-text__header--total pull-right">Total: ${allItems.length}</h6>
+						</div>
+				</div>
+		</div>
+        
+
+		<div class="o-view-border col-xl-12 col-lg-12 col-md-12 col-sm-12 clearfix">
+			<div class="row">
+				<div class="o-crud-utility">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+						<button class="o-button__action o-button__action--filter pull-left" click.delegate="toggleSearch()" show.bind="allItems.length > 12"></button>
+						<div class="aurelia-hide o-form-field o-form-field--filter pull-left" show.bind="displaySearch && allItems.length > 12">
+							<span class="o-form-field__input-border-line"></span>
+							<input class="input-form o-form-field__input o-text__input" type="text" placeholder="Enter search here" ref="searchInput" value.bind="searchText" keyup.trigger="search()" />
+							<span class="o-form-field__input-border-line"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="o-no-data aurelia-hide" show.bind="!pagedItems || pagedItems.length === 0">
+				<div class="o-no-data__display">
+					<div>
+						<span class="u-text-style__size--medium">No data to display.</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row o-tile-list-view">
+
+				<button class="o-tile-list-view__pager o-tile-list-view__pager--previous aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button>
+
+				<ul class="o-tile-list-view__container clearfix">
+					<!-- leave class attribute blank -->
+					<li class="o-tile-list-view__item col-xl-2 col-lg-2 col-md-2 col-sm-2 pull-left" repeat.for="agent of pagedItems">
+						<div class="o-tile-list-view__item-container o-tile-list-view__item-container--profile clearfix o-view-border__solid-line--unselectable">
+							<div class="o-tile-list-content__icon o-tile-list-content__icon--profile clearfix">
+								<div class="o-profile o-profile--small pull-left clearfix">
+									<div class="o-profile-image-container o-profile-image-container--no-hover pull-left">
+										<div class="o-profile-image-container__inner">
+											<picture class="o-profile-image" id="${agent.personId}" defaultpicture="target/_assets/img/profilePic_default.png" picturestyle=""></picture>
+										</div>
+									</div>
+								</div>
+								<div class="o-tile-list-content__status">
+									<img show.bind="agent.status" src="/target/_assets/img/icon_status_${agent.status.toLowerCase()}.png" />
+								</div>
+							</div>
+							<div class="o-tile-list-content__text u-text-style__size--medium" title="${agent.firstName} ${agent.surname}">${agent.firstName} ${agent.surname}</div>
+							<div class="o-tile-list-content__text u-text-style__size--medium" title="${agent.extension}">${agent.extension}</div>
+
+							<div class="aurelia-hide" show.bind="agent.callId">
+<!--
+								<div class="o-tile-list-content__graph clearfix">
+									<span class="o-graph o-graph__side sad"></span>
+									<span class="o-graph o-graph__center">
+                      <span class="o-graph__line"></span>
+									<span class="o-graph__dot"></span>
+									</span>
+									<span class="o-graph o-graph__side happy"></span>
+								</div>
+								<div class="o-tile-list-content__text u-text-style__size--medium">Agent Mood</div>
+								<div class="o-tile-list-content__graph clearfix">
+									<span class="o-graph o-graph__side sad"></span>
+									<span class="o-graph o-graph__center">
+                      <span class="o-graph__line"></span>
+									<span class="o-graph__dot"></span>
+									</span>
+									<span class="o-graph o-graph__side happy"></span>
+								</div>
+								<div class="o-tile-list-content__text u-text-style__size--medium">Client Mood</div>
+-->
+
+								<div class="o-tile-list-content__text u-text-style__size--medium clearfix">
+									<div class="o-tile-list-content__button clearfix">
+										<div class="o-hex pull-left ${agentsStore.agentSnooping || agent.isSpying || agent.isWhispering ? 'fadedContent' : ''}">
+											<div class="o-hex-image-container">
+												<button class="o-hex-image-container__inner" click.delegate="whisper(agent.callId)">
+													<span>
+														<img class="o-hex__icon" src="/target/_assets/img/whisper_icon.png" alt="" />
+													</span>
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="o-tile-list-content__button clearfix">
+										<div class="o-hexpull-left ${agentsStore.agentSnooping || agent.isSpying || agent.isWhispering ? 'fadedContent' : ''}">
+											<div class="o-hex-image-container">
+												<button class="o-hex-image-container__inner" click.delegate="spy(agent.callId)">
+													<span>
+														<img class="o-hex__icon" src="/target/_assets/img/spy_icon.png" alt="" />
+													</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+				<button class="o-tile-list-view__pager o-tile-list-view__pager--next aurelia-hide" show.bind="showNext" click.delegate="next()"></button>
+
+			</div>
+
+		</div>
+	</div>
+		
+		<!-- Button list -->
+		<div class="o-dashbaord-button">
+			<ul class="o-navigation-list o-dashbaord-button__list">
+				<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="interactionLogs()">
+					<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+						<span class="o-button o-button__navigate o-button__navigate-inner">
+							<span class="o-icon-container o-dashbaord-button__icon--call-log"></span>
+						</span>
+					</button>
+					<p class="o-text__button--small u-text-style--ellipses u-text-style__align--center o-button__navigate-bottom-label" title="Interaction Logs">Interaction Logs</p>
+				</li>
+
+				<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="navTo('livedashboard')">
+					<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+						<span class="o-button o-button__navigate o-button__navigate-inner">
+							<span class="o-icon-container o-dashbaord-button__icon--live-dashboard"></span>
+						</span>
+					</button>
+					<p class="o-text__button--small u-text-style--ellipses u-text-style__align--center o-button__navigate-bottom-label" title="Live Dashboard">Live Dashboard</p>
+				</li>
+
+				<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="navTo('workforcedashboard')">
+					<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+						<span class="o-button o-button__navigate o-button__navigate-inner">
+							<span class="o-icon-container o-dashbaord-button__icon--workforce-management"></span>
+						</span>
+					</button>
+					<p class="o-text__button--small u-text-style--ellipses u-text-style__align--center o-button__navigate-bottom-label" title="Workforce Management">Workforce Management</p>
+				</li>
+
+				<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="openComingSoon('quality-assessment', 'Quality Assessment')">
+					<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+						<span class="o-button o-button__navigate o-button__navigate-inner">
+							<span class="o-icon-container o-dashbaord-button__icon--quality-assessment"></span>
+						</span>
+					</button>
+					<p class="o-text__button--small u-text-style--ellipses u-text-style__align--center o-button__navigate-bottom-label" title="Quality Assessment">Quality Assessment</p>
+				</li>
+
+				<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="openComingSoon('training', 'Training')">
+					<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+						<span class="o-button o-button__navigate o-button__navigate-inner">
+							<span class="o-icon-container o-dashbaord-button__icon--training"></span>
+						</span>
+					</button>
+					<p class="o-text__button--small u-text-style--ellipses u-text-style__align--center o-button__navigate-bottom-label" title="Training">Training</p>
+				</li>
+			</ul>
+		</div>
+  </div>
+
+
+</template>

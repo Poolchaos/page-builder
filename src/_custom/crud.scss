@@ -1,0 +1,151 @@
+crud-footer {
+  position: fixed;
+  bottom: 100px;
+  display: block;
+  float: left;
+  width: calc(66.66666667% - 120px);
+  @media (max-width: 1024px) {
+    bottom: 70px;
+    width: calc(50% - 30px);
+  }
+  @media screen and (min-width: 1921px) {
+    bottom: 118px;
+    width: calc(66.66666667% - 128px);
+  }
+}
+
+// Buttons
+.profile_btnStyle_common {
+  // common styles in .edit_btn & .add_btn
+  position: relative;
+  left: -125px;
+  top: -15px;
+  @media screen and (min-width: 1024px) and (max-width: 1200px) {
+    left: 56px;
+    top: -170px;
+  }
+  @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    left: 64px;
+    top: -170px;
+  }
+  @media screen and (min-width: 1441px) and (max-width: 1600px) {
+    left: -110px;
+  }
+  @media screen and (min-width: 1921px) {
+    left: -205px;
+  }
+}
+
+.common_btn {
+  display: block;
+  width: 100%;
+  max-width: 17%;
+  padding-left: 0%;
+  padding-top: 20%;
+  margin-top: -10%;
+  overflow: hidden;
+  float: left;
+  border: none;
+  outline: none;
+  background: {
+    color: transparent;
+    image: url(../img/dashboard_icons-sprites.png);
+    repeat: no-repeat;
+    size: 200%;
+  }
+  &:hover {
+    background-position: 100% 0;
+  }
+  $btn_className: ("edit_btn", "home_btn", "back_btn", "next_btn", "delete_btn", "filter_btn", "accept_btn", "cancel_btn");
+  $btn_bPosition: (0% 12%, 0px -106px, 0px -159px, 0px -212px, 0px -265px, 0px -319px, 0px -371px, 0px -424px);
+  $btn_hover: (100% 12%, -47px -106px, -47px -159px, -47px -212px, -47px -265px, -47px -319px, -47px -371px, -47px -424px);
+  @for $i from 1 through length($btn_className) {
+    $this_btnPos: nth($btn_bPosition, $i);
+    $this_btnHov: nth($btn_hover, $i);
+    &.#{nth($btn_className, $i)} {
+      background-position: $this_btnPos;
+      &:hover {
+        background-position: $this_btnHov;
+      }
+    }
+  }
+}
+
+.info_btn {
+  //  width: 48px;
+  //  height: 50px;
+  background-image: url(../img/information-icon.png);
+  background-position: 0px 0px !important;
+  &:hover {
+    background-position: 100% 0px !important;
+  }
+}
+
+
+/*** Need to amend this to the old action buttons ***/
+
+.action_btns {
+  //	width: 65px;
+  //	height: 69px;
+  border: none;
+  outline: none;
+  background: {
+    color: transparent;
+    image: url(../img/action-buttons.png);
+    repeat: no-repeat;
+  }
+  &.disabled {
+    cursor: default;
+  }
+  &.add_btn {
+    background-position: 5px -78px;
+    &:hover {
+      background-position: -62px -78px;
+    }
+    &:active {
+      background-position: -132px -78px;
+    }
+    &.disabled {
+      background-position: -200px -78px;
+    }
+    @media screen and (min-width: 1024px) and (max-width: 1200px) {
+      top: -18px;
+      left: -94px;
+      width: 30px;
+      height: 32px;
+      background-size: 200%;
+    }
+  }
+  $btn_className: ("delete_btn", "filter_btn", "accept_btn", "cancel_btn");
+  $btn_bPosition: (5px -153px, 5px -301px, 5px -229px, 5px -3px);
+  $btn_hover: (-62px -153px, -62px -301px, -62px -229px, -62px -3px);
+  $btn_active: (-132px -153px, -132px -301px, -132px -229px, -132px -3px);
+  $btn_disabled: (-199px -153px, -200px -301px, -200px -229px, -200px -3px);
+  @for $i from 1 through length($btn_className) {
+    $this_btnPos: nth($btn_bPosition, $i);
+    $this_btnHov: nth($btn_hover, $i);
+    $this_btnAct: nth($btn_active, $i);
+    $this_btnDis: nth($btn_disabled, $i);
+    &.#{nth($btn_className, $i)} {
+      background-position: $this_btnPos;
+      &:hover {
+        background-position: $this_btnHov;
+      }
+      &:active {
+        background-position: $this_btnAct;
+      }
+      &.disabled {
+        background-position: $this_btnDis;
+      }
+    }
+  }
+}
+
+// Pictures
+.crudPicture {}
+
+#accountActivation {
+  @media screen and (min-width: 1921px) and (max-width: 2560px) {
+    margin-top: 70px;
+  }
+}

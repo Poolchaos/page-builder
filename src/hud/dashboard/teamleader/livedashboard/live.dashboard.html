@@ -1,0 +1,233 @@
+<template>
+  <div class="moveTo_top">
+
+    <!------ DROPDOWN AND CURRENT DATE/TIME ------>
+    <div class="scroller">
+      <section>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="list_item_title_wrap col-sm-12">
+              <h6 class="list_items_title u-text-style__align--left pull-left">
+            Incoming Interactions
+            </h6>
+            </div>
+          </div>
+
+        </div>
+        <!-- /row -->
+
+        <div class="row" id="dateTime">
+
+          <div class="col-sm-4 col-md-4 col-lg-3">
+            <div class="dropdown o-dropdown">
+              <label class="o-dropdown__label o-text__dropdown o-text__dropdown--label clearfix">Services</label>
+              <div class="${taskNoDataClass} o-dropdown__button o-text__dropdown" type="button" id="dropdownMenuServices" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                ${liveDashboardStore.services === 0 ? 'No Services to display' : liveDashboardStore.selectedService.serviceName}
+              </div>
+              <ul class="dropdown-menu o-dropdown__menu o-text__dropdown" role=”menu” aria-labelledby="dropdownMenuServices">
+                <li class="o-dropdown__list-item" repeat.for="service of liveDashboardStore.services" click.delegate="selectService(service)"><a class="o-dropdown__option o-text__dropdown">${service.serviceName}</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="dateTimeWrap col-sm-2 pull-right">
+            <div class="dash-time pull-right u-text-style__color--secondary u-text-style__align--right u-text-style__size--medium">
+              ${liveDashboardStore.currentDateTime.time}
+            </div>
+            <div class="date pull-right u-text-style__align--right u-text-style__size--medium">
+              ${liveDashboardStore.currentDateTime.date}
+            </div>
+          </div>
+
+          <p class="o-text__system col-sm-12 aurelia-hide" show.bind="!liveDashboardStore.services">
+            No services within your organisation
+          </p>
+
+        </div>
+        <!-- /row -->
+
+      </section>
+
+      <!------ DASHBOARD ------>
+      <section show.bind="liveDashboardStore.dashboardData">
+        <div class="row">
+
+          <!-- Live Calls -->
+          <!-- To Do: Refactor this section for responsiveness and to make it easier to add more stats -->
+          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <div class="callStatsTopRow">
+              <h6 class="o-text__header">Live Calls</h6>
+              <ul class="o-view-border__solid-line">
+                <li class="callStatsBoxMod marginQuickHack__LiveCalls">
+                  <div class="totalCalls">
+                    ${liveDashboardStore.dashboardData.callsWaiting}
+                  </div>
+                  <div class="title u-text-style__size--small">
+                    Calls Waiting
+                  </div>
+                </li>
+                <li class="callStatsBoxMod">
+                  <div class="timeDisplayUnit">
+                    ${liveDashboardStore.dashboardData.longestWaitTime}
+                  </div>
+                  <div class="title u-text-style__size--small">
+                    Longest Waiting
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Call Statistics -->
+          <!-- To Do: Refactor this section for responsiveness and to make it easier to add more stats -->
+          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="callStatsTopRow">
+              <h6 class="o-text__header">Call Statistics</h6>
+              <ul class="o-view-border__solid-line">
+                <li class="callStatsBoxMod marginQuickHack__CallStats">
+                  <div class="timeDisplayUnit">
+                    ${liveDashboardStore.dashboardData.averageWaitTime}
+                  </div>
+                  <div class="title u-text-style__size--small">
+                    Average Wait Time
+                  </div>
+                </li>
+                <li class="callStatsBoxMod">
+                  <div class="timeDisplayUnit">
+                    ${liveDashboardStore.dashboardData.averageHandleTime}
+                  </div>
+                  <div class="title u-text-style__size--small">
+                    Average Handle Time
+                  </div>
+                </li>
+                <li class="callStatsBoxMod">
+                  <div class="timeDisplayUnit">
+                    ${liveDashboardStore.dashboardData.abandonedCalls}
+                  </div>
+                  <div class="title u-text-style__size--small">
+                    Abandoned Calls
+                  </div>
+                </li>
+                <li class="callStatsBoxMod marginQuickHack__CallStats--fourth-child">
+                  <div class="timeDisplayUnit">
+                    ${liveDashboardStore.dashboardData.totalCalls}
+                  </div>
+                  <div class="title u-text-style__size--small">
+                    Total Calls
+                  </div>
+                </li>
+                <li class="callStatsBoxMod" style="margin-right: 0">
+                  <div class="timeDisplayUnit">
+                    ${liveDashboardStore.dashboardData.percentageAnswered}%
+                  </div>
+                  <div class="title u-text-style__size--small">
+                    Calls Answered
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <!-- /row -->
+
+        <!-- Agent Statuses -->
+        <div class="row">
+
+          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <div class="agentStatuses">
+              <h6 class="o-text__header">Agent Status</h6>
+              <ul class="o-view-border__solid-line">
+                <li>
+                  <ul class="agentStatus u-text-style__size--medium">
+                    <li class="agentStatuses_icons_boxMod agentAvailable_icon"></li>
+                    <li class="agentStatusText status-available">Available</li>
+                    <li class="agentAvailablity totalAgents-available">${liveDashboardStore.dashboardData.agentsAvailable}</li>
+                  </ul>
+                </li>
+                <li>
+                  <ul class="agentStatus u-text-style__size--medium">
+                    <li class="agentStatuses_icons_boxMod agentAway_icon"></li>
+                    <li class="agentStatusText status-away">Away</li>
+                    <li class="agentAvailablity totalAgents-away">${liveDashboardStore.dashboardData.agentsAway}</li>
+                  </ul>
+                </li>
+                <li>
+                  <ul class="agentStatus u-text-style__size--medium">
+                    <li class="agentStatuses_icons_boxMod agentDialling_icon"></li>
+                    <li class="agentStatusText status-dialling">Dialling</li>
+                    <li class="agentAvailablity totalAgents-dialling">${liveDashboardStore.dashboardData.agentsDialling}</li>
+                  </ul>
+                </li>
+                <li>
+                  <ul class="agentStatus u-text-style__size--medium">
+                    <li class="agentStatuses_icons_boxMod agentBusy_icon"></li>
+                    <li class="agentStatusText status-busy">Busy</li>
+                    <li class="agentAvailablity totalAgents-onCall">${liveDashboardStore.dashboardData.agentsOnCall}</li>
+                  </ul>
+                </li>
+                <li>
+                  <ul class="agentStatus u-text-style__size--medium">
+                    <li class="agentStatuses_icons_boxMod agentWrapUp_icon"></li>
+                    <li class="agentStatusText status-wrapup">Wrap Up</li>
+                    <li class="agentAvailablity totalAgents-wrapUp">${liveDashboardStore.dashboardData.agentsWrapUp}</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Wait times -->
+          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="waitTimeStats">
+              <h6 class="o-text__header">Wait Time Statistics</h6>
+              <div class="graphUI o-view-border__solid-line">
+                <div class="percentageGaugeWrap">
+                  <ul class="percentageValues u-text-style__size--medium">
+                    <li>100%</li>
+                    <li>90%</li>
+                    <li>80%</li>
+                    <li>70%</li>
+                    <li>60%</li>
+                    <li>50%</li>
+                    <li>40%</li>
+                    <li>30%</li>
+                    <li>20%</li>
+                    <li>10%</li>
+                    <li>0%</li>
+                  </ul>
+                </div>
+                <div>
+                  <ul class="graphMeasure">
+                    <li class="graphBars" repeat.for="stat of liveDashboardStore.dashboardData.waitTimeBreakdown" style="height: ${stat.barHeight}px;" class.bind="stat.waitTimeRange === '40+' ? 'hist-40Plus' : 'hist-' + stat.waitTimeRange">
+                      <div class="percentageCircle u-text-style__size--large" class.bind="stat.barHeight >= 184 ? 'circlePosition' : ''">
+                        <span class="percentage-value">${stat.waitTimePercentage}%</span>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="graphBarLabels u-text-style__size--small">
+                    <li>0-10
+                      <br/>sec</li>
+                    <li>10-20
+                      <br/>sec</li>
+                    <li>20-30
+                      <br/>sec</li>
+                    <li>30-40
+                      <br/>sec</li>
+                    <li>40+
+                      <br/>sec</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    </section>
+    <p class="o-text__system u-text-style__align--center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" show.bind="!liveDashboardStore.dashboardData">No data to display.</p>
+
+  </div>
+
+</template>

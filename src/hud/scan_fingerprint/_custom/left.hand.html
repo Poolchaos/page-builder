@@ -1,0 +1,22 @@
+<template>
+
+	<div class="instruction_guide">
+
+		<h6 class="instructions_header">Scanning ${scanFingerprintStore.displayNameInstruction}...</h6>
+
+		<div class="scanfingerprints">
+
+			<div class="leftHand">
+				<img id="leftHand_fingerprint" src="target/_assets/img/Fingerprint_scan-left.png" />
+				<div class="fingerprintIndicator toBeNoticed ${scanFingerprintStore.fingerToScan}">${scanFingerprintStore.displayNameInstruction}</div>
+			</div>
+
+		</div>
+		<div class="fp_inprogress_cancel">
+			<button class="hexSmall toBeNoticed" click.trigger="cancelScan()">
+				<span class="request_scan">Cancel</span>
+			</button>
+		</div>
+	</div>
+
+</template>

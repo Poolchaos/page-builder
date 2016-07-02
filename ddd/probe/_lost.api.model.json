@@ -1,0 +1,141 @@
+{
+  "account": {
+    "refreshToken": {
+      "customQueries": [
+        {
+          "uri": "user/loginView/refreshToken",
+          "findBy": "",
+          "params": []
+        }
+      ]
+    },
+    "refreshAccessCode": {
+      "customQueries": [
+        {
+          "uri": "user/loginView/refreshAccessCode",
+          "findBy": "",
+          "params": []
+        }
+      ]
+    },
+    "interactionLog": {
+      "customQueries": [
+        {
+          "uri": "displayCallLogViewRepository/findByCriteria",
+          "findBy": "Criteria",
+          "params": [
+            "fromDate",
+            "toDate",
+            "organisationId",
+            "callType",
+            "memberName",
+            "fromNumber",
+            "toNumber",
+            "size",
+            "page"
+          ]
+        }
+      ]
+    }
+  },
+  "playVoicemail": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "recording/playVoiceMail",
+          "findBy": "userId",
+          "params": [
+            "organisationId",
+            "mailboxId",
+            "mailboxMessageId"
+          ]
+        }
+      ]
+    }
+  },
+  "retrieveMailboxMessages": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "organisation/mailbox/findDisplayMessagesListByRecipientId",
+          "params": [
+            "recipientId"
+          ]
+        }
+      ]
+    }
+  },
+  "retrieveRegistrationStatusByEmail": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/registration/registrationStatusView",
+          "params": [
+            "email"
+          ]
+        }
+      ]
+    }
+  },
+  "retrieveRegistrationCompletionStatus": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "/user/registration/registrationCompletionView",
+          "params": [
+            "userRegistrationId",
+            "token"
+          ]
+        }
+      ]
+    }
+  },
+  "playCallLog": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "recording/playRecording",
+          "findBy": "userId",
+          "params": [
+            "interactionId",
+            "organisationId",
+            "type"
+          ]
+        }
+      ]
+    }
+  },
+  "displayOrganisationMembers": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "member/displayOrganisationMembersView",
+          "findBy": "findByOrganisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  },
+  "validateEmail": {
+    "search": {
+      "customQueries": [
+        {
+          "uri": "user/registration/validate/email",
+          "findBy": "email",
+          "params": [
+              "email"
+            ]
+        }
+      ]
+    }
+  },
+  "rules": {
+    "common": {
+      "events": [
+        "BusinessRuleViolated"
+      ]
+    }
+  }
+}

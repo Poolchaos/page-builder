@@ -1,0 +1,168 @@
+/*  custom scss */
+
+@import '../../../_common/styles/bemify';
+.spaceship {
+  position: relative;
+  z-index: 100;
+}
+.col-adjust-30-40 {
+	@media screen and (width: 1280px) {
+		width: 40%;
+		margin-left: 30%;
+	}
+}
+.margin-top-fix {
+	@media screen and (width: 1280px) {
+		margin-top: 74px;
+	}
+	@media screen and (width: 1366px) {
+		margin-top: 74px;
+	}
+}
+.mothership {
+  .spaceship_container {
+    padding-top: 80%;
+  }
+}
+
+.row_size_1 {
+  margin-top: 38% !important;
+}
+
+.spaceship_container {
+//  position: absolute;
+//  top: 0;
+//  bottom: 0;
+//  left: 100%;
+//  width: 200%;
+//  display: block;
+//  text-align: center;
+//  padding-top: calc(100% + 75px);
+  position: absolute;
+  display: block;
+  padding: 50%;
+  padding-top: 100%;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.members_container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 200%;
+  display: block;
+  text-align: center;
+  img {
+    height: 520px;
+    @media screen and (min-width: 1024px) and (max-width: 1200px) {
+      height: 300px;
+    }
+    @media screen and (min-width: 1201px) and (max-width: 1400px) {
+      left: 495px;
+      width: 162px;
+      height: auto;
+      margin-top: -22px;
+    }
+  }
+}
+
+img.spaceship_registered,
+img.spaceship_signup {
+//  position: absolute;
+//  width: 88%;
+//  top: 45%;
+//  display: block;
+//  left: 50px;
+//  transform: rotate(-60deg);
+//  -webkit-transform: rotate(-60deg);
+  position: absolute;
+  width: 90%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+img.spaceship_registered {
+  @media screen and (min-width: 1921px) {
+//    width: 57%;
+//    top: 19%;
+//    left: -27px;
+  }
+  @media screen and (min-width: 1201px) and (max-width:1400px) {
+//    width: 76%;
+//    top: 26%;
+//    left: 39px;
+  }
+}
+
+.dashboardVessel {
+  margin-bottom: -40px;
+  margin-top: -32px;
+  width: 100%;
+  min-height: 570px;
+  display: inline-block;
+  @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    min-height: 500px;
+  }
+}
+
+.port_wrap .camp-line,
+.starboard_wrap .camp-line {
+  border-bottom: 1px solid #fff;
+  width: 250px;
+  top: 40px;
+  position: absolute;
+  z-index: 0;
+}
+
+.port_wrap .camp-line {
+  left: 225px;
+  @media screen and (min-width: 1024px) and (max-width: 1200px) {
+    left: 20px;
+  }
+  @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    left: 20px;
+  }
+  @media screen and (min-width: 1921px) {
+    left: 350px;
+  }
+}
+
+.starboard_wrap .camp-line {
+  right: 240px;
+  @media screen and (min-width: 1024px) and (max-width: 1200px) {
+    right: 30px;
+  }
+  @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    right: 30px;
+  }
+  @media screen and (min-width: 1921px) {
+    right: 350px;
+  }
+}
+
+.campPicture {
+  position: absolute;
+  top: 2%;
+  right: 0;
+  left: 0;
+  width: 70px;
+  height: 78px;
+  margin: 0 auto;
+  -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  overflow: hidden;
+}
+
+.o-camp-list__profile-picture {
+  width: 135%;
+  margin-left: -12px;
+  margin-top: -12px;
+}

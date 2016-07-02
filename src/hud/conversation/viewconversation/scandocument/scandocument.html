@@ -1,0 +1,105 @@
+<template>
+
+  <!-- content 5/12 -- INTERACTION INFORMATION -->
+  <!--        <section title="interaction information">-->
+  <div class="col-sm-5 o-conversation-details">
+    <div class="o-conversation-details__box o-conversation-details__box--border o-conversation-details__box--background">
+
+      <div class="o-information-list__title u-text-style__align--center">
+        <span if.bind="scanDocumentStore.showInstructions || scanDocumentStore.showScan">Scan Documents</span>
+        <span if.bind="scanDocumentStore.showWaiting">Scanning Document</span>
+        <span if.bind="scanDocumentStore.showDocument">Document Scanned</span>
+      </div>
+
+      <div if.bind="scanDocumentStore.showInstructions">
+
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">Select the document you would like the client to scan.</p>
+        </div>
+
+        <ul class="o-document-list">
+
+          <li class="o-document-list__no-item" repeat.for="document of conversationStore.scannedDocuments" click.delegate="requestScan(document.type)">
+            <div class="o-document-list__icon o-document-list__icon--background-color o-document-list__icon--scan pull-left" src="scan_icon"></div>
+            <div class="o-document-list__title o-document-list__title--with-two-icon o-text__conversation-list-title" title="${document.type}">${document.type}</div>
+            <!--                  <div class="o-document-list__icon o-document-list__icon--border-left o-document-list__icon--document pull-right"><span class="o-document-list__document-count u-text-style__size--small" title="${document.count}">${document.count}</span></div>-->
+          </li>
+
+          <!--
+            <li class="o-document-list__no-item">
+              <div class="o-document-list__icon o-document-list__icon--background-color o-document-list__icon--add pull-left"></div>
+              <div class="o-document-list__title o-document-list__title--with-one-icon o-text__conversation-list-title">Add Document</div>
+            </li>
+          -->
+
+        </ul>
+
+      </div>
+
+      <div class="scan-animation-wrap" if.bind="scanDocumentStore.showScan">
+
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">Wait for contact to place document then select scan.</p>
+        </div>
+
+        <div class="c-scan-animation">
+          <img src="/target/_assets/img/scanner_document.gif" class="img-responsive" alt="Scan Instructions">
+        </div>
+          
+      </div>
+
+      <div class="scan-animation-wrap" if.bind="scanDocumentStore.showWaiting">
+
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">Awaiting scan...</p>
+        </div>
+
+        <div class="c-scan-animation">
+          <div class="c-scan-animation__scan-line"></div>
+          <div class="c-scan-animation__image"></div>
+        </div>
+
+      </div>
+
+      <div class="scan-animation-wrap" if.bind="scanDocumentStore.showDocument">
+
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">${scanDocumentStore.scanPreview.documentName}</p>
+        </div>
+        
+        <div class="document_preview_area fp_preview clearfix">
+<!--
+          <span class="preview_area_left"></span>
+          <span class="preview_area_right"></span>
+-->
+<!--          <div class="instruction_guide">-->
+          <div class="c-scan-animation">
+            
+            <div class="o-video__button-container" style="position: absolute;top: -15px;right: 35px; pointer-events: none;">
+              <div class="o-navigation-list__item">
+                <button class="o-button o-button__navigate o-text__button o-text__button">
+                  <span class="o-button o-button__navigate o-button__navigate-inner">
+                    <span class="o-icon-container o-icon-container--zoom"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            
+            <img class="scan-prvw" src.bind="scanDocumentStore.scanPreview.content" />
+            <!--                  <img class="doc_preview" src.bind="scanDocumentStore.scanPreview.content" if.bind="scanDocumentStore.scanPreview.content">-->
+
+            <div class="o-conversation-details__guide-wrap" if.bind="!scanDocumentStore.scanPreview.content">
+              <p class="o-conversation-details__guide o-text__conversation-guide">Something went wrong with that scan. Please try again.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+<!--      <div class="" ref="filePreview" show.bind="scanDocumentStore.scanPreview.content"></div>-->
+
+    </div>
+  </div>
+  <!--        </section>-->
+
+</template>

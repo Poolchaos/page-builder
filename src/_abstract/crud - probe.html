@@ -1,0 +1,31 @@
+<template>
+  
+  <div class="row">
+    
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 crud_utility_bar">
+
+      <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+
+        <button class="action_btns filter_btn pull-left"></button>
+
+        <input class="input-form" type="text" placeholder="Enter search here" ref="searchInput" value.bind="searchText" keyup.trigger="search()" />
+
+      </div>
+
+      <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 pull-right">
+        <button class="action_btns add_btn aurelia-hide" show.bind="_settings.add.enabled" click.delegate="add()"></button>
+        <button class="action_btns delete_btn aurelia-hide" show.bind="showDelete" click.delegate="delete()"></button>
+        <button class="action_btns cancel_btn aurelia-hide" show.bind="deleting" click.delegate="delete()"></button>
+        <button class="action_btns accept_btn aurelia-hide" show.bind="deleting" click.delegate="deleteCancel()"></button>
+      </div>
+
+    </div>
+    
+  </div>
+  
+  <br/>
+
+  <require from="_abstract/crud.pager"></require>
+  <crud-pager items.bind="_items" display.bind="display" settings.bind="settings"></crud-pager>
+
+</template>

@@ -1,0 +1,37 @@
+<template>
+
+<!--
+  <div class="userprofile" click.delegate="navTo('profile')">
+
+    <picture class="" if.bind="profileStore.user.personId" id="${profileStore.user.personId}" defaultpicture="target/_assets/img/profilePic_default.png" picturestyle=""></picture>
+    <div class="userprofile__leftWingConnector">
+
+      <div class="userprofile__leftWingConnector--underline"></div>
+
+      <div class="userprofile__leftWingConnector--label">${profileStore.user.firstName} ${profileStore.user.surname}</div>
+
+    </div>
+    <button class="profile_btnStyle_common common_btn edit_btn" click.delegate="navTo('profile')"></button>
+  </div>
+-->
+
+  
+  <div class="userprofile clearfix">
+    <div class="o-profile pull-left clearfix">
+      <div class="o-profile-image-container pull-left" click.delegate="navToUserProfile()">
+        <div class="o-profile-image-container__inner">
+          <picture if.bind="profileStore.user.personId || _pictureUrl" id="${profileStore.user.personId}" url.bind="_pictureUrl" defaultpicture="target/_assets/img/profile_pic-holder.png" picturestyle="o-profile-image"></picture>
+        </div>
+      </div>
+    </div>
+    <div class="o-profile-label-container pull-left">
+      <div class="o-profile-label u-text-style__size--medium" title="${profileStore.user.firstName} ${profileStore.user.surname}">
+        ${profileStore.user.firstName} ${profileStore.user.surname}
+        <div class="o-profile-label__side">
+        </div>
+      </div>
+    </div>
+    <button class="common_btn edit_btn" click.delegate="navToUserProfile()"></button>
+  </div>
+
+</template>

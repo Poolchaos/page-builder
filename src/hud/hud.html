@@ -1,0 +1,165 @@
+<template>
+
+  <!-- loader -->
+  <div class="circularLoader aurelia-hide" show.bind="showLoader">
+    <div class="part">
+      <div class="part">
+        <div class="part">
+          <div class="part">
+            <div class="part"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="label u-text-style__size--medium">LOADING...</span>
+  </div>
+
+  <div class="row">
+
+    <!-- Door / Top Shutter -->
+    <section data-ui-component="door_unit">
+      <header class="c-hud-statusbar">
+        <img src="/target/_assets/img/zai_logo.png" class="c-hud-statusbar__logo" alt="ZaiLab Logo">
+        <div class="c-hud-statusbar-container">
+          <div class="c-hud-statusbar-container__back-level-one"></div>
+          <div class="c-hud-statusbar-container__back-level-two"></div>
+          <div class="c-hud-statusbar-container__front-level-one c-hud-statusbar-container__front-level-one--${headsUpDisplayStore.currentStatus.toLowerCase().split(' ').join('-')}"></div>
+          <div class="c-hud-statusbar-container__front-level-two"></div>
+          <span class="c-hud-statusbar-container__status-label u-text-style__size--medium">${headsUpDisplayStore.currentStatus}</span>
+        </div>
+      </header>
+    </section>
+
+    <!-- Left Shutter -->
+    <div class="inner_door left_inner_door">
+      <div class="inner_door-top"></div>
+      <div class="inner_door-middle"></div>
+      <div class="inner_door-bottom"></div>
+    </div>
+
+    <!-- Right Shutter -->
+    <div class="inner_door right_inner_door">
+      <div class="inner_door-top"></div>
+      <div class="inner_door-middle"></div>
+      <div class="inner_door-bottom"></div>
+    </div>
+
+    <!-- Add the blur class here when an (ai) -> aurelia interface popup is true -->
+    <div class="${animatorStore.activeBlur}">
+
+      <!-- video call -->
+      <div id="draggable" class="c-video videoWrap video_small_wrap" if.bind="headsUpDisplayService.onVideo && peerService.remoteStream">
+        <require from="hud/_custom/peer.video"></require>
+        <peer-video></peer-video>
+        <div class="o-video__button-container" style="position: absolute;bottom: 0px;right: 10px;">
+          <div class="o-navigation-list__item" click.delegate="endCall()">
+            <button class="o-button o-button__navigate o-text__button--small">
+              <span class="o-button o-button__navigate o-button__navigate-inner o-button__navigate--end-call">
+              <span class="o-icon-container o-icon-container--end-call"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- on sms -->
+      <div id="draggable" class="c-video videoWrap video_small_wrap c-message-window o-view-border__solid-line" if.bind="headsUpDisplayService.onVideo && conversationStore.textMessages.length > 0">
+        
+        <span>${conversationStore.textMessages[0].fromNumber}</span>
+        <div>${conversationStore.textMessages[0].text}</div>
+        
+      </div>
+
+      <div class="dash_panels row">
+
+        <!-- LEFT WING -->
+        <div class="hud_panel_left col-xl-2 col-lg-2 col-md-2 col-sm-2" class.bind="animatorStore.wingsOpen || animatorStore.wingsPinned ? '' : 'panelClosed'" show.bind="!isWingsHidden" mouseover.delegate="showWings()" mouseout.delegate="hideWings()">
+
+          <div class="left_top"></div>
+          <div class="left_tile"></div>
+
+          <section class="left_wing_widgets ${headsUpDisplayStore.activateSlide}">
+            <div class="centering_widgets_left">
+              <compose repeat.for="leftWingWidget of headsUpDisplayStore.leftWingWidgets" view-model="${leftWingWidget.viewModel}"></compose>
+            </div>
+          </section>
+
+          <!-- LEFT PANE -->
+<!--
+          <div class="video_call ${headsUpDisplayStore.callStatus}">
+            <div class="content_tile" style="background:rgba(0,0,0,0.9)">
+              <router-view></router-view>
+              <div class="top_tile"></div>
+              <div class="top_right_corner"></div>
+              <div class="bottom_right_corner"></div>
+              <div class="right_tile"></div>
+              <div class="bottom_tile"></div>
+            </div>
+          </div>
+-->
+
+          <div class="left_bottom"></div>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div class="${isTwelveColumnRoute ? 'col-xl-12 col-lg-12 col-md-12 col-sm-12 conversation_container' : 'content_container col-xl-8 col-lg-8 col-md-8 col-sm-8'}" mouseover.delegate="hideWings()" show.bind="isLoaderHidden || (!isNavigationProcessing && !animatorStore.showLoader)">
+          <router-view></router-view>
+        </div>
+
+        <!-- RIGHT WING -->
+        <div class="hud_panel_right col-xl-2 col-lg-2 col-md-2 col-sm-2" class.bind="animatorStore.wingsOpen || animatorStore.wingsPinned ? '' : 'panelClosed'" show.bind="!isWingsHidden" mouseover.delegate="showWings()" mouseout.delegate="hideWings()">
+
+          <div class="right_top"></div>
+          <div class="right_tile"></div>
+          <div class="right_bottom"></div>
+
+          <section class="right_wing_widgets">
+            <div class="centering_widgets_right">
+              <compose repeat.for="rightWingWidget of headsUpDisplayStore.rightWingWidgets" view-model="${rightWingWidget.viewModel}"></compose>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+
+    <section>
+
+      <div class="c-hud-controlpanel">
+        <div class="c-hud-controls">
+          <div class="c-hud-controls__item">
+            <button class="c-hud-controls__icon c-hud-controls__icon--home" click.trigger="navHome()" show.bind="conversationStore.textMessages.length === 0 && !headsUpDisplayStore.incomingCall && !peerService.remoteStream">
+              <span class="c-hud-controls__label u-text-style__size--medium">Home</span>
+            </button>
+          </div>
+          <div class="c-hud-controls__item c-hud-controls__item--center-left" show.bind="headsUpDisplayStore.currentStatus !== 'Dialling' && headsUpDisplayStore.currentStatus !== 'Busy' && !headsUpDisplayStore.incomingCall && !conversationStore.isVideoConversation">
+            <button class="c-hud-controls__icon c-hud-controls__icon--away" click.trigger="changeStatus('AWAY')" class.bind="headsUpDisplayStore.currentStatus === 'Away' ? 'is-selected' : '' ">
+              <span class="c-hud-controls__label u-text-style__size--medium" class.bind="headsUpDisplayStore.currentStatus === 'Away' ? 'is-selected' : '' ">Away</span>
+            </button>
+          </div>
+          <div class="c-hud-controls__item c-hud-controls__item--center-right" show.bind="headsUpDisplayStore.currentStatus !== 'Dialling' && headsUpDisplayStore.currentStatus !== 'Busy' && !headsUpDisplayStore.incomingCall && !conversationStore.isVideoConversation">
+            <button class="c-hud-controls__icon c-hud-controls__icon--available" click.trigger="changeStatus('AVAILABLE')" class.bind="headsUpDisplayStore.currentStatus === 'Available' ? 'is-selected' : '' ">
+              <span class="c-hud-controls__label u-text-style__size--medium" class.bind="headsUpDisplayStore.currentStatus === 'Available' ? 'is-selected' : '' ">Available</span>
+            </button>
+          </div>
+          <div class="c-hud-controls__item c-hud-controls__item--right" show.bind="!headsUpDisplayStore.incomingCall">
+            <button class="c-hud-controls__icon c-hud-controls__icon--logout" show.bind="(!headsUpDisplayStore.currentStatus || headsUpDisplayStore.currentStatus === 'Available' || headsUpDisplayStore.currentStatus === 'Away' || headsUpDisplayStore.currentStatus === 'Unavailable') && !isLogoutDisabled" click.delegate="logout()">
+              <span class="c-hud-controls__label u-text-style__size--medium">Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="c-hud-controlpanel__side c-hud-controlpanel__side--left">
+        </div>
+        <div class="c-hud-controlpanel__middle">
+        </div>
+        <div class="c-hud-controlpanel__side c-hud-controlpanel__side--right">
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</template>

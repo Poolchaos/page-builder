@@ -1,0 +1,75 @@
+{
+  "organisation": {
+    "team": {
+      "commands": [
+        {
+          "name": "CreateTeam",
+          "params": [
+            "organisationId",
+            "teamId",
+            "teamName"
+          ]
+        },
+        {
+          "name": "AddAgentToTeam",
+          "params": [
+            "teamId",
+            "memberId",
+            "firstName",
+            "surname",
+            "profilePicture"
+          ]
+        },
+        {
+          "name": "AddTeamLeaderToTeam",
+          "params": [
+            "teamId",
+            "memberId",
+            "firstName",
+            "surname",
+            "profilePicture"
+          ]
+        }
+      ],
+      "events": [
+        "TeamCreated",
+        "AgentAddedToTeam",
+        "TeamLeaderAddedToTeam"
+      ],
+      "views": [
+        {
+          "display": "Teams",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "TeamMembers",
+          "findBy": "teamId"
+        },
+        {
+          "display": "OrganisationAgents",
+          "findBy": "organisationIdAndFirstNameLikeIgnoreCaseOrSurnameLikeIgnoreCase",
+          "params": [
+            "organisationId",
+            "searchText"
+          ]
+        },
+        {
+          "display": "OrganisationTeamLeaders",
+          "findBy": "organisationIdAndFirstNameLikeIgnoreCaseOrSurnameLikeIgnoreCase",
+          "params": [
+            "organisationId",
+            "searchText"
+          ]
+        },
+        {
+          "find": "TeamForMember",
+          "findBy": "memberId"
+        },
+        {
+          "display": "TeamMembers",
+          "findBy": "teamId"
+        }
+      ]
+    }
+  }
+}

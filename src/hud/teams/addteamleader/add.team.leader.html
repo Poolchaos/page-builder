@@ -1,0 +1,35 @@
+<template>
+  <div class="modalWrap col-lg-4 col-md-4 col-sm-4">
+    <button class="close_btn" click.trigger="controller.cancel()"></button>
+    <ai-dialog>
+      <ai-dialog-body>
+        <h6>Add Team Leader</h6>
+
+        <section>
+          <input class="line_input" value.bind="searchText" keyup.delegate="search()" />
+          <ul show.bind="searchText.length > 0">
+            <li repeat.for="item of addTeamLeaderStore.searchResults" click.delegate="selectTeamLeader(item)">
+              <div class=""><img src="" /></div>
+              <div>${item.teamId.length > 0 ? '[' : ''}${item.firstName} ${item.surname}${item.teamId.length > 0 ? '[' : ''}</div>
+            </li>
+          </ul>
+          <!--    <button class="">add</button>-->
+        </section>
+
+        <section>
+          <h5>Members to be added</h5>
+          <ul>
+            <li repeat.for="teamLeader of teamLeaders">
+              <div class="">
+                <button click.delegate="removeSelectedLeader(teamLeader)">Remove</button><img class="" src="" /></div>
+              <div>${teamLeader.firstName} ${teamLeader.surname}</div>
+            </li>
+          </ul>
+          <span class="error" show.bind="addTeamLeaderStore.error">${addTeamLeaderStore.error}</span>
+          <button click.delegate="controller.cancel()">Cancel</button>
+          <button click.delegate="addTeamLeaders()">Add</button>
+        </section>
+      </ai-dialog-body>
+    </ai-dialog>
+  </div>
+</template>

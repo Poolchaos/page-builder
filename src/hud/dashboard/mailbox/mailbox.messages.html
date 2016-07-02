@@ -1,0 +1,66 @@
+<template>
+
+    <div class="row">
+      <div class="scroller">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+          <div class="o-crud-page-header clearfix">
+            <div class="pull-left">
+              <img src="/target/_assets/img/voicemail_icon.png" class="o-crud-page-header__icon pull-left" />
+              <h6 class="o-crud-page-header__title o-text__header pull-left">VOICEMAIL</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="o-view-border col-xl-12 col-lg-12 col-md-12 col-sm-12 clearfix">
+        <div class="row">
+          
+          <div class="o-crud-utility">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <button class="o-button__action o-button__action--filter pull-left" click.delegate="toggleSearch()" show.bind="_allItems.length > 12"></button>
+              <div class="aurelia-hide o-form-field o-form-field--filter pull-left" show.bind="displaySearch && _allItems.length > 12">
+                <span class="o-form-field__input-border-line"></span>
+                <input class="input-form o-form-field__input o-text__input" type="text" placeholder="Enter search here" ref="searchInput" value.bind="searchText" keyup.trigger="search()" />
+                <span class="o-form-field__input-border-line"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="o-no-data aurelia-hide" show.bind="!pagedItems || pagedItems.length === 0">
+          <div class="o-no-data__display">
+            <div>
+              <span class="u-text-style__size--medium">No data to display.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row o-tile-list-view">
+
+            <button class="o-tile-list-view__pager o-tile-list-view__pager--previous aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button>
+          
+              <ul if.bind="mailboxStore.mailbox && mailboxStore.mailbox.length > 0" class="o-tile-list-view__container clearfix"><!-- leave class attribute blank -->
+                <li class="o-tile-list-view__item col-xl-2 col-lg-2 col-md-2 col-sm-2 pull-left" repeat.for="message of pagedItems" click.delegate="selectMessage(message)">
+                  
+                  <div class="o-tile-list-view__item-container clearfix ${message.played ? 'o-view-border__solid-line--read' : 'o-view-border__solid-line--new'}">
+                    <div class="o-tile-list-content__icon"><img src="/target/_assets/img/voicemail_icon.png" alt="voicemail icon"/></div>
+                    <div class="o-tile-list-content__text u-text-style__size--medium" title="${message.from}"><!--From: -->${message.from}</div>
+                    <div class="o-tile-list-content__seperator"></div>
+                    <div class="o-tile-list-content__text u-text-style__size--medium" title="${message.date}"><!--Date: -->${message.date}</div>
+                    <div class="o-tile-list-content__text o-tile-list-content__text--highlight u-text-style__size--medium" title="${message.time}"><!--Time: -->${message.time}</div>
+                    <div show.bind="!message.played" class="o-tile-list-content__text o-tile-list-content__text--highlight u-text-style__size--medium aurelia-hide">New</div>
+                  </div>
+                </li>
+              </ul>
+          
+            <button class="o-tile-list-view__pager o-tile-list-view__pager--next aurelia-hide" show.bind="showNext" click.delegate="next()"></button>
+
+        </div>
+      </div>
+
+    </div>
+  
+  </div>
+
+</template>

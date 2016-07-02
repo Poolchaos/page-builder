@@ -1,0 +1,17 @@
+{
+  "account": {
+    "interactionlog": {
+      "views": [
+        {
+          "display": "CallLog",
+          "findAllBy": "OrganisationIdOrderByDateDesc",
+          "params": [
+            "organisationId",
+            "size",
+            "page"
+          ]
+        }
+      ]
+    }
+  }
+}

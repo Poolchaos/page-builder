@@ -1,0 +1,84 @@
+{
+  "user": {
+    "passport": {
+      "views": [
+        {
+          "display": "CurrentStatus",
+          "findBy": "userId"
+        },
+        {
+          "display": "UserInformation",
+          "findBy": "userId"
+        }
+      ],
+      "commands": [
+        {
+          "name": "ReportLoginFailed",
+          "params": [
+            "error",
+            "passportId"
+          ]
+        },
+        {
+          "name": "ReportLoginSucceeded",
+          "params": [
+            "passportId"
+          ]
+        },
+        {
+          "name": "Logout",
+          "params": [
+            "passportId"
+          ]
+        },
+        {
+          "name": "ChangeUsername",
+          "params": [
+            "previousUsername",
+            "newUsername",
+            "passportId",
+            "password"
+          ]
+        },
+        {
+          "name": "ChangeEmail",
+          "params": [
+            "previousEmail",
+            "newEmail",
+            "passportId"
+          ]
+        },
+        {
+          "name": "ChangePassword",
+          "params": [
+            "previousPassword",
+            "newPassword",
+            "passportId"
+          ]
+        },
+        {
+          "name": "RequestPasswordReset",
+          "params": [
+            "email",
+            "passportId"
+          ]
+        },
+        {
+          "name": "ResetPassword",
+          "params": [
+            "newPassword",
+            "passportId"
+          ]
+        }
+      ],
+      "events": [
+        "UsernameChanged",
+        "EmailChanged",
+        "PasswordChanged",
+        "PasswordResetRequested",
+        "PasswordReset",
+        "StatusChanged"
+      ]
+    }
+  }
+}

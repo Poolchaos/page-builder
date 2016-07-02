@@ -1,0 +1,107 @@
+<template>
+
+<!--        <section title="interaction information">-->
+<!--
+  <div class="col-sm-5 o-conversation-details">
+    <div class="o-conversation-details__box">
+      <div class="o-conversation-details__box o-conversation-details__box--border o-conversation-details__box--background">
+        
+        
+-->
+  <div class="col-sm-5 o-conversation-details">
+    <div class="o-conversation-details__box o-conversation-details__box--border o-conversation-details__box--background">
+
+      <div if.bind="signDocumentStore.showMessageTitle">
+        <div class="o-information-list__title u-text-style__align--center">Sign Documents</div>
+        
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">Select the document you would like your client to sign.</p>
+        </div>
+
+        <div class="o-file-upload">
+          <div class="o-file-upload__icon-container pull-left">
+            <div class="o-file-upload__browse-icon"></div>
+          </div>
+          <form>
+            <span class="o-file-upload--label">BROWSE FOR DOCUMENT</span>
+            <input id="fileSelector" ref="fileSelector" type="file" change.delegate="uploadDocument($event)" accept="application/pdf" class="o-file-upload__input" />
+          </form>
+        </div>
+
+        <h6 class="instructions_header" show.bind='signDocumentStore.showDocumentTitle'>${signDocumentStore.documentTitle}</h6>
+        <!--<object class="doc_preview_sign" src="#toolbar=false" show.bind="signDocumentStore.showDocument" data.bind="signDocumentStore.documentData" type="application/pdf" width="100%" height="400px"></object>-->
+      </div>
+
+      <!-- ------------------ -->
+      <div if.bind="signDocumentStore.showSignTypes">
+
+        <div class="o-information-list__title u-text-style__align--center">Sign Documents</div>
+
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">Select the document you would like your client to sign.</p>
+        </div>
+
+
+        <div class="o-display-file" click.delegate="requestSignature(signDocumentStore.multiple === '2')">
+          <div class="o-display-file__icon-container pull-left">
+            <div class="o-display-file__signature-icon"></div>
+          </div>
+          <span class="o-display-file__title" title="${signDocumentStore.file.documentName}">${signDocumentStore.file.documentName}</span>
+
+          <div class="pull-right">
+
+            <span class="o-display-file__title o-display-file__title--pull-right" title="Signatures Required">Signatures required:</span>
+
+            <button class="o-display-file__btn-request-signee is-selected" id="signee_One" click.trigger="requestSignature(false)">
+              <span class="request_scan">1</span>
+            </button>
+
+            <button class="o-display-file__btn-request-signee" id="signee_two" click.trigger="requestSignature(true, $event)">
+              <span class="request_scan">2</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="o-file-upload">
+          <div class="o-file-upload__icon-container pull-left">
+            <div class="o-file-upload__browse-icon"></div>
+          </div>
+          <form>
+            <span class="o-file-upload--label">BROWSE FOR DOCUMENT</span>
+            <input id="fileSelector2" ref="fileSelector" type="file" change.delegate="uploadDocument($event)" accept="application/pdf" class="o-file-upload__input" />
+          </form>
+        </div>
+
+      </div>
+      <!-- ------------------ -->
+      <div class="scan-animation-wrap" if.bind="signDocumentStore.showWaiting">
+
+        <div class="o-information-list__title u-text-style__align--center">Signing Document</div>
+        
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">Awaiting customer signature...</p>
+        </div>
+
+        <div class="c-scan-animation">
+          <img class="o-preview__gif" src="target/_assets/img/ZaiKiosk_Signature.gif" />
+          <div class="background"></div>
+          <!--<img class="o-preview__gif" src="target/_assets/img/signature.gif" />-->
+        </div>
+      </div>
+
+      <div class="scan-animation-wrap" if.bind="signDocumentStore.signedDocument">
+
+        <div class="o-information-list__title u-text-style__align--center">Document Signed</div>
+        
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">Preview of Signature</p>
+        </div>
+        
+        <div class="c-scan-animation">
+          <object class="o-preview__document-height" class="doc_preview_sign" src="#toolbar=false" data.bind="signDocumentStore.documentData" type="application/pdf" width="100%" height="427px"></object>
+          </div>
+
+    </div>
+  </div>
+<!--        </section>-->
+</template>

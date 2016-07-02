@@ -1,0 +1,569 @@
+<template>
+  
+  <div class="crud_header_guide">
+    <p>Add text here</p>
+  </div>
+  
+  <div class="moveTo_top" show.bind="teamLeaderHudStore.views.showNavButtons">
+    <!-- removed "container" class -->
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="row">
+          <div class="percentageDisplay col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="percentageNumber">---</div>
+            <div class="percentageTitle">Total Successful Outcomes</div>
+          </div>
+          <div class="percentageDisplay col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="percentageNumber">---</div>
+            <div class="percentageTitle">First Call Resolutions </div>
+          </div>
+          <div class="percentageDisplay col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="percentageNumber">---</div>
+            <div class="percentageTitle">Abandonment Rate </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="rateCounter col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="rateNumber">---</div>
+            <div class="rateTitle">Overall Cust Satisfaction level</div>
+          </div>
+          <div class="rateCounter col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="rateNumber">---</div>
+            <div class="rateTitle">Overall Cust Sentiment Rate</div>
+          </div>
+          <div class="rateCounter col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="rateNumber">---</div>
+            <div class="rateTitle">Overall Agent Sentiment Rate</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="row teamLeader_panel_wrapper">
+          <ul class="teamLeader_panel">
+            <li class="teamLeader_buttons">
+              <button class="hexMedium" click.delegate="openNoData()"><img src="/target/_assets/img/icon_quality-assessment.png" alt="" /></button>
+              <div class="clearfix"></div>
+              <span>Team Average QA Score</span>
+            </li>
+            <li class="teamLeader_buttons">
+              <button class="hexMedium" click.delegate="openNoData()"><img src="/target/_assets/img/team_training_icon.png" alt="" /></button>
+              <div class="clearfix"></div>
+              <span>Team Average Training Score</span>
+            </li>
+            <li class="teamLeader_buttons">
+              <button class="hexMedium" click.delegate="navTo('showCallHistory')"><img src="/target/_assets/img/icon_interactionlog.png" alt="" /></button>
+              <div class="clearfix"></div>
+              <span>Call logs</span>
+            </li>
+            <li class="teamLeader_buttons">
+              <button class="hexMedium" click.delegate="navTo('showLiveDashboard')"><img src="/target/_assets/img/live_dashboad_icon.png" alt="" /></button>
+              <div class="clearfix"></div>
+              <span>Live Dashboard</span>
+            </li>
+            <li class="teamLeader_buttons">
+              <button class="hexMedium" click.delegate="openNoData()"><img src="/target/_assets/img/workforce_management_icon.png" alt="" /></button>
+              <div class="clearfix"></div>
+              <span>Workforce Management</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- See why the width is not taking up the entire screen and remove the styling from the line above -->
+      <div class="list_item_title_wrap col-xl-12 col-lg-12 col-md-12 col-sm-12" style="width: 98%">
+        <div class="hex_bg_small">
+          <span class="search_icon"></span>
+        </div>
+        <h6 class="list_items_title pull-right">My Agents</h6>
+      </div>
+
+      <ul class="list_item col-xl-12 col-lg-12 col-md-12 scroll" style="width: 99.3%">
+
+        <!-- Aurelia
+        <li class="agentFrame away col-lg-2 col-md-3" repeat.for="member of teamLeaderHudStore.members">
+          <div class="agentProfile"><img src="/target/_assets/img/profilePic_default.png" /> </div>
+          <div class="agentCallStatus"><i class="break"></i></div>
+          <div class="agentName">${member.firstName}
+            <br>${member.surname}</div>
+-->
+        <!--- Agent Away List item -->
+        <li class="agentFrame away col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus">
+            <i class="break"></i>
+          </div>
+          <div class="agentName">${member.firstName}
+            <br>${member.surname}</div>
+
+          <ul class="onCall_moods">
+            <li class="AgentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Avg Agent Mood</div>
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Avg Client Mood</div>
+            </li>
+            <li class="AgentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Survey Score</div>
+            </li>
+          </ul>
+        </li>
+
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">
+            Name
+            <br> Surname
+          </div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation">
+              <img src="/target/_assets/img/callAnimation.gif" alt="" />
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">
+            Name
+            <br> Surname
+          </div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation">
+              <img src="/target/_assets/img/callAnimation.gif" alt="" />
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">
+            Name
+            <br> Surname
+          </div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation">
+              <img src="/target/_assets/img/callAnimation.gif" alt="" />
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent Away List item -->
+        <li class="agentFrame away col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus">
+            <i class="break"></i>
+          </div>
+          <div class="agentName">${member.firstName}
+            <br>${member.surname}</div>
+
+          <ul class="onCall_moods">
+            <li class="AgentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Avg Agent Mood</div>
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Avg Client Mood</div>
+            </li>
+            <li class="AgentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Survey Score</div>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">
+            Name
+            <br> Surname
+          </div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation">
+              <img src="/target/_assets/img/callAnimation.gif" alt="" />
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">
+            Name
+            <br> Surname
+          </div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation">
+              <img src="/target/_assets/img/callAnimation.gif" alt="" />
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2">
+          <div class="agentProfile"><img src="" alt="" /> </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">Name
+            <br>Surname</div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation"><img src="/target/_assets/img/callAnimation.gif" alt="" /></li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call Alert Status List item -->
+        <li class="agentFrame onCall alertStatus col-lg-2">
+          <div class="agentProfile"><img src="" alt="" /> </div>
+          <div class="agentCallStatus"><i class="phone"></i></div>
+          <div class="agentName">Name
+            <br>Surname</div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation"><img src="/target/_assets/img/callAnimation.gif" alt="" /></li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call Alert Status List item -->
+        <li class="agentFrame onCall alertStatus col-lg-2">
+          <div class="agentProfile"><img src="" alt="" /> </div>
+          <div class="agentCallStatus"><i class="phone"></i></div>
+          <div class="agentName">Name
+            <br>Surname</div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation"><img src="/target/_assets/img/callAnimation.gif" alt="" /></li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call Alert Status List item -->
+        <li class="agentFrame onCall alertStatus col-lg-2">
+          <div class="agentProfile"><img src="" alt="" /> </div>
+          <div class="agentCallStatus"><i class="phone"></i></div>
+          <div class="agentName">Name
+            <br>Surname</div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation"><img src="/target/_assets/img/callAnimation.gif" alt="" /></li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call Alert Status List item -->
+        <li class="agentFrame onCall alertStatus col-lg-2">
+          <div class="agentProfile"><img src="" alt="" /> </div>
+          <div class="agentCallStatus"><i class="phone"></i></div>
+          <div class="agentName">Name
+            <br>Surname</div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation"><img src="/target/_assets/img/callAnimation.gif" alt="" /></li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">
+            Name
+            <br> Surname
+          </div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation">
+              <img src="/target/_assets/img/callAnimation.gif" alt="" />
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+        <!--- Agent On Call List item -->
+        <li class="agentFrame onCall col-lg-2 col-md-3 col-sm-3">
+          <div class="agentProfile">
+            <img src="/target/_assets/img/profilePic_default.png" />
+          </div>
+          <div class="agentCallStatus"><i class="mail"></i></div>
+          <div class="agentName">
+            Name
+            <br> Surname
+          </div>
+          <ul class="onCall_moods">
+            <li class="agentMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Agent Mood</div>
+            </li>
+            <li class="callAnimation">
+              <img src="/target/_assets/img/callAnimation.gif" alt="" />
+            </li>
+            <li class="clientMood">
+              <i class="sadFace"></i>
+              <div class="moodMeasure">
+                <img src="/target/_assets/img/moodBar_dot.png" />
+              </div>
+              <i class="happyFace"></i>
+              <div class="moodType">Client Mood</div>
+            </li>
+            <li class="spyButton">
+              <button class="hexSmall"><img src="/target/_assets/img/spy_icon.png" alt="" /></button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class=" moveTo_top">
+    <!-- TODO Think of a better way to implement these views, each view should have their own route. User router instead of show.bind -->
+    <!-- <compose view-model="hud/_widgets/agent/agent" show.bind="teamLeaderHudStore.views.showAgentOverview"></compose> -->
+    <compose view-model="hud/_widgets/livedashboard/live.dashboard" show.bind="teamLeaderHudStore.views.showLiveDashboard"></compose>
+    <compose view-model="hud/_widgets/callhistory/call.history" show.bind="teamLeaderHudStore.views.showCallHistory"></compose>
+    <compose view-model="hud/_widgets/workforcedashboard/workforce.dashboard" show.bind="teamLeaderHudStore.views.showWorkforceDashboard"></compose>
+    <!--	 <button class="hexMedium" show.bind="!teamLeaderHudStore.views.showNavButtons" click.delegate="navTo('showNavButtons')" id="backBTN">BACK</button>-->
+  </div>
+
+</template>

@@ -1,0 +1,149 @@
+@import "../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+// IMPORTANT - dropdowns must be used within a column because it will take up 100% of it's parents width
+@include object('dropdown') {
+  display: inline-block;
+  width: 100%;
+  @include element('label') {
+    float: left;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  @include element('button') {
+    float: left;
+    clear: left;
+    width: 100%;
+    padding: 0.857em 2.143em 0.714em; //12px 30px 10px
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    outline: none;
+    border-left: 1px solid rgba(60, 245, 255, 0.5);
+    border-right: 1px solid rgba(60, 245, 255, 0.5);
+    border-top: 1px solid $info-color;
+    border-bottom: 1px solid $info-color;
+    background-color: transparent;
+    cursor: pointer;
+    &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 63%;
+      right: 10px;
+      border-top: 4px dashed $primary-color;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba(60, 245, 255, 0.2);
+      border-left: 1px solid rgba(60, 245, 255, 0.8);
+      border-right: 1px solid rgba(60, 245, 255, 0.8);
+      box-shadow: rgba(60, 245, 255, 0.6) 0 0px 3px inset;
+      transition: background-color .15s ease-in-out, box-shadow .3s ease-in-out, border .3s ease-in-out;
+    }
+    @include modifier('no-data') {
+      cursor: auto;
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 38px;
+        right: 10px;
+        border-top: 4px dashed transparent;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+      }
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        border-left: 1px solid rgba(60, 245, 255, 0.5);
+        border-right: 1px solid rgba(60, 245, 255, 0.5);
+      }
+    }
+  }
+  @include element('menu') {
+    padding: 0px 0px;
+    margin: 0;
+    width: 100%;
+    min-width: 1px;
+    max-height: 34vh;
+    overflow-y: auto;
+    border: 1px solid rgba(60, 245, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 100px rgba(60, 245, 255, 0.3);
+    border-radius: 0;
+    border-bottom: 1px solid $info-color;
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 6px rgb(59, 244, 255);
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 6px rgb(59, 244, 255);
+    }
+    &::-webkit-scrollbar-track {
+      margin-top: 10px;
+      margin-right: 5px;
+    }
+  }
+  @include element('list-item') {
+    display: block;
+  }
+  @include element ('option') {
+    padding: 0.857em 2.143em!important; //12px 30px
+    color: $primary-color!important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &:hover,
+    &:focus {
+      color: $primary-color!important;
+      background-color: rgba(60, 245, 255, 0.2)!important;
+      box-shadow: rgba(60, 245, 255, .7) 2px 0 0 -1px inset, rgba(60, 245, 255, .7) -2PX 0 0 -1px inset;
+      cursor: pointer;
+      transition: background-color .15s ease-in-out, box-shadow .3s ease-in-out;
+    }
+  }
+}
+
+@include utility('scroll-bar') {
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparentize($info-color, 0.6);
+    border-radius: 4px;
+    transition: 1s ease-in-out;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparentize($info-color, 0.7);
+  }
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: transparentize($info-color, 0.2);
+    }
+  }
+  @include modifier('secondary-color') {
+    &::-webkit-scrollbar-thumb {
+      background-color: transparentize($secondary-color, 0.6);
+      border-radius: 4px;
+      transition: 1s ease-in-out;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparentize($secondary-color, 0.7);
+    }
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background-color: transparentize($secondary-color, 0.2);
+      }
+    }
+  }
+}

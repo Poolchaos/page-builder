@@ -1,0 +1,14 @@
+{
+  "user": {
+    "invitation": {
+      "commands": [
+        {
+          "name": "AcceptInvitation",
+          "params": [
+            "invitationId"
+          ]
+        }
+      ]
+    }
+  }
+}

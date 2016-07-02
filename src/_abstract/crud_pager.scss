@@ -1,0 +1,392 @@
+@import "../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@import "../_common/styles/_variables.scss";
+crud-pager {
+  position: relative;
+  display: block;
+  padding-top: calc(47% - 7px);
+  margin-top: 10px;
+//  width: 100%;
+//  min-height: 485px;
+//  padding: 0 30px;
+  &:focus {
+    outline: none;
+  }
+}
+
+
+/*** default crud pager navigation ***/
+
+@include object('crud-utility') {
+  width: calc(100% + 65px);
+  margin-top: -40px;
+  margin-left: -30px;
+  padding: 0;
+  height: 65px;
+}
+
+@include object('crud-list') {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  @include element('list-item') {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    bottom: 0;
+    left: 5%;
+    padding: 0 10%;
+    text-align: center;
+    transform: translate(0,0);
+		@media screen and (max-width: 1280px) {
+			padding: 0 16%;
+		}
+  }
+  @include element('item') {
+    position: relative;
+    padding: 23% 1% 0;
+    margin-bottom: 1.5%;
+    text-align: center;
+		@media screen and (max-width: 1280px) {
+			padding: 15px;
+			height: 50%;
+			margin-bottom: 0;
+		}
+  }
+  @include element('gem') {
+    position: relative;
+    z-index: 1;
+    width: 120%;
+    padding: 60%;
+    margin-left: -10%;
+    content: '';
+    border: 0;
+    cursor: default;
+    background: {
+      image: url(../img/crud/gem-btns.png);
+      position: 0 50%;
+      size: cover;
+      color: transparent;
+      repeat: no-repeat;
+    }
+    border: 0;
+    cursor: default;
+    &:focus {
+      outline: none;
+    }
+    @include modifier ('disable-z-index') {
+      z-index: 0;
+    }
+    @include modifier('non-selectable') {
+      cursor: default !important;
+      &:hover {
+        background-position: 0 50% !important;
+      }
+    }
+    @include modifier('camp') {
+//      width: 100%;
+//      height: 68px;
+//      margin: 0 auto;
+      &:hover {
+        background-position: 0 0 !important;
+      }
+    }
+    @include modifier('profile-picture') {
+      background-image: url(../img/crud/gem-btns-profile-picture.png);
+    }
+    @include state('selected') {
+      background-position: 0 50% !important;
+      &:hover {
+        background-position: 0 25%!important;
+      }
+    }
+    @include state('marked') {
+      background-position: 0 100% !important;
+      &:hover {
+        background-position: 0 75% !important;
+      }
+    }
+    @include state('disabled') {
+      cursor: default !important;
+      opacity: 0.4;
+      &:hover {
+        background-position: 0 0 !important;
+      }
+    }
+  }
+  //badge
+  @include element('badge') {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    bottom: 38%;
+    width: 30%;
+    padding-bottom: 36%;
+    @include modifier('left') {
+      left: 14%;
+    }
+    @include modifier('right') {
+      right: 14%;
+    }
+  }
+  @include element ('badge-icon') {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 250;
+    background: {
+      position: center;
+      size: 54%;
+      repeat: no-repeat;
+    }
+    @include modifier ('agent') {
+      background-image: url("../img/crud/icon_badge_role_agent.png");
+    }
+    @include modifier ('office-employee') {
+      background-image: url("../img/crud/icon_badge_role_office-employee.png");
+    }
+    @include modifier ('administrator') {
+      background-image: url("../img/crud/icon_badge_role_admin.png");
+    }
+    @include modifier ('team-leader') {
+      background-image: url("../img/crud/icon_badge_role_team-leader.png");
+    }
+    @include modifier ('qa') {
+      background-image: url("../img/crud/icon_badge_role_qa.png");
+    }
+    @include modifier ('qa-manager') {
+      background-image: url("../img/crud/icon_badge_role_qa-manager.png");
+    }
+    @include modifier ('available') {
+      background-image: url("../img/crud/icon_badge_status_available.png");
+    }
+    @include modifier ('away') {
+      background-image: url("../img/crud/icon_badge_status_away.png");
+    }
+    @include modifier ('dialling') {
+      background-image: url("../img/crud/icon_badge_status_dialling.png");
+    }
+    @include modifier ('on-call') {
+      background-image: url("../img/crud/icon_badge_status_on_call.png");
+    }
+    @include modifier ('busy') {
+      background-image: url("../img/crud/icon_badge_status_busy.png");
+    }
+    @include modifier ('wrap-up') {
+      background-image: url("../img/crud/icon_badge_status_wrap_up.png");
+    }
+    @include modifier ('busy') {
+      background-image: url("../img/crud/icon_badge_status_busy.png");
+    }
+  }
+  @include element ('gem-badge') {
+    display: block;
+    z-index: 200;
+    width: 100%;
+    height: 100%;
+    background: {
+      image: url(../img/crud/gem_badge.png);
+      size: 100%, 100%;
+    }
+    position: absolute;
+  }
+  @include modifier('selectable') {
+    @include modifies-element('item') {
+      @include modifies-element('list-item') {
+        @include modifies-element('gem') {
+          background-position: 0 0%;
+          cursor: pointer;
+          &:hover {
+            background-position: 0 25%;
+          }
+        }
+      }
+    }
+  }
+  @include modifier('editable') {
+    @include modifies-element('item') {
+      @include modifies-element('list-item') {
+        @include modifies-element('gem') {
+          cursor: pointer;
+          &:hover {
+            background-position: 0 25%;
+          }
+        }
+      }
+    }
+  }
+  @include state('delete-state') {
+    @include modifies-element('item') {
+      @include modifies-element('list-item') {
+        @include modifies-element('gem') {
+          &:hover {
+            background-position: 0 75%;
+          }
+        }
+      }
+    }
+  }
+  // profile picture
+  @include element('profile-picture-clipping-mask') {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    overflow: hidden;
+  }
+  @include element('profile-picture') {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    -webkit-clip-path: polygon(50% 3%,89% 26%,89% 72%,50% 94%,11% 71%,11% 26%);
+  }
+  // icon
+  @include element('icon') {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    border: none;
+    outline: 0;
+    background-color: transparent;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.65;
+    @include modifier('service') {
+      background-image: url("../img/icon_services.png");
+    }
+    @include modifier('skills') {
+      background-image: url(../img/icon_group-skills.png);
+    }
+    @include modifier('skill') {
+      background-image: url(../img/icon_skills.png);
+    }
+    @include modifier('sites') {
+      background-image: url(../img/icon_sites.png);
+    }
+    @include modifier('invitations') {
+      background-image: url(../img/icon_invitations.png);
+    }
+    // Members roles
+    @include modifier('administrator') {
+      background-image: url(../img/icon_role_admin.png);
+    }
+    @include modifier('team-leader') {
+      background-image: url(../img/icon_role_team-leader.png);
+    }
+    @include modifier('agent') {
+      background-image: url(../img/icon_role_agent.png);
+    }
+    @include modifier('office-employee') {
+      background-image: url(../img/icon_role_office-employee.png);
+    }
+    @include modifier('qa') {
+      background-image: url(../img/icon_role_qa.png);
+    }
+    @include modifier('qa-manager') {
+      background-image: url(../img/icon_role_qa-manager.png);
+    }
+    // Channels gem icons 
+    @include modifier('channel-incoming') {
+      background-image: url(../img/icon_inbound_call.png);
+    }
+    @include modifier('channel-outgoing') {
+      background-image: url(../img/icon_outbound_call.png);
+    }
+    // Phone numbers gem icons 
+    @include modifier('member') {
+      background-image: url(../img/icon_number-member.png);
+    }
+    @include modifier('flow') {
+      background-image: url(../img/icon_number-flow.png);
+    }
+    @include modifier('sms') {
+      background-image: url(../img/icon_number-sms.png);
+    }
+    @include modifier('assign') {
+      background-image: url(../img/icon_number-assign.png);
+    }
+    // Class of Services gem icons 
+    @include modifier('cos-internal-calls-free') {
+      background-image: url(../img/icon_internal-calls.png);
+    }
+    @include modifier('cos-local-excluding-mobile') {
+      background-image: url(../img/icon_excluding-mobile.png);
+    }
+    @include modifier('cos-local-including-mobile') {
+      background-image: url(../img/icon_including-mobile.png);
+    }
+    @include modifier('cos-local-and-international') {
+      background-image: url(../img/icon_local-international.png);
+    }
+    // Interaction Manager flow icons
+    @include modifier('office-flow') {
+      background-image: url(../img/pabx_flow_icon.png);
+    }
+    @include modifier('contact-centre-flow') {
+      background-image: url(../img/cc_flow_icon.png);
+    }
+    @include modifier('small-camp') {
+      width: 55%;
+      height: 100%;
+    }
+    // Kiosks 
+    @include modifier('kiosk') {
+      background-image: url(../img/icon_kiosks.png);
+    }
+  }
+  @include element('description') {
+    display: block;
+    margin-top: 10px;
+    line-height: 16px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    @include modifier ('underline') {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #00afef; // neeed to move this to the deleted modifier
+    }
+  }
+  @include element('information') {
+    display: block;
+    height: 16px;
+    margin: 0;
+    line-height: 16px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: normal;
+  }
+}
+
+.headhover {
+  display: block;
+  &:hover {
+    display: none;
+  }
+}
+
+// Adding this for temp solution
+.o-member-details__profile-item {
+  .o-crud-list__profile-picture {
+    width: 126%;
+    height: 136px;
+    margin-left: -13%;
+    overflow: hidden;
+  }
+}

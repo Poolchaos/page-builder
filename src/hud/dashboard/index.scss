@@ -1,0 +1,13 @@
+/* dashboard scss */
+
+@import "_custom/custom";
+@import "_prompts/prompt";
+@import "_prompts/prompt_pager";
+@import "_prompts/call/call_prompt";
+@import "organisation/organisation";
+@import "qualityassessor/qualityassessor";
+@import "teamleader/teamleader";
+@import "agent/agent";
+@import "user/user";
+@import "dashboard";
+@import "mailbox/mailbox";

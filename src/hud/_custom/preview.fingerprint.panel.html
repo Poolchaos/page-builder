@@ -1,0 +1,118 @@
+<template>
+
+  <!-- MIDDLE SIGN DOCUMENT CONTROL PANEL -->
+
+  <section class="col-lg-5 col-md-5">
+
+    <!-- TOP DOCUMENT ACTION AND DISPLAY PANEL -->
+
+    <div class="row">
+
+      <!-- LEFT SIDE ACTIONS -->
+
+      <div class="col-lg-3 col-md-3 instructions_left">
+        
+        <!-- TODO remove div? -->
+        
+      </div>
+
+      <!-- FINGERPRINT DISPLAY -->
+
+      <div class="col-lg-9 col-md-9 instruction_progress_area clearfix">
+
+        <div class="ruler_line_left">
+          <span class="ruler_square_top"></span>
+          <span class="ruler_line_center"></span>
+          <span class="ruler_square_bottom"></span>
+        </div>
+
+        <div class="ruler_line_right">
+          <span class="ruler_square_top"></span>
+          <span class="ruler_line_center"></span>
+          <span class="ruler_square_bottom"></span>
+        </div>
+
+        <!-- PREVIEW FINGERPRINT AND TITLE -->
+
+        <div class="instruction_progress clearfix">
+
+            <!-- TOP DOCUMENT TITLE AND MESSAGE DISPLAY HEADERS -->
+
+            <h6 class="instructions_header">
+              ${previewFingerprintPanelStore.title}
+            </h6>
+
+            <object data.bind="previewFingerprintPanelStore.preview" 
+                    class="doc_preview_sign" 
+                    src="#toolbar=false"
+                    type="application/pdf" 
+                    width="100%" 
+                    height="400px">
+            </object>
+            <!-- TODO move width="100%" height="400px" into CSS? -->
+
+        </div>
+
+        <!-- CLOSE SCAN DOCUMENTS ACTION -->
+
+        <button class="close_btn" click.delegate="close()"></button>
+
+        <!-- SCANNED DOCUMENT ACTIONS -->
+
+        <div class="scan_state clearfix" show.bind="previewFingerprintPanelStore.isRejected">
+          
+          ${scanFingerprintStore.isRejected ? '' : 'If you see this you have encountered an aurelia animator bug see details here: https://github.com/aurelia/animator-css/issues/29 IF THE BUTTONS SHOW INCORRECTLY WITHOUT THIS MESSAGE THEN LOG A BUG PLEASE!'}
+          
+          <div class="pull-right">
+            <button class="hexMedium toBeNoticed" click.delegate="accept()">Accept</button>
+          </div>
+          
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM DISPLAY PANEL -->
+
+    <div class="row">
+      <div class="col-lg-3 col-md-3"></div>
+      <div class="col-lg-7 col-md-9">
+        <img style="width:133%; margin-top:10%; display: none;" src="target/_assets/img/audio_graph.png">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- RIGHT DOCUMENT HISTORY PANEL -->
+
+  <section class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+    
+    <div class="instruction_history">
+      
+      <div class="instruction_history_panels clearfix" repeat.for="document of customerStore.fingerTypes">
+
+        <h6 class="list_items_title pull-right instruction_history_title">${document.name}</h6>
+        
+        <div class="clearfix"></div>
+        
+        <ul class="instruction_history_item_list clearfix">
+          
+          <li class="instruction_history_items" repeat.for="item of document.documents" click.trigger="preview(item)">
+            <span class="list_item_container">
+              <span class="docscan_icon_thumbnail_finger"></span>
+              <span class="instruction_history_items_number">${item.documentName}</span>
+            </span>
+          </li>
+          
+        </ul>
+        
+        <span class="delete" show.bind="document.documents.length > 0"></span>
+        
+      </div>
+      
+    </div>
+    
+  </section>
+
+</template>

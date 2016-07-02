@@ -1,0 +1,51 @@
+<template>
+
+  <div style="width:760px">
+    <div class="o-view-border o-view-border--prompt">
+      <div class="o-prompt">
+        <ai-dialog>
+
+          <ai-dialog-header>
+            <div class="o-prompt-header clearfix">
+              <div class="o-prompt-header__icon-container pull-left">
+                <img class="o-prompt-header__icon" src="/target/_assets/img/voicemail_icon.png" />
+              </div>
+              <h6 class="o-prompt-header__title o-text__header pull-left">voicemail</h6>
+            </div>
+          </ai-dialog-header>
+
+          <ai-dialog-body class="o-dialog__body clearfix">
+
+            <div class="o-message-prompt clearfix">
+              <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-ms-3">
+                  <div class="o-message-prompt__text">${mailboxStore.selectedMessage.mailboxName}</div>
+                  <div class="o-message-prompt__text">
+                    <a class="o-click-to-dial" title="Click to dial" click.delegate="dial()">
+                      <svg class="o-click-to-dial__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+                        <path d="M11 10c-1 1-1 2-2 2s-2-1-3-2-2-2-2-3 1-1 2-2-2-4-3-4-3 3-3 3c0 2 2.055 6.055 4 8s6 4 8 4c0 0 3-2 3-3s-3-4-4-3z"></path>
+                      </svg>
+                      ${mailboxStore.selectedMessage.from}
+                    </a>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-ms-3 col-xl-offset-6 col-lg-offset-6 col-md-offset-6 col-ms-offset-6">
+                  <div class="o-message-prompt__text o-message-prompt__text--text-right">${mailboxStore.selectedMessage.date.substring(0,10)}</div>
+                  <div class="o-message-prompt__text o-message-prompt__text--highlight o-message-prompt__text--text-right">${mailboxStore.selectedMessage.time}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="o-message-prompt__audio clearfix">
+                  <div class="o-message-prompt__audio o-message-prompt__audio--player" innerHTML.bind="mailboxStore.selectedMessage.audioElement"></div>
+                </div>
+              </div>
+            </div>
+
+          </ai-dialog-body>
+
+        </ai-dialog>
+      </div>
+    </div>
+  </div>
+
+</template>

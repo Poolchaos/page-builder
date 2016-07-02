@@ -1,0 +1,17 @@
+{
+  "organisation": {
+    "workforcemanagement": {
+      "views": [
+        {
+          "display": "WorkforceDashboard",
+          "findBy": "organisationIdAndDateAndServiceId",
+          "params": [
+            "organisationId",
+            "date",
+            "serviceId"
+          ]
+        }
+      ]
+    }
+  }
+}

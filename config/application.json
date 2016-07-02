@@ -1,0 +1,65 @@
+{
+  "local": {
+    "apiRedirectEndpoint": "http://localhost:8000/",
+    "apiQueryEndpoint": "https://dev.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://dev.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://dev.zailab.com:8147/exchange",
+    "apiRouterEndpoint": "https://dev.zailab.com:8002"
+  },
+  "dev1": {
+    "apiRedirectEndpoint": "https://dev1.zailab.com:9999/",
+    "apiQueryEndpoint": "https://dev1.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://dev1.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://dev1.zailab.com:8147/exchange",
+    "apiRouterEndpoint": "https://dev1.zailab.com:8002"
+  },
+  "dev2": {
+    "apiRedirectEndpoint": "https://dev2.zailab.com:9999/",
+    "apiQueryEndpoint": "https://dev2.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://dev2.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://dev2.zailab.com:8147/exchange",
+    "apiRouterEndpoint": "https://dev2.zailab.com:8002"
+  },
+  "dev3": {
+    "apiRedirectEndpoint": "https://dev3.zailab.com:9999/",
+    "apiQueryEndpoint": "https://dev3.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://dev3.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://dev3.zailab.com:8147/exchange",
+    "apiRouterEndpoint": "https://dev3.zailab.com:8002"
+  },
+  "qa": {
+    "apiRedirectEndpoint": "https://qa.zailab.com:9999/",
+    "apiQueryEndpoint": "https://qa.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://qa.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://qa.zailab.com:8147/exchange",
+    "apiRouterEndpoint": "https://qa.zailab.com:8002"
+  },
+  "dev": {
+    "apiRedirectEndpoint": "https://dev.zailab.com:9999/",
+    "apiQueryEndpoint": "https://dev.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://dev.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://dev.zailab.com:8147/exchange",
+    "apiRouterEndpoint": "https://dev.zailab.com:8002"
+  },
+  "staging": {
+    "apiRedirectEndpoint": "https://staging.zailab.com:9999/",
+    "apiQueryEndpoint": "https://staging.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://staging.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://staging.zailab.com:8147/exchange",
+    "apiRouterEndpoint": "https://staging.zailab.com:8002"
+  },
+  "prod": {
+    "apiRedirectEndpoint": "https://conversations.zailab.com:9999/",
+    "apiQueryEndpoint": "https://conversations.zailab.com:8001/",
+    "apiCommandEndpoint": "wss://conversations.zailab.com:8006/clientexchange",
+    "apiInteractionEndpoint": "wss://rtc.zailab.com/exchange",
+    "apiRouterEndpoint": "https://rtc.zailab.com/"
+  },
+  "vagrant": {
+    "apiRedirectEndpoint": "http://vagranthost:9999/",
+    "apiQueryEndpoint": "http://vagranthost:8001/",
+    "apiCommandEndpoint": "http://vagranthost:8005/",
+    "apiInteractionEndpoint": "ws://vagranthost:8147/exchange",
+    "apiRouterEndpoint": "https://vagranthost:8002"
+  }
+}

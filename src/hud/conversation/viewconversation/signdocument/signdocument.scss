@@ -1,0 +1,163 @@
+/* sign doc scss */
+
+@include object('file-upload') {
+  position: relative;
+  width: 100%;
+  background-color: #01252d;
+  cursor: default!important;
+  @include element('icon-container') {
+    position: absolute;
+    display: block;
+    width: 10.2%;
+    height: 49px;
+    background-color: #00e9f1;
+    opacity: .6;
+    cursor: pointer !important;
+    @media screen and (max-width: 1400px) {
+      width: 15.5%;
+    }
+  }
+  @include element('browse-icon') {
+    width: 32px;
+    height: 32px;
+    margin: 9px auto;
+    background-image: url(../img/icon-conversation-browse-white.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 80%;
+    @media screen and (max-width: 1400px) {
+      background-size: 80%;
+    }
+  }
+  @include element('input') {
+    right: 0;
+    z-index: 100;
+    opacity: 0;
+    width: 100%;
+    height: 49px;
+    background-color: #ddd;
+    cursor: pointer;
+  }
+  @include modifier('label') {
+    position: absolute;
+    left: 14%;
+    @include fontsize('small');
+    line-height: 4.5;
+    @media screen and (max-width: 1400px) {
+      left: 18%;
+      line-height: 5.1;
+    }
+  }
+  &:hover {
+    @include modifies-element('icon-container') {
+      background-color: #00e9f1;
+      opacity: 1;
+    }
+  }
+}
+
+@include object('display-file') {
+  display: block;
+  width: 100%;
+  height: 49px;
+  margin-bottom: 1px;
+  border: none;
+  outline: 0;
+  background-color: #01252d;
+  cursor: pointer;
+  @include element('icon-container') {
+    display: block;
+    width: 10%;
+    height: 49px;
+    margin-left: 1px;    
+    background-color: #00e9f1;
+    opacity: 0.6;
+    @media screen and (max-width: 1400px) {
+      width: 15.5%;
+      margin-left: 0px;
+    }
+  }
+  @include element('browse-icon') {
+    width: 32px;
+    height: 32px;
+    margin: 9px auto;
+    background-image: url(../img/icon-conversation-browse-white.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 80%;
+    @media screen and (max-width: 1400px) {
+      background-size: 80%;
+    }
+  }
+	@include element('signature-icon') {
+    width: 32px;
+    height: 32px;
+    margin: 9px auto;
+    background-image: url(../img/icon_signature.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 80%;
+    @media screen and (max-width: 1400px) {
+      background-size: 80%;
+    }
+  }
+  @include element('title') {
+    position: absolute;
+    width: 110px;
+    margin-left: 20px;
+    color: #9d9da7;
+    @include fontsize('small');
+    line-height: 4.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @media screen and (max-width: 1400px) {
+      left: 12%;
+      width: 60px;
+      line-height: 5.1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    @include modifier('pull-right') {
+      right: 21%;
+      margin-right: 12px;
+      @media screen and (max-width: 1400px) {
+      left: 37%;
+      right: 31%;
+      }
+    }
+  }
+  @include element('btn-request-signee') {
+    margin-right: -1px;
+    padding: 13px 20px;
+    color: #00e9f1;
+    font-weight: bold;
+    border: 1px solid #108783;
+    outline: none;
+    background-color: transparent;
+    &:hover {
+      border: 1px solid #00e9f1;
+    }
+  } 
+  &:hover {
+    @include modifies-element('icon-container') {
+      opacity: 1;
+    }
+  }
+}
+
+.is-selected.o-display-file__btn-request-signee {
+	background: #00e9f1;
+  color: #fff;
+}
+
+@include object('preview') {
+  @include element('gif') {
+    width: 100%;
+  }
+  @include element('document-height') {
+    transition: 0.5s;
+    height: 100% !important;
+  }
+}

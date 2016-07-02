@@ -1,0 +1,24 @@
+<template>
+
+  <div>
+
+    <input class="aurelia-hide" show.bind="_settings.search.enabled" style="margin-top:10px; color:black; width:235px" type="text" placeholder="Enter search here" ref="searchInput" value.bind="searchText" keyup.trigger="search()" />
+
+    <button class="hexSmall aurelia-hide" show.bind="deleting" click.trigger="deleteCancel()">Cancel</button>
+    <button class="hexSmall aurelia-hide" show.bind="_settings.delete.enabled" click.trigger="delete()">${deleting ? 'Ok' : 'Delete'}</button>
+
+  </div>
+
+  <div>
+
+    <button repeat.for="item of _items" class="hexSmall" click.trigger="select(item)">
+      <span>
+        ${item.isMarked ? '[ ' : ''}
+        ${item[display]} 
+        ${item.isMarked ? ' ]' : ''}
+      </span>
+    </button>
+
+  </div>
+
+</template>

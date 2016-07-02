@@ -1,0 +1,43 @@
+<template>
+  
+  <div class="container-fluid">
+
+    <div class="row">
+      <section>
+
+        <div class="o-guided-form col-xl-offset-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 col-xl-4 col-lg-4 col-md-6 col-sm-6">
+          <div class="col-xl-offset-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xl-8 col-lg-10 col-md-10 col-sm-10">
+
+            <div class="row">
+
+              <guide>
+                <guide-header class="o-text__guide">Sorry, the page cannot be found?!</guide-header>
+              </guide>
+
+            </div>
+
+            <div class="row">
+              <div class="o-simple-form clearfix">
+                <form submit.delegate="submit()" validate.bind="validation">
+
+                  <div class="o-simple-form__row o-simple-form__row--button">
+                    <div class="form-group o-form-field clearfix">
+                      <button class="o-button o-button__glass-rectangle o-button__glass-rectangle--bottom-border-only o-text__button" id="join" click.delegate="back()">go back</button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+    </div>
+    
+  </div>
+
+  <zaifooter></zaifooter>
+
+</template>

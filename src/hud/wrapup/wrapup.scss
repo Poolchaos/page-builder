@@ -1,0 +1,11 @@
+/* wrap up scss */
+
+.customerStats,
+.customerHistory {
+  .list_item_title_wrap {
+    width: 100%;
+    .list_items_title {
+      margin-right: 0;
+    }
+  }
+}

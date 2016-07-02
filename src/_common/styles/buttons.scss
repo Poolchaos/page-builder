@@ -1,0 +1,475 @@
+@import "../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+
+/*------override default aurelia button styles------*/
+
+ai-dialog>ai-dialog-footer button {
+  background-color: transparent!important;
+  border-color: none!important;
+  outline: none!important;
+  margin: 0!important;
+}
+
+
+/*------override default aurelia button styles End------*/
+
+
+/*--------standard hexagon buttons-----------*/
+
+@mixin hexbuttons() {
+  border: none;
+  outline: none;
+  background: url(../img/confirm_btn.png) no-repeat;
+  background-size: cover;
+  &:hover {
+    background-position: 0 100%;
+  }
+}
+
+button.hexSmall {
+  font-size: 10px;
+  width: 51px;
+  height: 54px;
+  @include hexbuttons();
+  @media screen and (min-width: 1921px) {
+    width: 59px;
+    height: 63px;
+    font-size: 14px;
+  }
+}
+
+button.hexMedium {
+  width: 77px;
+  height: 82px;
+  margin-right: 9px;
+  float: left;
+  font-size: 9px;
+  @include hexbuttons();
+  @media screen and (max-width: 1024px) {
+    width: 59px;
+    height: 63px;
+  }
+  @media screen and (min-width: 1921px) {
+    width: 91px;
+    height: 97px;
+    font-size: 14px;
+  }
+}
+
+
+/*--------standard hexagon buttons End-----------*/
+
+
+/*--------Specific Action Buttons----------------*/
+
+button.confirm_btn {
+  width: 103px;
+  height: 111px;
+  background-image: url(../img/confirm_btn.png);
+  background-position: 103px 0px;
+  border: none;
+  &:hover {
+    background-position: 103px 110px;
+  }
+}
+
+button.hexStatus {
+  background: url(../img/confirm_btn.png) no-repeat;
+  background-size: cover;
+  width: 71px;
+  height: 76px;
+  border: none;
+  &:hover {
+    background-position: 0 100%;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 52px;
+    height: 56px;
+  }
+  @media screen and (min-width: 1921px) {
+    width: 85px;
+    height: 91px;
+  }
+}
+
+.btn_back {
+  position: absolute;
+  right: -253px;
+  bottom: -175px;
+  border: none;
+}
+
+button.search_btn {
+  width: 23px;
+  height: 23px;
+  margin-top: 3px;
+  padding: 15px;
+  outline: none;
+  border: none;
+  background: url(../img/search_icon.png) center no-repeat;
+}
+
+.button {
+  width: 103px;
+  height: 111px;
+  margin-top: 20px;
+  margin-left: 10px;
+  float: left;
+  display: block;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  background-image: url(../img/kiosk_instruct_btn.png);
+}
+
+.button.msg {
+  background: url(../img/status_btn.png) no-repeat 50%;
+}
+
+.button.wrap_up {
+  background: url(../img/status_btn.png) no-repeat 50%;
+}
+
+
+/*-------- Common action button -----------------*/
+
+@include object('button') {
+  @include element("glass-rectangle") {
+    margin-right: 0px;
+    padding: 12px 30px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid #0ba4a6;
+    outline: none;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background-color: rgba(60, 245, 255, 0.2);
+      text-decoration: none;
+      transition: all .3s ease-in-out;
+    }
+    @include modifier('respond') {
+      padding: 1% 0;
+      width: 12%;
+      margin: 0 1%;
+    }
+    @include modifier('small') {
+      display: block;
+      height: 40px;
+      margin-left: 10px;
+      padding: 10px 20px;
+      float: left;
+      @media screen and (max-width: 1200px) {
+        height: auto !important;
+        padding: 1.5% 3%;
+        transition: 0.3s;
+      }
+      @media screen and (min-width: 1201px) and (max-width: 1400px) {
+        height: auto !important;
+        padding: 2% 3%;
+        transition: 0.3s;
+      }
+      @media screen and (min-width: 1401px) and (max-width: 1600px) {}
+      @media screen and (max-width: 1920px) {}
+    }
+    @include modifier('bottom-border-only') {
+      border: none;
+      border-bottom: 1px solid #0ba4a6;
+      &:hover,
+      &:focus {
+        background: transparent;
+        text-decoration: none;
+        box-shadow: inset 0px -40px 70px -36px rgba(60, 245, 255, 0.5);
+        transition: all .3s ease-in-out;
+      }
+    }
+    @include modifier('secondary-color') {
+      border: 1px solid $secondary-color;
+      &:hover {
+        background-color: rgba(0, 175, 239, 0.2);
+      }
+    }
+  }
+  @include element('action') {
+    width: 65px;
+    height: 65px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-image: url(../img/action-buttons.png);
+    background-repeat: no-repeat;
+    @include modifier('filter') {
+      background-position: 5px -299px;
+      &:hover {
+        background-position: -62px -299px;
+      }
+      &:active {
+        background-position: -132px -299px;
+      }
+      @include state('disabled') {
+        background-position: -200px -299px;
+        cursor: default;
+      }
+    }
+    @include modifier('add') {
+      background-position: 5px -76px;
+      &:hover {
+        background-position: -62px -76px;
+      }
+      &:active {
+        background-position: -132px -76px;
+      }
+      @include state('disabled') {
+        background-position: -200px -76px;
+        cursor: default;
+      }
+    }
+    @include modifier('accept') {
+      background-position: 5px -227px;
+      &:hover {
+        background-position: -62px -227px;
+      }
+      &:active {
+        background-position: -132px -227px;
+      }
+      @include state('disabled') {
+        background-position: -200px -227px;
+        cursor: default;
+      }
+    }
+    @include modifier('cancel') {
+      background-position: 5px -1px;
+      &:hover {
+        background-position: -62px -1px;
+      }
+      &:active {
+        background-position: -132px -1px;
+      }
+      @include state('disabled') {
+        background-position: -200px -1px;
+        cursor: default;
+      }
+    }
+    @include modifier('delete') {
+      background-position: 5px -151px;
+      &:hover {
+        background-position: -62px -151px;
+      }
+      &:active {
+        background-position: -132px -151px;
+      }
+      @include state('disabled') {
+        background-position: -199px -151px;
+        cursor: default;
+      }
+      @include state('selected') {
+        background-position: -132px -151px;
+        cursor: default;
+      }
+    }
+    @include modifier('refresh') {
+      background-position: 5px -374px;
+      &:hover {
+        background-position: -62px -374px;
+      }
+      &:active {
+        background-position: -132px -374px;
+      }
+      @include state('disabled') {
+        background-position: -209px -151px;
+        cursor: default;
+      }
+      @include state('selected') {
+        background-position: -132px -151px;
+        cursor: default;
+      }
+    }
+    @include modifier('agent-dashboard-fix') {
+      position: relative;
+      bottom: 11px;
+    }
+  }
+  @include element('action-label') {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @include element('navigate') {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 54% 50%;
+    background-color: $info-color;
+    border: none;
+    border-radius: 0;
+    -webkit-clip-path: polygon(46% 1%, 50% 0, 54% 1%, 97% 24%, 99% 27%, 100% 31%, 100% 69%, 99% 73%, 97% 76%, 54% 99%, 50% 100%, 46% 99%, 3% 76%, 1% 73%, 0 69%, 0 31%, 1% 27%, 3% 24%);
+    &:focus {
+      outline: none;
+    }
+    @include modifier('secondary-colour') {
+      background-color: $secondary-color;
+    }
+    @include modifier('primary-colour') {
+      background-color: $primary-color;
+    }
+    @include modifier('placeholder') {
+      background-color: shade($info-color, 95%);
+    }
+    @include modifier('end-call') {
+      background: #021D24;
+    }
+    @include modifier('circle') {
+      pointer-events: none;
+      padding: 50% 50%;
+      border-radius: 50%;
+      -webkit-clip-path: none;
+      .o-button__navigate-inner {
+        padding: 50% 50%;
+        border-radius: 50%;
+        -webkit-clip-path: none;
+      }
+    }
+  }
+  @include element('navigate-inner') {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 4px);
+    margin: 2px;
+    background: #000;
+    overflow: hidden;
+    @include modifier ('thin') {
+      width: calc(100% - 2px);
+      margin: 1px;
+    }
+    @include modifier('color-background') {
+      background-color: shade($info-color, 88%);
+    }
+    @include modifier('bright-background') {
+      background-color: $tertiary-color;
+    }
+    @include modifier('placeholder') {
+      background-color: shade($info-color, 95%);
+    }
+  }
+  @include element('navigate-bottom-label') {
+    margin: 6px 0 10px;
+    display: block;
+  }
+  @include element('navigate-right-label') {
+    margin: 0;
+    padding-left: 9px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-40%);
+    float: left;
+    cursor: pointer;
+  }
+  @include element('status-bottom-label') {
+    margin: 16px 0 10px;
+    display: block;
+  }
+  @include modifier('in-prompt-footer') {
+    position: absolute;
+    top: 0;
+    right: -5px;
+  }
+  @include state('selected') {
+    @include modifies-element('navigate') {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+@include object('button-navigate-icon') {
+  @include modifier('confirm') {
+    background-image: url(../img/icon_confirm.png);
+  }
+  @include modifier('cancel') {
+    background-image: url(../img/icon_cancel.png);
+  }
+  @include modifier('add') {
+    background-image: url(../img/icon_add.png);
+  }
+  @include modifier('remove') {
+    background-image: url(../img/icon_remove.png);
+  }
+  @include modifier('back') {
+    background-image: url(../img/icon_back.png);
+  }
+  @include modifier('search') {
+    background-image: url(../img/icon_search.png);
+  }
+  @include modifier('filter') {
+    background-image: url(../img/icon_filter.png);
+  }
+}
+
+
+/*-------- End of common action button ----------*/
+
+@include object('common-button-wrap') {
+  @include modifier('40px') {
+    width: 40px;
+  }
+}
+
+
+/* ------- Start Crud Pager ---------------------------*/
+
+@include object('crud-pager') {
+  position: absolute;
+  top: calc(50% - 72px);
+  width: 21px;
+  height: 72px;
+  border: none;
+  background: url(../img/crud_pager_icon.png) no-repeat;
+  &:focus {
+    outline: none;
+  }
+  @include element('task') {
+    display: block;
+    min-height: 123px;
+    margin-top: 68px;
+  }
+  @include element('previous') {
+    left: -48px;
+    background-position: 0px 0;
+    &:hover {}
+    //    @media screen and (min-width: 1201px) and (max-width: 1600px) {
+    //      left: -63px;
+    //    }
+    @include modifier('paginate') {
+      margin-left: -10.4%!important;
+      margin-top: 4.65%;
+    }
+  }
+  @include element('next') {
+    right: -49px;
+    background-position: -21px 0px;
+    &:hover {}
+    //    @media screen and (min-width: 1201px) and (max-width: 1600px) {
+    //      right: -64px;
+    //    }
+    //    @media screen and (min-width: 1921px) {
+    //      right: -64px;
+    //    }
+    @include modifier('paginate') {
+      right: 0px;
+      margin-top: 4.65%;
+      margin-right: -8.3%!important;
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      filter: FlipH;
+      -ms-filter: "FlipH";
+    }
+  }
+}
+
+
+/* ------- End Crud Pager ---------------------------*/

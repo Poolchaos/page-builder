@@ -1,0 +1,103 @@
+<template>
+	<!-- 12 Column Content Area -->
+	<div class="o-full-page o-full-page--push-down">
+
+		<div class="o-full-page__side-panel o-conversation-body--side-left col-sm-2">
+			<div class="row o-relative-box o-relative-box--height-10 clearfix"></div>
+			<div class="o-side-container o-border--secondary clearfix">
+				<div class="o-conversation-search-list__nested-list-item--names o-conversation-search-list__nested-list-item--names-secondary u-text-style__size--large u-text-style__align--center">
+					Score
+				</div>
+				<div class="col-sm-6 col-sm-offset-3 u-text-style__size--xlarge u-text-style__align--center u-text-style__border--bottom u-text-style__space--below">
+					${performedAssessmentStore.assessment.score.percentageAchieved}%
+				</div>
+				<div class="col-sm-10 col-sm-offset-1 u-text-style__size--large u-text-style__align--center u-text-style--uppercase">
+					<span class="o-text-icon o-text-icon--round o-text-icon--pass o-text-icon--accept_green" show.bind="performedAssessmentStore.assessment.outcome === 'Pass'"></span>
+					<span class="o-text-icon o-text-icon--round o-text-icon--fail o-text-icon--close_red" show.bind="performedAssessmentStore.assessment.outcome === 'Fail'"></span>
+					<span>${performedAssessmentStore.assessment.outcome}</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- center column -->
+		<div class="o-conversation-body o-conversation-body--no-height-push col-sm-8">
+
+			<!-- header -->
+			<div class="o-conversation-body__header">
+				<div class="c-to-center">
+					<h1 class="o-text__header--xlarge u-text-style__space--none u-text-style__space--below u-text-style__align--center u-text-style--uppercase">${performedAssessmentStore.assessment.name}</h1>
+				</div>
+			</div>
+
+			<!-- content -->
+			<div class="row o-conversation-body__content">
+				<div class="o-inner-shadow--from-bottom"></div>
+				<div class="o-conversation-search-list__parent-wrapper o-conversation-search-list__parent-wrapper--no-utility">
+
+					<div class="o-conversation-search-list__child-wrapper o-accordion">
+						<ul class="">
+							<li class="o-accordion__item o-accordion__item--short" repeat.for="section of performedAssessmentStore.assessment.sections" show.bind="section.questions.length > 0">
+								<div class="o-accordion-header clearfix" click.delegate="toggleExpandSection(section, $index)">
+									<div class="o-accordion-header__title u-text-style--uppercase col-sm-10">${section.name}</div>
+									<div class="o-accordion-header__action col-sm-2">
+										<span class="o-accordion-action o-accordion-action--navigate pull-right" class.bind="section.expanded ? 'is-expanded' : 'is-collapsed'"></span>
+									</div>
+								</div>
+
+								<div class="o-accordion-body" class.bind="section.expanded ? 'is-expanded' : 'is-collapsed'" id="section_${$index}">
+									<ul class="">
+										<li class="o-accordion-body__inner" repeat.for="question of section.questions">
+											<div class="o-accordion-body__section o-accordion-body__section--devide o-accordion-body__section--second clearfix">
+												<div class="o-accordion-body__section-content o-accordion-body__section-content--devide-first col-sm-10">
+													<div class="u-text-style__align--left">${question.description}</div>
+												</div>
+												<div class="o-accordion-body__section-content-details col-sm-2">
+													<div class="o-accordion-body__section-content o-accordion-body__section-content--devide col-sm-6">
+														<div class="u-text-style__size--medium u-text-style__align--center u-text-style--uppercase u-text-style__space--below">${question.assessment}</div>
+														<!--														<div class="u-text-style__size--medium u-text-style__align--center u-text-style--uppercase">No</div>-->
+													</div>
+													<div class="o-accordion-body__section-content o-accordion-body__section-content--devide-with-line col-sm-6">
+														<div class="u-text-style__size--medium u-text-style__align--center u-text-style__space--below">${question.weight}</div>
+														<!--														<div class="u-text-style__size--medium u-text-style__align--center">${question.noWeight ? question.noWeight : '-'}</div>-->
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- right column -->
+		<div class="o-full-page__side-panel col-sm-2">
+			<div class="row o-relative-box o-relative-box--height-10 clearfix"></div>
+			<div class="o-full-page__side-panel-inner o-full-page__side-panel-inner--right">
+				<ul class="">
+					<!--
+                                        <li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="viewConversation()">
+                                            <button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+                                                <span class="o-button o-button__navigate o-button__navigate-inner">
+                                                        <span class="o-icon-container o-dashbaord-button__icon--back"></span>
+                                                </span>
+                                            </button>
+                                            <label class="o-text__button-label--small o-button__navigate-bottom-label u-text-style--ellipses u-text-style__align--center" title="View Conversation" click.delegate="viewConversation()">View Conversation</label>
+                                        </li>
+                    -->
+					<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="back()">
+						<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+							<span class="o-button o-button__navigate o-button__navigate-inner">
+									<span class="o-icon-container o-dashbaord-button__icon--back"></span>
+							</span>
+						</button>
+						<label class="o-text__button-label--small o-button__navigate-bottom-label u-text-style--ellipses u-text-style__align--center" title="Back" click.delegate="back()">Back</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</template>

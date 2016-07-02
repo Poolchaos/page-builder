@@ -1,0 +1,12 @@
+<template>
+  <div show.bind="organisationInvitationsStore.error" class="u-text-style__size--medium o-error--invitation aurelia-hide">${organisationInvitationsStore.error}</div>
+	
+  <dashboard-vessel>
+    <dashboard-vessel-header title.bind="title" icon.bind="icon">
+      ${guide}
+    </dashboard-vessel-header>
+  </dashboard-vessel>
+
+  <wizard intercept.bind="intercept"></wizard>
+
+</template>

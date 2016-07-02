@@ -1,0 +1,22 @@
+<template>
+  
+  <section data-ui-component="messages_list_item_view">    
+    <div class="mailbox clearfix">
+      <div class="o-mailbox pull-left clearfix">
+        <div class="o-mailbox-image-container pull-left" click.delegate="viewMessages()">
+          <div class="o-mailbox-image-container__inner">
+            <span class="voicemail_icon"></span>
+          </div>
+        </div>
+      </div>
+      <div class="o-mailbox-label-container pull-left">
+        <div class="o-mailbox-label">
+          <div class="o-mailbox-label__side">
+            <span class="o-mailbox-label__count">${mailboxStore.unplayedCount ? mailboxStore.unplayedCount : '0' }</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</template>

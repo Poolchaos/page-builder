@@ -1,0 +1,128 @@
+/* organisation widget scss */
+.organisation, .userprofile {
+  margin-bottom: 32px;
+}
+.organisation_pic_placeholder {
+  cursor: pointer;
+}
+
+@include object('profile') {
+  width: 42%;
+	@include modifier('center') {
+		margin: 0 auto;
+	}
+  @include modifier('small') {
+    width: 47%;
+  }
+}
+@include object('profile-image-container') {
+  position: relative;
+  width: 100%;
+  padding: 54% 50%;
+  background: $secondary-color;
+  -webkit-clip-path: polygon(46% 1%, 50% 0, 54% 1%, 97% 24%, 99% 27%, 100% 31%, 100% 69%, 99% 73%, 97% 76%, 54% 99%, 50% 100%, 46% 99%, 3% 76%, 1% 73%, 0 69%, 0 31%, 1% 27%, 3% 24%);
+  @include element('inner') {
+    position: absolute;
+    z-index: 2;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    background: #000;
+    overflow: hidden;
+    -webkit-clip-path: polygon(46% 1%, 50% 0, 54% 1%, 97% 24%, 99% 27%, 100% 31%, 100% 69%, 99% 73%, 97% 76%, 54% 99%, 50% 100%, 46% 99%, 3% 76%, 1% 73%, 0 69%, 0 31%, 1% 27%, 3% 24%);
+    & picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      position: relative;
+      top: 0;
+      bottom: 0;
+      text-align: center;
+      left: 0;
+      right: 0;
+      & img {
+        position: absolute;
+        display: block;
+        width: 130%;
+        height: 130%;
+        top: -20%;
+        left: -20%;
+        bottom: -20%;
+        right: -20%;
+        margin: 0 auto; 
+      }
+    }
+  }
+  &:hover {
+    background: #FFFFFF;
+    cursor: pointer;
+  }
+  @include modifier('no-hover') {
+    &:hover {
+      background: $secondary-color;
+      cursor: default;
+    }
+  }
+  @include modifier('no-color-change') {
+    &:hover {
+      background: #00AFEF;
+    }
+  }
+  @include element('placeholder') {
+    position: absolute;
+    background-image: url(../img/create_org-placeholder.png);
+    background-size: 120%;
+    background-position: -11px -6px;
+    @media screen and (min-width: 1024px) and (max-width: 1200px) {
+      
+    }
+    @media screen and (min-width: 1201px) and (max-width: 1400px) {
+      background-position: -6px -4px;
+    }
+    @media screen and (min-width: 1401px) and (max-width: 1600px) {
+      
+    }
+    @media screen and (max-width: 1920px) {
+      
+    }
+  }
+}
+@include object('profile-image') {
+//  display: block;
+//  width: 115%;
+//  margin-top: -8px;
+//  margin-left: -8px;
+}
+@include object('profile-label-container') {
+  position: relative;
+  width: 58%;
+  padding-top: 30%;
+  padding-left: 2%;
+  margin-bottom: 14%
+}
+@include object('profile-label') {
+  border-bottom: 1px solid #fff;
+  line-height: 1;
+  float: left;
+  border-radius: 0;
+  width: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  text-align: left;
+  white-space: nowrap;
+  @include element('side') {
+    width: 35%;
+    height: 4px;
+    background: #fff;
+    z-index: 10;
+    position: absolute;
+    right: 93%;
+    bottom: -13%;
+    transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg);
+  }
+}

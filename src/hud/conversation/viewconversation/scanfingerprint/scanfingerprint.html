@@ -1,0 +1,74 @@
+<template>
+
+	<div class="col-sm-5 o-conversation-details">
+		<div class="o-conversation-details__box o-conversation-details__box--border o-conversation-details__box--background">
+
+      <div class="o-information-list__title u-text-style__align--center">
+        <span if.bind="!scanFingerprintStore.instruction">Scan Fingerprints</span>
+        <span if.bind="scanFingerprintStore.fpInstruction === 'left.hand' || scanFingerprintStore.fpInstruction === 'right.hand' || scanFingerprintStore.fpInstruction === 'thumbs'">Scanning Fingerprints</span>
+        <span if.bind="scanFingerprintStore.fpInstruction === 'document.received'">Fingerprints Scanned</span>
+      </div>
+
+			<div if.bind="!scanFingerprintStore.instruction">
+
+				<div class="o-conversation-details__guide-wrap">
+					<p class="o-conversation-details__guide o-text__conversation-guide">Select the finger you would like the client to scan.</p>
+				</div>
+
+				<ul class="o-document-list">
+
+					<li class="o-document-list__no-item" click.delegate="instructFingers()">
+						<div class="o-document-list__icon o-document-list__icon--background-color o-document-list__icon--fingerprint pull-left" src="scan_icon"></div>
+						<div class="o-document-list__title o-document-list__title--with-two-icon o-text__conversation-list-title" title="${document.type}">All Fingers</div>
+					</li>
+					<li class="o-document-list__no-item" click.delegate="instructThumbs()">
+						<div class="o-document-list__icon o-document-list__icon--background-color o-document-list__icon--fingerprint pull-left" src="scan_icon"></div>
+						<div class="o-document-list__title o-document-list__title--with-two-icon o-text__conversation-list-title" title="${document.type}">Thumbs</div>
+					</li>
+
+				</ul>
+
+			</div>
+      
+			<div class="scan-animation-wrap" if.bind="scanFingerprintStore.fpInstruction === 'left.hand' || scanFingerprintStore.fpInstruction === 'right.hand' || scanFingerprintStore.fpInstruction === 'thumbs'">
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">${scanFingerprintStore.instructionTitle}</p>
+        </div>
+
+        <div class="c-scan-animation">
+          <div class="c-scan-animation__scan-line"></div>
+          <div class="c-scan-animation__${scanFingerprintStore.serviceInstruction}"></div>
+        </div>
+      </div>
+
+			<div class="scan-animation-wrap" if.bind="scanFingerprintStore.fpInstruction === 'document.received'">
+        
+				
+        <div class="o-conversation-details__guide-wrap">
+          <p class="o-conversation-details__guide o-text__conversation-guide">${scanFingerprintStore.document.title}</p>
+        </div>
+        
+        <div class="c-scan-animation">
+          
+          <div class="o-video__button-container" style="position: absolute;top: -15px;right: 35px; pointer-events: none;">
+            <div class="o-navigation-list__item">
+              <button class="o-button o-button__navigate o-text__button o-text__button">
+                <span class="o-button o-button__navigate o-button__navigate-inner">
+                  <span class="o-icon-container o-icon-container--zoom"></span>
+                </span>
+              </button>
+            </div>
+          </div>
+            
+          <img class="scan-prvw" src.bind="scanFingerprintStore.document.documentContent">
+        </div>
+				
+				<div class="scan_state clearfix toBeNoticed">
+
+					${scanFingerprintStore.document !== null ? '' : 'If you see this you have encountered an aurelia animator bug see details here: https://github.com/aurelia/animator-css/issues/29 IF THE BUTTONS SHOW INCORRECTLY WITHOUT THIS MESSAGE THEN LOG A BUG PLEASE!'}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>

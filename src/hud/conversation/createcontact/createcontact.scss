@@ -1,0 +1,117 @@
+//@import "../../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@include component('create-contact-form') {
+	@include element('base') {
+//		border-bottom: 1px solid transparent;
+		border-bottom: 1px solid rgba(60,60,60,1);
+	}
+	@include element('action-container') {
+		position: absolute;
+    right: 0%;
+    width: 72px;
+    padding-right: 5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 50;
+	}
+	@include element('action') {
+		background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin: 0 2px;
+    cursor: pointer;
+		opacity: 0.8;
+		@include modifier('dropdown') {
+			background-image: url(../img/icon_accordian-nav.png);
+		}
+		@include modifier('edit') {
+			background-image: url(../img/icon_note.png);
+		}
+		@include modifier('accept') {
+			background-image: url(../img/icon_confirm.png);
+		}
+		@include modifier('cancel') {
+			background-image: url(../img/icon_cancel.png);
+		}
+		&:hover {
+			opacity: 1;
+		}
+	}
+	@include element('group') {
+		width: 46%;
+		margin: 7% 2%;
+		float: left;
+		padding-bottom: 1px;
+		@include modifier('wide') {
+			width: 100%;
+			margin: 0;
+		}
+		@include modifier('wide-spaced') {
+			width: 100%;
+			margin: 2% 0;
+		}
+		@include modifier('short') {
+			margin: 4% 2%;
+		}
+//		@include modifier('dropdown') {
+//			background-image: url(../img/icon_accordian-nav.png);
+//			background-size: 2.2%;
+//			background-repeat: no-repeat;
+//			background-position: 98% center;
+//			width: 100%;
+//			position: absolute;
+//			right: 2%;
+//			left: 0;
+//			bottom: 0;
+//			top: 0;
+//			cursor: pointer;
+//			background-image: url(../img/icon_accordian-nav.png);
+//			background-size: 100%;
+//			width: 18px;
+//			height: 18px;
+//			position: absolute;
+//			right: 2%;
+//			bottom: 30%;
+//			cursor: pointer;
+//		}
+		@include modifier('add-number') {
+			background-image: url(../img/icon_accordian-add.png);
+			background-size: 100%;
+			width: 18px;
+			height: 18px;
+			position: absolute;
+			right: 10%;
+			bottom: 8px;
+			cursor: pointer;
+		}
+		@include modifier('list-wrap') {
+			position: absolute;
+			z-index: 9999;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			background: #003d4a;
+		}
+		@include modifier('list-item') {
+			position: relative;
+			color: #fff;
+			width: 100%;
+			display: block;
+			float: left;
+			margin: 0;
+			padding: 0 1%;
+			cursor: pointer;
+			border-bottom: 1px solid rgba(255,255,255,0.2);
+			transition: all 0.1s ease-in-out;
+			&:last-child {
+				border-bottom: none;
+			}
+			&:hover {
+				background: rgba(0,0,0,0.2);
+//				color: rgba(255, 255, 255, 1);
+			}
+		}
+	}
+}

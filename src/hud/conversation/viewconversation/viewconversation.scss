@@ -1,0 +1,1051 @@
+.localVideoFeedWrap {
+	position: absolute;
+	margin-top: -211px;
+	right: 47px;
+}
+video#agentRemoteVideo {
+	width: 100%;
+	height: 455px;
+}
+.agentRemoteVideo span.web_call {
+	display: block;
+	position: absolute;
+	top: 310px;
+	left: calc(50% - 66px);
+	width: 132px;
+	height: 132px;
+	background: url("../img/customer_disabled_video.png") no-repeat 50%;
+	z-index: 500;
+}
+video#agentLocalVideo {
+	width: 320px;
+	height: 240px;
+	margin-top: -60px;
+	margin-left: -59px;
+}
+.doc_preview {
+	height: 300px;
+}
+.doc_preview_sign {
+	height: 369px;
+	margin-top: 14px;
+}
+.scrn_share,
+.doc_history,
+.fp_scan,
+.doc_scan,
+.doc_sign,
+.msg,
+.wrap_up {
+	width: 76px;
+	height: 76px;
+	margin-bottom: 10px;
+	display: block;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	background-image: url(../img/kiosk_instruct_btn.png);
+}
+.wrap_up span,
+span.request_scan {
+	display: block;
+	text-align: center;
+	line-height: 14px;
+	margin-top: 2px;
+	font-size: 9px;
+}
+span.hand_icon,
+span.thumb_icon {
+	width: 40px;
+	height: 40px;
+	margin-top: 4px;
+	display: -webkit-inline-box;
+	background: url("../img/hand_icon.png") no-repeat 50%;
+}
+span.thumb_icon {
+	background: url("../img/thumb_icon.png") no-repeat 50%;
+}
+.scrn_share {
+	margin-bottom: 100px;
+}
+.video_call {
+	display: block;
+	position: absolute !important;
+	top: 3.6% !important;
+	width: 79%;
+	height: 101%;
+	transition: 0.5s !important;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+}
+@keyframes call_ended {
+	0% {
+		z-index: 1;
+		left: 0%;
+	}
+	99% {
+		z-index: 1;
+	}
+	100% {
+		z-index: -2;
+		left: -58%;
+	}
+}
+.call_ended {
+	-webkit-animation: call_ended 1s;
+	/* Safari 4+ */
+	-moz-animation: call_ended 1s;
+	/* Fx 5+ */
+	-o-animation: call_ended 1s;
+	/* Opera 12+ */
+	animation: call_ended 1s;
+	/* IE 10+, Fx 29+ */
+	z-index: -2;
+	left: -58%;
+	//  display: none;
+}
+.not_on_call {
+	display: none;
+	position: absolute;
+	/*left: -100%;*/
+	left: -58.3%;
+	top: 4%;
+	z-index: -2;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+}
+@keyframes incoming_call {
+	0% {
+		z-index: -2;
+		left: -58%;
+	}
+	1% {
+		z-index: 1;
+	}
+	100% {
+		z-index: 1;
+		left: 0%;
+	}
+}
+.on_call {
+	-webkit-animation: incoming_call 1s;
+	/* Safari 4+ */
+	-moz-animation: incoming_call 1s;
+	/* Fx 5+ */
+	-o-animation: incoming_call 1s;
+	/* Opera 12+ */
+	animation: incoming_call 1s;
+	/* IE 10+, Fx 29+ */
+	z-index: 1;
+}
+.audio {
+	position: relative;
+	top: 5px;
+	z-index: -2;
+	display: none;
+}
+.on_call_left {
+	position: relative;
+	height: 100%;
+	padding-left: 75px;
+	.on_call_left_inner {
+		position: absolute;
+		top: 23%;
+		width: auto;
+		video#agentRemoteVideo {
+			height: auto;
+		}
+		.videoWrap.video_small_wrap {
+			right: 0;
+			margin-top: 0;
+      cursor: move;
+			-webkit-transform: scale(0.95, 0.95);
+			-moz-transform: scale(0.95, 0.95);
+			-o-transform: scale(0.95, 0.95);
+			-ms-transform: scale(0.95, 0.95);
+		}
+	}
+}
+paper-toolbar {
+	display: none !important;
+}
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	opacity: 0;
+	cursor: pointer;
+	filter: alpha(opacity=0);
+}
+.instructions_left {
+	margin-top: 50px;
+}
+.button_container {
+	display: block;
+	margin: -15px auto 0;
+	text-align: center;
+	position: relative;
+	z-index: 500;
+}
+.kiosk_instructions_actions {
+	button {
+		width: 64px;
+		height: 65px;
+		border: none;
+		background: url("../img/kiosk_instruct_action_btn.png") bottom;
+	}
+}
+.end_call {
+	width: 70px;
+	height: 70px;
+	margin: 1.6% 47%;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	background-image: url("../img/endCall_btn.png");
+}
+
+/* ---- Icons ---- */
+
+span.share_scrn {
+	display: -webkit-inline-box;
+	width: 32px;
+	height: 29px;
+	margin-top: 6px;
+	background-image: url("../img/share_screen_icon.png");
+	background-repeat: no-repeat;
+	background-position: 50% !important;
+}
+span.scan_doc {
+	display: -webkit-inline-box;
+	width: 38px;
+	height: 33px;
+	margin-left: 4px;
+	background-image: url("../img/scan_doc_icon.png");
+	background-repeat: no-repeat;
+	background-position: 2px 50%;
+}
+span.scan_fp {
+	display: -webkit-inline-box;
+	width: 28px;
+	height: 39px;
+	margin-top: 2px;
+	background-image: url("../img/scan_fp_icon.png");
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+span.sign_doc {
+	display: -webkit-inline-box;
+	width: 34px;
+	height: 33px;
+	background-image: url("../img/sign_doc_icon.png");
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+span.msg_icon {
+	width: 34px;
+	height: 33px;
+	display: -webkit-inline-box;
+	background-image: url("../img/message_icon.png");
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+
+/* ---- Icons ---- */
+
+
+/* ---- Document scanning ---- */
+
+span.docscan_icon {
+	display: -webkit-inline-box;
+	width: 32px;
+	height: 29px;
+	margin-top: 6px;
+	background-image: url("../img/docscan_icon.png");
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+.close_btn {
+	position: absolute;
+	top: 3px;
+	right: 20px;
+	width: 29px;
+	height: 31px;
+	outline: none;
+	border: none;
+	background-color: transparent;
+	background-image: url("../img/close_btn.png");
+	background-repeat: no-repeat;
+	background-position: 0;
+	z-index: 3;
+	&:hover {
+		background-position: 100%;
+	}
+}
+.request_scan_wrap {
+	width: 100%;
+	text-align: center;
+	margin-top: 5px;
+	button {
+		float: none;
+		margin-left: 10px;
+		margin-right: 10px;
+		.request_scan_btn {
+			margin-top: 15px;
+			margin-left: 10px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+	}
+}
+#signee_One {
+	margin-right: 10px;
+}
+.scan_state {
+	margin-top: -12px;
+	margin-bottom: 12px;
+}
+.scanned_doc-buttons {
+	margin-top: 12px !important;
+}
+ul.scan_instruct {
+	margin-top: 20px;
+	li {
+		position: relative;
+		width: 100%;
+		padding: 10px;
+		margin-top: 15px;
+		font-size: 12px;
+		line-height: 2;
+		text-align: -webkit-center;
+		button {
+			float: right;
+			input {
+				height: 60px;
+				width: 60px;
+				position: absolute;
+				top: 22px;
+				cursor: pointer;
+				opacity: 0;
+			}
+		}
+		.text_line {
+			display: block;
+			width: 66px;
+			height: 35px;
+			border-top: 1px solid #ffffff;
+			position: absolute;
+			right: 104px;
+			top: 30px;
+			padding-left: 10px;
+			padding-right: 5px;
+			.double_line {
+				position: absolute;
+				left: 0;
+				top: -2px;
+				width: 15px;
+				height: 3px;
+				background: #ffffff;
+			}
+			.doc_type {
+				display: block;
+				position: absolute;
+				right: 2px;
+				bottom: 40px;
+				max-width: 70px;
+				font-size: 11px;
+				text-align: right;
+				line-height: 14px;
+			}
+			.text_line_angle {
+				position: absolute;
+				right: -12px;
+				top: 4px;
+				width: 16px;
+				height: 2px;
+				border-top: 1px solid #fff;
+				-webkit-transform: rotate(45deg);
+				-moz-transform: rotate(45deg);
+				-o-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+		}
+		.close_btn {
+			position: absolute;
+			top: 3px;
+			right: 20px;
+			width: 29px;
+			height: 31px;
+			outline: none;
+			border: none;
+			background-color: transparent;
+			background-image: url("../img/close_btn.png");
+			background-repeat: no-repeat;
+			background-position: 0;
+			z-index: 3;
+			&:hover {
+				background-position: 100%;
+			}
+		}
+	}
+}
+.instruction_progress_area {
+	display: block;
+	position: relative;
+	min-height: 522px;
+	margin-top: 50px;
+	padding: 0 30px;
+	float: left;
+	border: 1px solid #085a8d;
+	.instruction_progress {
+		margin-top: 3px;
+		h6.instructions_header {
+			display: inline-block;
+			margin: 0;
+			padding-right: 5px;
+			font-size: 12px;
+			border-style: solid;
+			border-width: 10px 12px;
+			-webkit-border-image: url(../img/instruction_header.png) 12 13 stretch;
+			-moz-border-image: url(../img/instruction_header.png) 12 13 stretch;
+			-o-border-image: url(../img/instruction_header.png) 12 13 stretch;
+			border-image: url(../img/instruction_header.png) 10 12 fill stretch;
+		}
+		button.scanButton {
+			margin: 0 44%;
+		}
+		.document_preview_area {
+			max-width: 80%;
+			margin: 0 auto;
+			margin-top: 20px;
+			padding: 0 16px;
+			margin-bottom: 23px;
+			display: block;
+			position: relative;
+			.preview_area_left {
+				position: absolute;
+				z-index: 40;
+				width: 10px;
+				height: 100%;
+				border: 1px solid #085a8d;
+				border-right: none;
+				left: 0;
+			}
+			.preview_area_right {
+				position: absolute;
+				z-index: 40;
+				width: 10px;
+				height: 100%;
+				border: 1px solid #085a8d;
+				border-left: none;
+				right: 0;
+			}
+			.instruction_guide {
+				margin: 15px 0;
+				img {
+					display: block;
+					width: 94%;
+					margin: 0 auto;
+				}
+			}
+		}
+		.document_preview_area.sign_preview {
+			margin-top: 100px;
+		}
+		.document_preview_area.fp_preview {
+			margin-top: 55px;
+		}
+	}
+	.ruler_line_left,
+	.ruler_line_right {
+		position: absolute;
+		z-index: 30;
+		display: block;
+		width: 10px;
+		height: 100%;
+		padding-top: 4px;
+	}
+	.ruler_line_left {
+		left: 4px;
+	}
+	.ruler_line_right {
+		right: 4px;
+	}
+	.ruler_square_top,
+	.ruler_square_bottom {
+		width: 10px;
+		height: 10px;
+		border: 2px solid #085a8d;
+		float: left;
+	}
+	.ruler_line_center {
+		width: 10px;
+		height: calc(100% - 32px);
+		float: left;
+		margin: 4px 0;
+		background: url("../img/ruler_image_left.png") repeat-y;
+	}
+	.ruler_line_right .ruler_line_center {
+		background: url("../img/ruler_image_right.png") repeat-y 3px 0;
+	}
+}
+.instruction_progress .full_hand {
+	width: 80%;
+	margin: 0 auto;
+	min-height: 400px;
+	background: url(../img/full_hand_image.png) no-repeat 50%;
+	.fp_pinky,
+	.fp_ring,
+	.fp_middle,
+	.fp_index,
+	.fp_thumb {
+		width: 64px;
+		height: 67px;
+		outline: none;
+		border: none;
+		background: url(../img/full_hand_finger_scan.png) no-repeat 50%;
+	}
+}
+.instruction_history {
+	margin-top: 50px;
+	padding-right: 50px;
+	overflow-x: hidden;
+	overflow-y: overlay;
+	position: relative;
+	max-height: 522px;
+	padding-right: 15px;
+	margin-right: 35px;
+	.no_click {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 500;
+	}
+	.instruction_history_panels {
+		min-height: 123px;
+		margin-bottom: 10px;
+		border-style: solid;
+		border-width: 20px 21px;
+		position: relative;
+		-webkit-border-image: url(../img/document_panels.png) 20 21 stretch;
+		-moz-border-image: url(../img/document_panels.png) 20 21 stretch;
+		-o-border-image: url(../img/document_panels.png) 20 21 stretch;
+		border-image: url(../img/document_panels.png) 20 21 fill stretch;
+		.instruction_history_title {
+			margin-top: 0;
+			margin-bottom: 0;
+			margin-right: 0;
+			border-bottom: 1px solid #00aeef;
+			display: block;
+			padding-bottom: 5px;
+			width: 100%;
+			text-align: right;
+			padding-right: 10px;
+			font-size: 12px;
+		}
+		.instruction_history_item_list {
+			padding-right: 14px;
+			padding-top: 0px;
+			margin-top: 5px;
+			float: left;
+			width: 100%;
+			max-height: 94px;
+			margin-bottom: 40px;
+			overflow-y: overlay;
+			overflow-x: hidden;
+			.instruction_history_items {
+				display: block;
+				position: relative;
+				text-align: center;
+				width: 26%;
+				height: 75px;
+				max-width: 65px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 5px;
+				cursor: pointer;
+				border-style: solid;
+				border-width: 20px 14px;
+				-webkit-border-image: url(../img/document_history_items.png) 20 21 stretch;
+				-moz-border-image: url(../img/document_history_items.png) 20 21 stretch;
+				-o-border-image: url(../img/document_history_items.png) 20 21 stretch;
+				border-image: url(../img/document_history_items.png) 20 21 fill stretch;
+				.fingerprint_history_icon {
+					position: absolute;
+					left: -9px;
+					top: -10px;
+					width: 40px;
+					height: 40px;
+					background: url("../img/thumb_icon.png") no-repeat 50%;
+					display: -webkit-inline-box;
+				}
+			}
+			.instruction_history_items_signed {
+				display: block;
+				position: relative;
+				text-align: center;
+				width: 26%;
+				height: 75px;
+				max-width: 65px;
+				float: left;
+				cursor: pointer;
+				margin-right: 5px;
+				margin-top: 5px;
+				border-style: solid;
+				border-width: 20px 14px;
+				-webkit-border-image: url(../img/document_history_items.png) 20 21 stretch;
+				-moz-border-image: url(../img/document_history_items.png) 20 21 stretch;
+				-o-border-image: url(../img/document_history_items.png) 20 21 stretch;
+				border-image: url(../img/document_history_items.png) 20 21 fill stretch;
+				.fingerprint_history_icon {
+					position: absolute;
+					left: -9px;
+					top: -10px;
+					width: 40px;
+					height: 40px;
+					background: url("../img/thumb_icon.png") no-repeat 50%;
+					display: -webkit-inline-box;
+				}
+			}
+		}
+		.delete {
+			position: absolute;
+			right: -5px;
+			bottom: -5px;
+			z-index: 3;
+			width: 33px;
+			height: 33px;
+			outline: none;
+			border: none;
+			background-color: transparent;
+			background-image: url("../img/delete_btn.png");
+			background-repeat: no-repeat;
+			background-position: 50%;
+		}
+		.instruction_history_items_number {
+			font-size: 8px;
+			padding: 0 5px;
+			text-align: center;
+			margin-top: 5px;
+			word-break: break-word;
+			display: block;
+			line-height: 12px;
+			text-transform: capitalize;
+		}
+	}
+	instruction_history_item_list li:first-child {
+		margin-left: 0;
+	}
+}
+.list_item_container {
+	position: absolute;
+	left: -12px;
+	right: -14px;
+	top: -18px;
+	bottom: -18px;
+	overflow: hidden;
+}
+ul.scan_doc_instruct li > span {
+	display: block;
+	text-align: -webkit-center;
+}
+.loan_app {
+	margin-top: 189px;
+	margin-left: 80px;
+	margin-bottom: -221px;
+}
+span.docscan_icon_thumbnail {
+	width: 26px;
+	height: 29px;
+	margin: 0 auto;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	display: block;
+	background-image: url("../img/docscan_icon.png");
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+span.docscan_icon_thumbnail_finger {
+	width: 26px;
+	height: 32px;
+	margin: 0 auto;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	display: block;
+	background-image: url("../img/thumb_icon.png");
+	background-repeat: no-repeat;
+	background-position: 50%;
+	cursor: default;
+}
+#fingerprint {
+	max-width: 65%;
+	margin: 0 auto;
+	display: block;
+}
+.audio_graph {
+	/*margin: 40px 0 0 90px;*/
+}
+.awaitingAction_backButton {
+	position: absolute;
+	bottom: -110px;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	text-align: center;
+	button {
+		float: none;
+	}
+}
+
+/* ---- Agent On Call Styling ---- */
+
+
+/* ---- Kiosk call wrap up ---- */
+
+
+/**
+* The wrap_up_left class is the holding container for the left column.
+*/
+
+.wrap_up_left {
+	margin-top: -46px;
+	margin-left: 620px;
+}
+.move-right {
+	position: relative;
+	top: 171px;
+	left: 120px;
+}
+ul.kiosk_wrap_up {
+	/*margin: 286px;*/
+	margin: 173px 254px;
+}
+ul.kiosk_wrap_up li {
+	height: 137px;
+	width: 128px;
+	margin-bottom: 20px;
+	background-image: url(../img/confirm_btn.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	cursor: pointer;
+}
+ul.kiosk_wrap_up li:hover {
+	height: 137px;
+	width: 128px;
+	margin-bottom: 20px;
+	background-image: url(../img/confirm_btn.png);
+	background-repeat: no-repeat;
+	background-position: 0px -138px;
+	background-size: cover;
+}
+ul.kiosk_wrap_up li:nth-child(2) {
+	margin-bottom: 150px;
+	margin-left: -50px;
+	margin-right: -50px;
+}
+.received_docs {
+	width: 26px;
+	height: 32px;
+	margin: 50px auto;
+	background-image: url(../img/docscan_icon.png);
+}
+.signed_docs {
+	width: 32px;
+	height: 31px;
+	margin: 50px auto;
+	background-image: url(../img/sign_doc_icon.png);
+}
+.finger_docs {
+	width: 26px;
+	height: 32px;
+	margin: 50px auto;
+	background-image: url(../img/scan_fp_icon.png);
+}
+.doc_count {
+	position: absolute;
+	margin-left: 162px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+.button_call_wrap {
+	top: 200px;
+	left: 125px;
+	#WrapUp_done {
+		position: absolute;
+		right: -113px;
+		bottom: 92px;
+	}
+}
+.wrapUp-dialog {
+	text-align: center;
+	display: block;
+	ai-dialog {
+		display: block;
+		ai-dialog-body {
+			float: left;
+			text-align: center;
+			line-height: 50px;
+			margin-left: 12px;
+			span {
+				float: left;
+			}
+			.wrapUp_timer {
+				float: left;
+				display: block;
+				width: 60px;
+			}
+			button {
+				float: right;
+			}
+		}
+	}
+}
+
+/*** styled the email button on agent call ***/
+
+left_col_msg_btn {
+	margin-top: 69px;
+}
+
+/*** end of this section ***/
+
+.wrapUp_left_col {
+	display: block;
+	margin-top: 200px;
+}
+.callDetail {
+	display: inline-block;
+	width: 90%;
+	margin-top: 2px;
+	.client,
+	.flow,
+	.agent {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	ul {
+		height: 16px;
+	}
+}
+.callOutcome {
+	text-align: center;
+	.outcome {
+		width: 36px;
+		height: 36px;
+		margin: 0 auto;
+	}
+	ul.kiosk_wrap_up li:nth-child(2) {
+		margin-bottom: 150px;
+		margin-left: -50px;
+		margin-right: -50px;
+	}
+	.received_docs {
+		width: 26px;
+		height: 32px;
+		margin: 50px auto;
+		background-image: url(../img/docscan_icon.png);
+		.mailbox {
+			background-image: url(../img/callType_email.png);
+		}
+		.signed_docs {
+			width: 32px;
+			height: 31px;
+			margin: 50px auto;
+			background-image: url(../img/sign_doc_icon.png);
+		}
+		.finger_docs {
+			width: 26px;
+			height: 32px;
+			margin: 50px auto;
+			background-image: url(../img/scan_fp_icon.png);
+		}
+		.doc_count {
+			position: absolute;
+			margin-left: 162px;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			border: 1px solid #fff;
+		}
+		.button_call_wrap {
+			top: 200px;
+			left: 125px;
+		}
+	}
+}
+.scanfingerprints {
+	display: block;
+	position: relative;
+	.leftHand {
+		position: relative;
+		display: block;
+		#leftHand_fingerprint {
+			position: absolute;
+		}
+		.fingerprintIndicator {
+			position: absolute;
+			display: block;
+			float: left;
+			font-size: 12px;
+			width: 120px;
+			height: 85px;
+			background: url("../img/scan_indicator.png") 0 20px no-repeat;
+			&.l_pinky {
+				top: 70px;
+				left: 20px;
+			}
+			&.l_ring {
+				top: 7px;
+				left: 149px;
+			}
+			&.l_middle {
+				top: 13px;
+				left: 217px;
+			}
+			&.l_index {
+				top: 53px;
+				right: 176px;
+			}
+			&.l_thumb {
+				right: 142px;
+				top: 233px;
+			}
+		}
+	}
+}
+
+/*** right hand ***/
+
+.scanfingerprints {
+	position: relative;
+	display: block;
+	.rightHand {
+		position: relative;
+		display: block;
+		#rightHand_fingerprint {
+			position: absolute;
+		}
+		.fingerprintIndicator {
+			position: absolute;
+			display: block;
+			float: left;
+			font-size: 12px;
+			width: 120px;
+			height: 85px;
+			background: url("../img/scan_indicator.png") 0 20px no-repeat;
+			&.r_pinky {
+				right: 138px;
+				top: 70px;
+			}
+			&.r_ring {
+				left: 175px;
+				top: 6px;
+			}
+			&.r_middle {
+				left: 106px;
+				top: 13px;
+				width: 130px
+			}
+			&.r_index {
+				left: 57px;
+				top: 58px;
+			}
+			&.r_thumb {
+				left: 20px;
+				top: 234px;
+			}
+		}
+	}
+}
+.fp_inprogress_cancel {
+	display: block;
+	position: absolute;
+	text-align: center;
+	bottom: 20px;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	button {
+		float: none;
+	}
+}
+ul.bandwidth {
+	margin-top: 4px !important;
+	float: right;
+}
+ul.bandwidth li.agent {
+	width: 38px;
+	height: 26px;
+	background-image: url(../img/agent_band.png);
+}
+ul.bandwidth li.client {
+	width: 38px;
+	height: 26px;
+	background-image: url(../img/client_band.png);
+}
+@keyframes animateCall {}
+.animateCall {
+	-webkit-animation: animateCall 1s;
+}
+.incoming_call {
+	width: 46.11%;
+	height: 345px;
+	margin: 18% 26.1% !important;
+	@include incoming-call-border();
+	/*transition: 0.75s;*/
+}
+.call_details {
+	position: absolute;
+	margin-top: 50px;
+	float: left;
+}
+.call_type {
+	color: #2087c4;
+}
+.msg_bg {
+	width: 568px;
+	height: 618px;
+	margin-top: 60px;
+	/*@include msgs-bg();*/
+}
+button.answer {
+	width: 158px;
+	height: 169px;
+	margin-right: 50px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	background-image: url(../img/answer_btn.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+button.reject {
+	width: 158px;
+	height: 168px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	background-image: url(../img/reject_btn.png);
+	background-repeat: no-repeat;
+	background-position: 1px 0px;
+	background-size: 100%;
+}

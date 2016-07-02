@@ -1,0 +1,172 @@
+<template>
+
+  <div class="modalWrap col-lg-6 col-md-10 col-sm-10">
+    <h1 class="modalHeader">Edit Profile</h1>
+    <button class="close_btn" click.delegate="close()" style="z-index: 99999"></button>
+    <div class="">
+      <ai-dialog>
+
+        <ai-dialog-header>
+
+        </ai-dialog-header>
+
+        <ai-dialog-body id="profileDialog" style="height:560px">
+          <div class="row">
+
+            <form role="form" validate.bind="userInfoValidation" style="z-index: 99999">
+              <div class="edit_profile_node clearfix col-lg-4 col-md-4 col-sm-4">
+                <div class="edit_nameNode" click.delegate="toggleEditInfo('firstName', true)">
+
+                  <div class="nodeTitle">Name</div>
+
+                  <div class="profile_icon_hex"><img src="/target/_assets/img/user_details_icon.png" /></div>
+                </div>
+                <div id="name_nodeContent" class="nodeWindow left" show.bind="profileStore.editStates.firstName">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input class="line_input" value.bind="profileStore.userInfo.firstName" name="firstName" ref="txtName">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Surname</label>
+
+                    <input class="line_input" value.bind="profileStore.userInfo.surname" name="surname" ref="txtSurname">
+                  </div>
+                  <button class="hexSmall pull-right" click.delegate="changeName(txtName.value, txtSurname.value)"><span class="tick_icon"></span></button>
+                  <button class="hexSmall pull-right" click.delegate="toggleEditInfo('firstName', false)"><span class="cross_icon"></span></button>
+                </div>
+              </div>
+            </form>
+            <form role="form" validate.bind="usernameValidation">
+              <div class="edit_profile_node clearfix col-lg-4 col-md-4 col-sm-4 pull-right" style="z-index: 9999">
+                <div class="edit_usernameNode" click.delegate="toggleEditInfo('devices', true)">
+                  <div class="profile_icon_hex"><img src="/target/_assets/img/user_userName_icon.png" /></div>
+                  <div class="nodeTitle">User Devices</div>
+
+                </div>
+                <div id="userName_nodeContent" class="nodeWindow right" show.bind="profileStore.editStates.devices">
+                  <ul class="device_pin">
+                    <li repeat.for="device of profileStore.userInfo.devices">
+                      <label>Device Name:</label>
+                      <div class="detail">${device.name}</div>
+                      <label>Pin:</label>
+                      <div class="detail">${device.pin.code}</div>
+                    </li>
+                  </ul>
+                  <button class="hexSmall pull-right" click.delegate="toggleEditInfo('devices', false)"><span class="cross_icon"></span></button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+          <div ref="filePreview" show.bind="profileStore.changingProfilePicture"></div>
+          <button click.delegate="updateProfilePicture()" show.bind="profileStore.changingProfilePicture" class="updateProfilePicture hexMedium">Save</button>
+          <div class="nodeLine_wrapper">
+            <img src="/target/_assets/img/node_line.png" class="nodeBoxModel nodeline_topLeft">
+            <img src="/target/_assets/img/node_line.png" class="nodeBoxModel nodeline_topRight">
+            <img src="/target/_assets/img/node_line.png" class="nodeBoxModel nodeline_botLeft">
+            <img src="/target/_assets/img/node_line.png" class="nodeBoxModel nodeline_botRight">
+          </div>
+          <div src.bind="profileStore.userProfilePicture" show.bind="!profileStore.changingProfilePicture" class="profile_dialog_pic">
+            <div class="rhex">
+              <div class="rhex_inner">
+                <div class="profile_picture">
+                  <div>
+                    <!--                    <input type="file" accept="image/x-png, image/jpeg" files.bind="profileStore.selectedFiles" class="custom-file-input" />-->
+
+                    <img src.bind="profileStore.userProfilePicture" style="" class="au-target" au-target-id="55" src="target/_assets/img/profile_pic-holder.png">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Email entity -->
+            <form role="form" validate.bind="emailValidation">
+              <div class="edit_profile_node clearfix col-lg-4 col-md-4 col-sm-4">
+                <div class="edit_emailNode" click.delegate="toggleEditInfo('email', true)">
+                  <!--  show.bind="!profileStore.editStates.email" -->
+                  <div class="nodeTitle">E-mail</div>
+                  <!-- ${profileStore.userInfo.email} -->
+                  <div class="profile_icon_hex"><img src="/target/_assets/img/user_email_icon.png" /></div>
+                </div>
+                <div id="email_nodeContent" class="nodeWindow left" show.bind="profileStore.editStates.email">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input class="line_input" value.bind="profileStore.newEmail" ref="txtEmail">
+                  </div>
+                  <!--<div class="form-group">
+                    <label>Please enter password to confirm:</label>
+                    <input class="line_input" type="password" value.bind="profileStore.oldPassword" ref="email_Password">
+                  </div>-->
+                  <button class="hexSmall pull-right" click.delegate="changeEmail(txtEmail.value, email_Password.value)"><span class="tick_icon"></span></button>
+                  <button class="hexSmall pull-right" click.delegate="toggleEditInfo('email', false)"><span class="cross_icon"></span></button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Password entity -->
+            <form role="form" validate.bind="passwordValidation" style="z-index: 9999">
+              <div class="edit_profile_node clearfix col-lg-4 col-md-4 col-sm-4 pull-right">
+                <div class="edit_passwordNode" click.delegate="toggleEditInfo('password', true)">
+                  <div class="profile_icon_hex"><img src="/target/_assets/img/user_password_icon.png" /></div>
+                  <div class="nodeTitle">Password</div>
+                </div>
+                <!-- span show.bind="!profileStore.editStates.password">********</span -->
+                <div id="password_nodeContent" class="nodeWindow right" show.bind="profileStore.editStates.password">
+                  <form submit.delegate="changePassword(pw_OldPassword.value)" validate.bind="passwordValidation">
+                    <div class="form-group">
+                      <label>Old Password:</label>
+                      <input class="line_input" type="password" value.bind="profileStore.oldPassword" ref="pw_OldPassword" style="color: white">
+                    </div>
+
+                    <div class="form-group">
+                      <label>New Password:</label>
+                      <input class="line_input" type="password" value.bind="profileStore.newPassword" ref="" style="color: white">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Confirm Password:</label>
+                      <input class="line_input" type="password" value.bind="profileStore.confirmPassword" ref="" style="color: white">
+                    </div>
+
+                    <button class="hexSmall pull-right" type="submit" click.delegate="changePassword(pw_OldPassword.value)"><span class="tick_icon"></span></button>
+                    <button class="hexSmall pull-right" click.delegate="toggleEditInfo('password', false)"><span class="cross_icon"></span></button>
+                  </form>
+                </div>
+              </div>
+            </form>
+
+            <!-- Error message -->
+            <div class="profileStoreError col-lg-4 col-md-4 col-sm-4">${profileStore.error}</div>
+            <div class="businessRuleError col-lg-4 col-md-4 col-sm-4">${profileStore.businessRuleError}</div>
+
+            <!-- Flow Selector -->
+            <div class="flow_selectors_wrapper">
+
+              <p>
+
+                Ext #: ${profileStore.extension || 'n/a'}
+                <br/> 
+                Tel #: ${profileStore.telephoneNumber || 'n/a'}
+
+              </p>
+
+              <ul class="outbound_flow_selectors">
+                <li repeat.for="status of profileStore.outboundFlowStatuses">
+                  <button class="hexStatus ${status.selected ? 'selectedStatus' : ''}" click.delegate="changeOutboundflowStatus(status)">
+                    <span class="flow_icon_bg-size flow_icon ${status.flowName === 'None' ? 'private' : 'outbound'}" style="position: relative !important; left:0; top:0;"></span>
+                  </button>
+                  <span class="flow_status_name">${status.flowName}</span>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </ai-dialog-body>
+      </ai-dialog>
+    </div>
+  </div>
+</template>

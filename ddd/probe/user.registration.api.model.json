@@ -1,0 +1,59 @@
+{
+  "user": {
+    "registration": {
+      "commands": [
+        {
+          "name": "RegisterOrganisation",
+          "params": [
+            "organisationRegistrationId",
+            "organisationName",
+            "creator"
+          ]
+        },
+        {
+          "name": "CompleteUserRegistration",
+          "params": [
+            "userRegistrationId",
+            "token",
+            "firstName",
+            "surname",
+            "password"
+          ]
+        },
+        {
+          "name": "SubmitUserRegistration",
+          "params": [
+            "userRegistrationId",
+            "email",
+            "invitationId"
+          ]
+        },
+        {
+          "name": "RequestVerification",
+          "params": [
+            "userRegistrationId",
+            "email"
+          ]
+        }
+      ],
+      "events": [
+        "OrganisationRegistered",
+        "UserRegistrationSubmitted",
+        "UserRegistrationAccepted",
+        "UserRegistrationRejected",
+        "UserRegistrationCompleted",
+        "VerificationRequested"
+      ],
+      "views": [
+        {
+          "display": "PendingInvitations",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "InvitationStatus",
+          "findBy": "invitationId"
+        }
+      ]
+    }
+  }
+}

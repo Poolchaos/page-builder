@@ -1,0 +1,18 @@
+<template>
+
+  <dashboard-vessel>
+
+    <dashboard-vessel-header>
+      ${guide}
+
+      <p class="system_text">
+        <span id="accountActivation" class="aurelia-hide u-text-style__size--medium" show.bind="userSession.accountActivated === false">
+          Your account is not currently upgraded. <br> Please contact Zailab to activate your account.
+        </span>
+      </p>
+      
+    </dashboard-vessel-header>
+
+  </dashboard-vessel>
+
+</template>

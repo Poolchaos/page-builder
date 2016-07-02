@@ -1,0 +1,106 @@
+<template>
+
+  <div class="o-conversation-content__inner o-conversation-content__inner--full">
+
+    <div class="o-conversation-body col-sm-12">
+
+      <!-- header -->
+      <div class="o-conversation-body__header o-conversation-body__header--agent-dashboard">
+        <h1 class="o-text__header--xlarge u-text-style__align--center c-relative-vertical-align">My Interaction History</h1>
+      </div>
+
+      <!-- utility bar -->
+      <div class="o-conversation-body__utility-bar o-conversation-body__utility-bar--agent-dashboard">
+
+        <!-- search button -->
+        <div class="o-conversation-utility__button-wrap o-conversation-utility__button-wrap--hover c-relative-vertical-align pull-left" click.delegate="toggleSearch()" show.bind="allItems.length > 10">
+          <button class="o-button o-button__navigate o-button__navigate--primary-colour">
+            <span class="o-button o-button__navigate o-button__navigate-inner o-button__navigate-inner--thin">
+						      <span class="o-icon-container o-icon-container--small-button o-button-navigate-icon--search"></span>
+            </span>
+          </button>
+        </div>
+        <div class="aurelia-hide o-form-field o-form-field--margin-left c-relative-vertical-align pull-left" show.bind="displaySearch && allItems.length > 10">
+          <span class="o-form-field__input-border-line"></span>
+          <input class="input-form o-form-field__input o-text__input" type="text" placeholder="Enter search here" ref="searchInput" value.bind="searchText" keyup.trigger="search()" />
+          <span class="o-form-field__input-border-line"></span>
+        </div>
+
+      </div>
+
+      <!-- content -->
+      <div class="row o-conversation-body__content o-conversation-body__content--agent-dashboard">
+
+        <div class="o-conversation-search-list__parent-wrapper o-conversation-search-list__parent-wrapper--agent-dashboard">
+         
+          <div class="o-no-data aurelia-hide" show.bind="!pagedItems || pagedItems.length === 0">
+            <div class="o-no-data__display">
+              <div>
+                <span class="u-text-style__size--medium">No data to display.</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--previous o-tile-list-view__pager--l-closer aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button>
+
+          <!-- div class="row o-tile-list-view" -->
+
+          <!-- button class="o-tile-list-view__pager o-tile-list-view__pager--previous aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button -->
+
+          <ul class="o-conversation-search-list__child-wrapper">
+            <!-- leave class attribute blank -->
+            <li class="o-conversation-search-list__item o-conversation-search-list__item--five" repeat.for="task of pagedItems" click.trigger="viewTask(task)">
+              <div class="o-conversation-search-list__nested-list u-text-style__align--center o-view-border__solid-line--read">
+
+                <div show.bind="task.recordingId" class="pull-left o-dashboard-item__is-recorded u-text-style__size--medium aurelia-hide">Rec</div>
+
+                <div class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--medium">
+                  <div class="o-conversation-search-list__icon o-conversation-search-list__icon--round-${task.typeIcon} o-conversation-search-list__icon--hover" title="${task.typeIcon}"></div>
+                </div>
+                <!-- DONE -->
+
+                <div class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--large" title="${task.title1}">${task.title1}</div>
+                <!-- DONE -->
+                <div class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__color--secondary u-text-style__size--medium" title="${task.title2}">${task.title2}</div>
+                <!-- DONE -->
+
+                <div class="u-display-list-item o-conversation-search-list__nested-list-item o-conversation-search-list__nested-list-item--border-top u-text-style__size--medium " title="${task.description1}">${task.description1}</div>
+                <!-- DONE -->
+                <div class="u-display-list-item o-conversation-search-list__nested-list-item u-text-style__size--medium" title="${task.description2}">${task.description2}</div>
+                <!-- DONE -->
+
+                <!-- div class="o-tile-list-content__seperator"></div>
+                                <div class="o-tile-list-content__text u-text-style__size--medium clearfix">
+                                    <div title="From">${task.description1}</div>
+                                </div>
+                                <div class="o-tile-list-content__text u-text-style__size--medium clearfix">
+                                    <div title="To">${task.description2}</div>
+                                </div -->
+
+                <div title="${task.outcome}" class="o-dashboard-item__outcome o-dashboard-item__outcome--${task.outcome}"></div>
+
+                <ul class="u-text-style__color--secondary u-text-style__align--center u-text-style__size--medium">
+                  <li class="u-display-list-item o-conversation-search-list__nested-list-item o-conversation-search-list__nested-list-item--with-icon u-text-syle__size--medium" title="${task.date}">
+                    ${task.date}
+                  </li>
+                  <li class="u-display-list-item o-conversation-search-list__nested-list-item o-conversation-search-list__nested-list-item--with-icon u-text-syle__size--medium" title="${task.startTime}">
+                    ${task.startTime}
+                  </li>
+                </ul>
+                <!-- DONE -->
+
+              </div>
+            </li>
+          </ul>
+
+          <!-- button class="o-tile-list-view__pager o-tile-list-view__pager--next aurelia-hide" show.bind="showNext" click.delegate="next()"></button -->
+
+          <!-- /div -->
+
+          <button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--next o-tile-list-view__pager--r-closer aurelia-hide" show.bind="showNext" click.delegate="next()"></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

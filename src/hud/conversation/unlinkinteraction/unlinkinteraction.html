@@ -1,0 +1,133 @@
+<template>
+
+  <div class="o-conversation-content__inner">
+
+    <div class="o-conversation-body col-sm-10 col-sm-offset-1 ">
+
+      <!-- header -->
+      <div class="row o-conversation-body__header">
+        <div class="c-to-center">
+          <h1 class="o-text__header--xlarge u-text-style__align--center u-text-style__space--none" title="Link Interaction">Unlink Interaction</h1>
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="row o-conversation-body__content">
+
+        <div class="o-conversation-utility o-conversation-utility--filter-padding-fix col-sm-12">
+
+          <div class="o-conversation-utility__button-wrap pull-left" style="pointer-events: none">
+            <button class="o-button o-button__navigate o-button__navigate--primary-colour">
+              <span class="o-button o-button__navigate o-button__navigate-inner o-button__navigate-inner--thin">
+						  <span class="o-icon-container o-icon-container--small-button o-button-navigate-icon--search"></span>
+              </span>
+            </button>
+          </div>
+
+          <div class="o-conversation-form-field o-conversation-form-field--one-button pull-left">
+            <span class="o-form-field__input-border-line"></span>
+            <input id="searchText" class="input-form o-form-field__input o-text__input" type="text" placeholder="Enter search here" ref="searchInput" value.bind="searchText" keyup.trigger="search()" />
+            <span class="o-form-field__input-border-line"></span>
+          </div>
+
+        </div>
+
+        <div class="o-conversation-search-list__parent-wrapper">
+
+          <div class="o-no-data aurelia-hide" show.bind="!pagedItems || pagedItems.length === 0">
+            <div class="o-no-data__display">
+              <div>
+                <span class="u-text-style__size--medium">No data to display.</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--previous o-tile-list-view__pager--l-closer aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button>
+
+          <ul class="o-conversation-search-list__child-wrapper">
+
+            <li class="o-conversation-search-list__item col-sm-3" repeat.for="interaction of pagedItems" click.delegate="selectInteraction(interaction)">
+              <ul class="o-conversation-search-list__nested-list o-conversation-search-list__nested-list--scroll o-view-border__solid-line--remove" class.bind="interaction.selected ? 'is-selected' : ''">
+                <li class="o-conversation-search-list__nested-list-item o-conversation-search-list__nested-list-item--names u-text-style__size--large" title="${interaction.channel}">
+                  <label class="o-text__label o-conversation-search-list__label u-text-style--ellipses ${interaction.onCall ? 'o-conversation-search-list__label--with-light-bulb' : ''}">
+                    <span show.bind="interaction.channel == 'Inbound Call'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline o-conversation-search-list__icon--inbound"></span>
+                    <span show.bind="interaction.channel == 'Outbound Call'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline o-conversation-search-list__icon--outbound"></span>
+                    <span show.bind="interaction.channel == 'Kiosk Call'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline o-conversation-search-list__icon--kiosk_call"></span>
+                    <span show.bind="interaction.channel == 'SMS'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline o-conversation-search-list__icon--sms"></span>
+                    <span class="o-conversation-search-list__nested-list-item--icon-text u-text-style__size--large">${interaction.channel}</span>
+                  </label>
+                  <div show.bind="interaction.onCall" class="o-light o-light--link-interaction o-light--unsuccessful pull-right" title="On Call">
+                    <div class="o-light__bulb">
+                      <span class="o-light__bulb-shine"></span>
+                    </div>
+                  </div>
+
+                </li>
+                <li class="o-conversation-search-list__nested-list-item u-text-style__color--tertiary u-text-style__size--medium" title="${interaction.type}">
+                  <label class="o-text__label o-conversation-search-list__label">Type:&nbsp;</label>${interaction.channel === 'SMS' && interaction.type.indexOf('Contact') !== -1 ? 'Inbound' : interaction.type}
+                </li>
+                <li class="o-conversation-search-list__nested-list-item u-text-style__color--tertiary u-text-style__size--medium" title="${interaction.taskName}">
+                  <label class="o-text__label o-conversation-search-list__label">Task Name:&nbsp;</label>${interaction.taskName = interaction.taskName ? interaction.taskName : 'N/A'}
+                </li>
+                <li show.bind="interaction.channel === 'Inbound Call'  || interaction.channel === 'Kiosk Call'" class="o-conversation-search-list__nested-list-item u-text-style__color--tertiary u-text-style__size--medium" title="${interaction.from}">
+                  <label class="o-text__label o-conversation-search-list__label">From:&nbsp;</label>${interaction.from}
+                </li>
+                <li show.bind="interaction.channel === 'Outbound Call'" class="o-conversation-search-list__nested-list-item u-text-style__color--tertiary u-text-style__size--medium" title="${interaction.to}">
+                  <label class="o-text__label o-conversation-search-list__label">To:&nbsp;</label>${interaction.to = interaction.to ? interaction.to : 'Private'}
+                </li>
+                <li class="o-conversation-search-list__nested-list-item u-text-style__color--tertiary u-text-style__size--medium" title="${interaction.status}">
+                  <label class="o-text__label o-conversation-search-list__label">Duration:&nbsp;</label>${interaction.onCall ? '-' : interaction.duration}
+                </li>
+                <li class="o-conversation-search-list__nested-list-item u-text-style__color--tertiary u-text-style__size--medium" title="${interaction.startTime.date}">
+                  <label class="o-text__label o-conversation-search-list__label">Date:&nbsp;</label>${interaction.startTime.date}
+                </li>
+                <li class="o-conversation-search-list__nested-list-item u-text-style__color--tertiary u-text-style__size--medium" title="${interaction.startTime.time}">
+                  <label class="o-text__label o-conversation-search-list__label">Start Time:&nbsp;</label>${interaction.startTime.time}
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--next o-tile-list-view__pager--r-closer aurelia-hide" show.bind="showNext" click.delegate="next()"></button>
+
+        </div>
+
+      </div>
+      <!-- / o-conversation-body__content -->
+
+      <!-- footer -->
+      <div class="row o-conversation-body__footer">
+        <div class="c-to-center">
+          <div class="col-sm-12">
+            <div class="u-text-style__align--center">
+              <button class="o-button__glass-rectangle o-button__glass-rectangle--respond o-text__button" click.delegate="back()">Back</button>
+              <button click.delegate="viewConversation()" class="o-button__glass-rectangle o-button__glass-rectangle--respond o-text__button" class.bind="unlinkInteractionStore.selectedInteractions.length > 0 ? '' : 'fadedContent'">Unlink</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- / o-conversation-body -->
+
+    <!-- side-bar -->
+    <div class="o-conversation-content__side">
+      <div class="c-side-panel__content-inner">
+        <!--        <div class="c-side-panel c-side-panel&#45;&#45;buttons">
+          <div class="c-side-panel__button"></div>
+          <div class="c-side-panel__button c-side-panel__button&#45;&#45;second"></div>
+        </div>-->
+        <div class="c-side-panel c-side-panel--title">
+          <div class="c-side-panel__title">
+            <span class="c-side-panel__text">Unlink</span>
+            <span class="c-side-panel__text c-side-panel__text--seperator"></span>
+            <span class="c-side-panel__text c-side-panel__text--highlight">Interaction</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- / o-conversation-content__inner -->
+
+</template>

@@ -1,0 +1,100 @@
+/* widgets scss */
+
+@import "calendar/calendar";
+@import "customerhistory/customerhistory";
+@import "customers/customers";
+@import "customerstats/customerstats";
+/*@import "livedashboard/livedashboard";*/
+@import "location/location";
+@import "organisation/organisation";
+@import "performancestatistics/performancestatistics";
+@import "profile/profile";
+@import "taskhistory/taskhistory";
+@import "time/time";
+@import "weather/weather";
+@import "phone/phone";
+@import "qascores/qascores";
+@import "qastats/qastats";
+@import "reports/reports";
+@import "tasknext/tasknext";
+/*@import "teamleaderhud/teamleaderhud";*/
+@import "trainingscores/trainingscores";
+@import "trainingstats/trainingstats";
+/*@import "workforcedashboard/workforcedashboard";*/
+//used for all widgets on left wing
+.hex_counter {
+	padding-left: 0;
+	position: absolute;
+	right: 0px;
+	@media screen and (min-width: 1024px) and (max-width: 1280px) {
+		right: -24px;
+		bottom: -23px;
+	}
+}
+.counter_line {
+	height: 1px;
+	background: #fff;
+	display: block;
+	position: relative;
+	margin-top: 45px;
+	margin-right: 29px;
+	z-index: 3;
+	@media screen and (min-width: 1024px) and (max-width: 1280px) {
+		margin-right: 45px;
+	}
+}
+.counter_dot {
+	height: 4px;
+	width: 4px;
+	border-radius: 50%;
+	background: #fff;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: -1px;
+}
+//used for all widgets on left wing
+.notification_number {
+	width: 50px;
+	line-height: 44px;
+	text-align: center;
+	border-radius: 50%;
+	border: 3px solid #2087c4;
+	float: right;
+	margin-right: 6px;
+	margin-top: -2px;
+	position: relative;
+	-webkit-box-shadow: 0 0 20px rgba(60, 245, 255, 0.8), 0 0 20px rgba(60, 245, 255, 0.8) inset;
+	-moz-box-shadow: 0 0 20px rgba(60, 245, 255, 0.8), 0 0 20px rgba(60, 245, 255, 0.8) inset;
+	box-shadow: 0 0 20px rgba(60, 245, 255, 0.8), 0 0 20px rgba(60, 245, 255, 0.8) inset;
+}
+//used for all widgets on left wing
+.notification_number:before,
+.notification_number:after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	-webkit-box-shadow: 0 0 20px rgba(60, 245, 255, 0.8);
+	-moz-box-shadow: 0 0 20px rgba(60, 245, 255, 0.8);
+	box-shadow: 0 0 20px rgba(60, 245, 255, 0.8);
+	top: 0;
+	bottom: 0;
+	left: 10px;
+	right: 10px;
+	-moz-border-radius: 100px / 10px;
+	border-radius: 100px / 10px;
+}
+ul.list_items {
+	clear: both;
+	li {
+		margin-bottom: 1px;
+		display: block;
+		font-size: 12px;
+		font-family: 'Orbitron', sans-serif;
+		padding: 2px 5px;
+		background-color: #2e2e2e;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}

@@ -1,0 +1,43 @@
+@import "../../../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+
+@include object('wizard-navigation') {
+  //margin-right: 60px;
+  position: relative; 
+  top: -56px; 
+  right: -41.8%;
+  @media screen and (max-width: 1200px) {
+    right: -20.4%;
+  }
+  @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    right: -22.1%;
+  }
+  @media screen and (min-width: 1401px) and (max-width: 1600px) {
+    
+  }
+  @media screen and (max-width: 1920px) {
+    
+  }
+}
+@include object('error') {
+	@include modifier('invitation') {
+		color: #D78003;
+		text-align: left;
+		position: absolute;
+//		max-width: 330px;
+		z-index: 100;
+		margin: 0 auto;
+		display: block;
+		left: 50%;
+    top: 224px;
+		transform: translate(-50%, 0);
+		@media screen and (max-width: 1366px) {
+			left: 49%;
+    	top: 94px;
+		}
+		@media screen and (max-width: 1280px) {
+			left: 50%;
+			transform: translate(-50%, 0);
+			top: 155px;
+		}
+	}
+}

@@ -1,0 +1,165 @@
+<template>
+
+	<!-- 12 Column Content Area -->
+	<div class="o-full-page o-full-page--push-down">
+
+		<!-- left column -->
+		<div class="o-full-page__side-panel col-sm-2">
+			<div class="c-to-center c-to-center--vertical-only">
+				<div class="o-full-page__side-panel-inner o-full-page__side-panel-inner--left">
+					<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+						<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+						<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Average Overall</div>
+					</div>
+					<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+						<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+						<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Outbound Call</div>
+					</div>
+					<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+						<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+						<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Inbound Call</div>
+					</div>
+					<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+						<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+						<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Email</div>
+					</div>
+					<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+						<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+						<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Website Call</div>
+					</div>
+					<div class="o-dashboard-stats__percentage-wrap u-text-style__align--center clearfix">
+						<div class="o-dashboard-stats__percentage u-text-style__size--xxlarge clearfix">0%</div>
+						<div class="o-dashboard-stats__title u-text-style__size--small u-text-style__color--secondary">Kiosk Call</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- center column -->
+		<div class="o-conversation-body o-conversation-body--no-height-push col-sm-8">
+
+			<!-- header -->
+			<div class="o-conversation-body__header">
+				<div class="c-to-center">
+					<h1 class="o-text__header--xlarge u-text-style__space--none u-text-style__space--below u-text-style__align--center u-text-style--uppercase">Performed Assessments for ${memberName}</h1>
+				</div>
+			</div>
+
+			<!-- content -->
+			<div class="row o-conversation-body__content">
+				<!-- UTILITY -->
+				<div class="o-conversation-utility o-conversation-utility--filter-padding-fix col-sm-12">
+					<!-- BUTTON - SEARCH -->
+					<div class="o-conversation-utility__button-wrap pull-left" click.delegate="openSearch()">
+						<button class="o-button o-button__navigate o-button__navigate--primary-colour">
+							<span class="o-button o-button__navigate o-button__navigate-inner o-button__navigate-inner--thin">
+							<span class="o-icon-container o-icon-container--small-button o-button-navigate-icon--search"></span>
+							</span>
+						</button>
+					</div>
+					<!-- INPUT - SEARCH -->
+					<div class="o-conversation-form-field o-conversation-form-field--two-button-with-total pull-left" show.bind="showSearch">
+						<form submit.delegate="search()">
+							<span class="o-form-field__input-border-line"></span>
+							<input class="o-form-field__input o-text__input" value.bind="searchText" placeholder="Form Name" id="searchText" keyup.trigger="search()" />
+							<span class="o-form-field__input-border-line"></span>
+							<button style="display: none;" type="submit"></button>
+						</form>
+					</div>
+					<!-- SHOW - TOTAL -->
+					<div class="o-conversation-utility__total-wrap pull-right" show.bind="allItems.length > 0">
+						<div class="c-to-center c-to-center--vertical-only">
+							<div class="u-text-style__size--large u-text-style__align--right">Total: ${allItems.length}</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="o-conversation-search-list__parent-wrapper">
+
+					<ul class="o-conversation-search-list__child-wrapper" show.bind="!pagedItems || pagedItems.length === 0">
+						<li class="o-conversation-search-list__item o-conversation-search-list__item--five-three" repeat.for="form of pagedItems" click.delegate="selectForm(form)">
+							<ul class="o-conversation-search-list__nested-list o-view-border__solid-line--secondary o-view-border__placeholder">
+
+							</ul>
+						</li>
+					</ul>
+
+					<ul class="o-conversation-search-list__child-wrapper">
+						<li class="o-conversation-search-list__item o-conversation-search-list__item--five-three" repeat.for="form of pagedItems" click.delegate="selectForm(form)">
+							<ul class="o-conversation-search-list__nested-list o-conversation-search-list__nested-list--scroll o-view-border__solid-line--secondary" class.bind="form.isPlaceholder ? 'o-view-border__placeholder' : '' ">
+								<div show.bind="!form.isPlaceholder">
+									<li class="o-conversation-search-list__nested-list-item u-text-style__size--large u-text-style__align--center u-text-style__border--bottom" title="${form.formName}">${form.formName}</li>
+									<li class="o-conversation-search-list__nested-list-item clearfix" title="${form.percentageAchieved}">
+										<div class="o-conversation-search-list__inline u-text-style__size--xlarge u-text-style__align--center u-text-style__border--bottom">${form.percentageAchieved}%</div>
+									</li>
+									<li class="o-conversation-search-list__nested-list-item u-text-style__size--small u-text-style__align--center" title="${form.assessor.firstName} ${form.assessor.surname}">${form.assessor.firstName} ${form.assessor.surname}</li>
+									<li class=" o-conversation-search-list__nested-list-item u-text-style__size--small u-text-style__align--center u-text-style__color--secondary" title="Last Quality Assessment"><span class="o-text-icon o-text-icon--${form.channel}"></span><span>Last Quality Assessment</span></li>
+									<li class="o-conversation-search-list__nested-list-item u-text-style__size--small u-text-style__align--center u-text-style__color--grey" title="${form.date.date}">${form.date.date} / ${form.date.time}</li>
+								</div>
+							</ul>
+						</li>
+					</ul>
+
+					<button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--previous o-tile-list-view__pager--l-closer aurelia-hide" show.bind="showPrev" click.delegate="prev()"></button>
+					<button class="o-tile-list-view__pager o-tile-list-view__pager--flip o-tile-list-view__pager--next o-tile-list-view__pager--r-closer aurelia-hide" show.bind="showNext" click.delegate="next()"></button>
+
+				</div>
+
+			</div>
+
+			<!-- footer -->
+			<div class="row o-conversation-body__footer">
+				<div class="c-to-center">
+					<div class="col-sm-12">
+						<div class="u-text-style__align--center">
+							<ul class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+								<li class="col-sm-3 pull-left u-text-style__size--large"><span class="o-text-icon o-text-icon--inbound"></span><span>Inbound Call</span></li>
+								<li class="col-sm-3 pull-left u-text-style__size--large"><span class="o-text-icon o-text-icon--outbound"></span><span>Outbound Call</span></li>
+								<li class="col-sm-3 pull-left u-text-style__size--large"><span class="o-text-icon o-text-icon--kiosk"></span><span>Kiosk Call</span></li>
+								<li class="col-sm-3 pull-left u-text-style__size--large"><span class="o-text-icon o-text-icon--sms"></span><span>SMS</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- right column -->
+		<div class="o-full-page__side-panel col-sm-2">
+			<div class="row o-relative-box o-relative-box--height-20 clearfix"></div>
+			<div class="o-full-page__side-panel-inner o-full-page__side-panel-inner--right">
+				<ul class="">
+					<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="back()">
+						<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+							<span class="o-button o-button__navigate o-button__navigate-inner">
+								<span class="o-icon-container o-dashbaord-button__icon--back"></span>
+							</span>
+						</button>
+						<label class="o-text__button-label--small o-button__navigate-bottom-label u-text-style--ellipses u-text-style__align--center" title="Back">Back</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+<!--
+		<div class="o-full-page__side-panel col-sm-2">
+			<div class="row o-relative-box o-relative-box--height-30 clearfix"></div>
+			<div class="o-full-page__side-panel-inner o-full-page__side-panel-inner--right">
+				<ul class="o-navigation-list o-dashbaord-button__list">
+					<li class="o-navigation-list__item o-navigation-list__item--full-width clearfix" click.delegate="back()">
+						<button class="o-button o-button__navigate o-button__navigate--secondary-colour">
+							<span class="o-button o-button__navigate o-button__navigate-inner">
+									<span class="o-icon-container o-dashbaord-button__icon--back"></span>
+							</span>
+						</button>
+						<label class="o-text__button-label--small o-button__navigate-bottom-label u-text-style--ellipses u-text-style__align--center" title="Back">Back</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+-->
+
+	</div>
+
+</template>

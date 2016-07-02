@@ -1,0 +1,38 @@
+<template>
+
+<!--  <div class="row">-->
+  <div class="row aurelia-hide" show.bind="ready">
+
+    <div class="o-crud-utility col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+      <!-- crud-utility_bar -->
+
+      <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+
+        <button class="o-button__action o-button__action--filter pull-left aurelia-hide" click.delegate="toggleSearch()" show.bind="allItems.length > _pageSize"></button>
+        <div class="aurelia-hide o-form-field o-form-field--filter pull-left" show.bind="allItems.length > _pageSize && displaySearch">
+          <span class="o-form-field__input-border-line"></span>
+          <input class="input-form o-form-field__input o-text__input" type="text" placeholder="Enter search here" ref="searchInput" value.bind="searchText" keyup.trigger="search()" />
+          <span class="o-form-field__input-border-line"></span>
+        </div>
+      </div>
+
+      <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 pull-right">
+        <button class="o-button__action o-button__action--delete pull-right aurelia-hide" show.bind="showDelete" class.bind="deleting ? 'is-selected': ''" click.delegate="delete()"></button>
+        <button class="o-button__action o-button__action--add pull-right aurelia-hide" show.bind="showAdd" disabled.bind="deleting ? true : false" class.bind="deleting ? 'is-disabled' : ''" click.delegate="add()"></button>
+        <button class="o-button__action o-button__action--cancel pull-right aurelia-hide" show.bind="deleting" click.delegate="deleteCancel()"></button>
+        <button class="o-button__action o-button__action--accept pull-right aurelia-hide" show.bind="deleting" click.delegate="deleteAccept()"></button>
+      </div>
+
+    </div>
+
+  </div>
+
+<!--  <div class="row">-->
+  <div class="row aurelia-hide" show.bind="ready">
+
+    <require from="_abstract/crud.pager"></require>
+    <crud-pager items.bind="_items" display.bind="display" settings.bind="settings" pageSize.bind="_pageSize"></crud-pager>
+
+  </div>
+
+</template>

@@ -1,0 +1,19 @@
+<template>
+
+  <div class="c-call-prompt row">
+
+    <h1 class="col-sm-12 c-call-prompt__call-type u-text-style__size--medium u-text-style__color--secondary u-text-style--uppercase">Incoming Kiosk Call</h1>
+    <h2 class="col-sm-12 c-call-prompt__caller-id u-text-style__size--xlarge u-text-style--uppercase">Unknown Caller</h2>
+
+    <div class="c-call-prompt__image-wrap">
+      <img src="/target/_assets/img/icon_kiosks.png" class="img-responsive" alt="Call Type">
+    </div>
+
+    <div class="col-sm-12">
+      <button class="o-button o-button__glass-rectangle o-text__button" id="login" click.delegate="acceptCall()">Accept</button>
+      <button class="o-button o-button__glass-rectangle o-text__button" id="login" click.delegate="rejectCall()">Reject</button>
+    </div>
+
+  </div>
+
+</template>

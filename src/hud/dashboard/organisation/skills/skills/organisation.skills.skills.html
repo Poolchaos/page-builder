@@ -1,0 +1,25 @@
+<template>
+  
+  <crud>
+    
+		<crud-header itemcount.bind="itemcount">
+			<img src="/target/_assets/img/icon_skills.png" class="o-crud-page-header__icon pull-left"/>
+			<h6 class="o-crud-page-header__title o-text__header pull-left"><a class="o-crud-page-header__breadcrum" click.delegate="back()">Skills</a> | ${organisationSkillsStore.selectedGroup.skillGroupName}</h6>
+			<!--
+			<h6 class="o-crud-page-header__title o-text__header pull-left">Skill Group: ${organisationSkillsStore.selectedGroup.skillGroupName} </h6>
+			-->
+		</crud-header>
+    
+		<crud-body items.bind="organisationSkillsStore.skills" display.bind="display" settings.bind="settings" options.bind="options"></crud-body>
+		
+		<crud-footer>
+			<!--
+			<div class="button_container">
+				<button class="common_btn back_btn" click.delegate="back()"></button>
+			</div>
+			-->
+		</crud-footer>
+    
+	</crud>
+
+</template>

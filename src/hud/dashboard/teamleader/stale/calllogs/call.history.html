@@ -1,0 +1,74 @@
+<template>
+
+  <div class="row">
+    <div class="scroller">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="o-crud-page-header clearfix">
+          <div class="pull-left">
+            <img src="/target/_assets/img/icon_interactionlog.png" class="o-crud-page-header__icon pull-left" />
+            <h6 class="o-crud-page-header__title o-text__header pull-left">INTERACTION LOGS</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="o-view-border col-lg-12 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="o-crud-utility">
+
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <button class="o-button__action o-button__action--filter pull-left" click.trigger="search_open()" show.bind="callHistoryStore.searchResults || callHistoryStore.callHistory[0].type"></button>
+          </div>
+
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <button class="o-button__action o-button__action--refresh pull-right" click.trigger="refreshCallLog()"></button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="o-no-data aurelia-hide" show.bind="!pagedItems || pagedItems.length === 0">
+        <div class="o-no-data__display">
+          <div>
+            <span class="u-text-style__size--medium">No data to display.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row o-tile-list-view">
+
+        <button class="o-tile-list-view__pager o-tile-list-view__pager--previous aurelia-hide" show.bind="callHistoryStore.currentPage !== 0" click.delegate="navToPage(callHistoryStore.currentPage -1)"></button>
+
+        <ul class="o-tile-list-view__container clearfix">
+          <li class="o-tile-list-view__item col-xl-2 col-lg-2 col-md-2 col-sm-2 pull-left" repeat.for="call of pagedItems" click.trigger="viewCall(call)">
+            <div class="o-tile-list-view__item-container clearfix o-view-border__solid-line--read">
+              <div show.bind="call.recordingId" class="pull-left o-dashboard-item__is-recorded u-text-style__size--medium aurelia-hide">Rec</div>
+
+              <div class="o-tile-list-content__icon--${call.typeIcon}"></div>
+
+              <div class="o-tile-list-content__text u-text-style__size--medium">${call.title1}</div>
+              <div class="o-tile-list-content__text u-text-style__size--medium">${call.title2}</div>
+              <div class="o-tile-list-content__seperator"></div>
+              <div class="o-tile-list-content__text u-text-style__size--medium clearfix">
+                <div title="From">${call.description1?call.description1:'-'}</div>
+              </div>
+              <div class="o-tile-list-content__text u-text-style__size--medium clearfix">
+                <div title="To">${call.description2?call.description2:'-'}</div>
+              </div>
+
+              <div title="${call.callOutcome}" class="o-dashboard-item__outcome o-dashboard-item__outcome--${call.outcome}"></div>
+              <div class="o-tile-list-content__text o-tile-list-content__text--highlight u-text-style__size--medium">${call.date}
+                <br>${call.startTime}</div>
+            </div>
+          </li>
+        </ul>
+
+        <button class="o-tile-list-view__pager o-tile-list-view__pager--next aurelia-hide" show.bind="(callHistoryStore.currentPage !== callHistoryStore.totalPages - 1) && callHistoryStore.totalPages > 1" click.delegate="navToPage(callHistoryStore.currentPage + 1)"></button>
+
+      </div>
+    </div>
+    </div>
+  </div>
+
+</template>

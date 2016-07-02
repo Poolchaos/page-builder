@@ -1,0 +1,27 @@
+<template>
+
+  <ul class="o-step col-xl-2 col-lg-2 col-md-3 col-sm-3">
+
+    <li class="o-step__paginater ${step.active ? 'o-step__paginater--active' : ''} ${step.completed ? 'o-step__paginater--completed' : ''}" repeat.for="step of steps" click.delegate="selectStep(step, $index)">
+      <img class="o-step__icon o-step__icon--role o-step__icon--attributes o-step__icon--emails pull-left" src.bind="step.icon" />
+      <span class="${step.active ? 'o-step__title' : ''} u-text-style__size--medium">${step.label}</span>
+      <p class="u-text-style__size--medium">${step.description}</p>
+    </li>
+
+  </ul>
+
+  <div class="col-xl-8 col-lg-8 col-md-8 pull-right">
+    <div class="o-wizard-navigation">
+
+      <button click.delegate="stepPrev()" class="o-button__glass-rectangle o-button__glass-rectangle--small o-text__button ${isPrevFaded ? 'fadedContent' : ''}">Previous</button>
+      <button click.delegate="stepNext()" class="o-button__glass-rectangle o-button__glass-rectangle--small o-text__button ${isNextFaded ? 'fadedContent' : ''}">Next</button>
+      <button click.delegate="stepDone()" class="o-button__glass-rectangle o-button__glass-rectangle--small o-text__button ${isDoneFaded ? 'fadedContent' : ''}">Finish</button>
+
+      <div class="seperator"></div>
+
+      <button click.delegate="stepBack()" class="o-button__glass-rectangle o-button__glass-rectangle--small o-text__button">Cancel</button>
+
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,24 @@
+{
+  "organisation": {
+    "dashboard": {
+      "views": [
+        {
+          "display": "ServiceDashboard",
+          "findBy": "serviceIdAndOrganisationIdAndDate",
+          "params": [
+            "date",
+            "serviceId",
+            "organisationId"
+          ]
+        },
+        {
+          "display": "Organisation",
+          "findBy": "organisationId",
+          "params": [
+            "organisationId"
+          ]
+        }
+      ]
+    }
+  }
+}

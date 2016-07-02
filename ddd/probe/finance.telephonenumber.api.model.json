@@ -1,0 +1,39 @@
+{
+  "finance": {
+    "telephonenumber": {
+      "commands": [
+        {
+          "name": "AssignTelephoneNumberToMember",
+          "params": [
+            "telephoneNumberId",
+            "telephoneNumber",
+            "memberId",
+            "userId",
+            "firstName",
+            "surname",
+            "email",
+            "organisationId"
+          ]
+        }, {
+          "name": "UnassignTelephoneNumberFromMember",
+          "params": [
+            "telephoneNumberId",
+            "telephoneNumber",
+            "memberId",
+            "organisationId"
+          ]
+        }
+      ],
+      "views": [
+        {
+          "display": "OrganisationTelephoneNumbers",
+          "findBy": "organisationId"
+        },
+        {
+          "display": "Member",
+          "findBy": "organisationId"
+        }
+      ]
+    }
+  }
+}

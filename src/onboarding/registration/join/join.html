@@ -1,0 +1,58 @@
+<template>
+  <div class="container-fluid">
+
+    <div class="row">
+      <section data-ui-component="email" class="${activeClass}">
+
+        <div class="o-guided-form col-xl-offset-4 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 col-xl-4 col-lg-4 col-md-6 col-sm-6">
+          <div class="col-xl-offset-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xl-8 col-lg-10 col-md-10 col-sm-10">
+
+            <div class="row">
+
+              <guide>
+                <guide-header class="o-text__guide">Please enter your email to join ZaiLab.</guide-header>
+              </guide>
+
+            </div>
+
+            <div class="row">
+              <div class="o-simple-form clearfix">
+                <form submit.delegate="submit()" validate.bind="validation">
+
+                  <div class="o-simple-form__row o-simple-form__row--input">
+                    <div class="form-group o-form-field clearfix">
+                      <label></label>
+                      <span class="o-form-field__input-border-line"></span>
+                      <input value.bind="email" type="text" name="email" placeholder="email" id="email" class="o-form-field__input o-text__input" spellcheck="false">
+                      <span class="o-form-field__input-border-line"></span>
+                    </div>
+                  </div>
+                  <div class="o-simple-form__row">
+                    <div class="form-group o-form-field o-form-field__validation-error clearfix">
+                      <div show.bind="joinStore._error">
+                        <p>${joinStore._error}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="o-simple-form__row o-simple-form__row--input o-simple-form__row--button-no-margin-top">
+                    <div class="form-group o-form-field clearfix">
+                      <button class="qa-sendBtn o-button o-button__glass-rectangle o-text__button button-onboarding-margin pull-right" id="login">send</button>
+                      <button class="o-button o-button__glass-rectangle o-text__button pull-left" click.delegate="navTo()">back</button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+  </div>
+
+  <zaifooter></zaifooter>
+
+</template>

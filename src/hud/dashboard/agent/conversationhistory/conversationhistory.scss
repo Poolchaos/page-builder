@@ -1,0 +1,23 @@
+@include object('conversation-history-list') {
+  height: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  @include element ('names-blank') {
+    height: 18px;
+    @screen and (max-width: 1366px) {
+      height: 16px;
+    }
+    @screen and (min-width: 1921px) {
+      height: 22px;
+    }
+  }
+}
+
+.test1 {
+  background-color: red;
+}
+
+.test2 {
+  background-color: blue;
+}

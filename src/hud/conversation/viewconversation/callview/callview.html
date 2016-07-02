@@ -1,0 +1,147 @@
+<template>
+
+ <div class="col-sm-5 o-conversation-details" if.bind="!conversationStore.isVideoConversation">
+  <!-- First block - height 60% -->
+  <div class="o-conversation-details__box o-conversation-details__box--height-60 o-conversation-details__box--border o-conversation-details__box--background">
+
+   <div class="o-item-split__line" show.bind="viewConversationStore.conversationJourney.length > 0"></div>
+
+   <div class="o-information-list__title o-text__conversation-list-title u-text-style__align--center">
+    <span>Conversation Journey</span>
+   </div>
+
+   <div id="conversation_jouney_wrapper" class="o-scroll-list-container clearfix" show.bind="viewConversationStore.conversationJourney.length > 0">
+    <ul class="o-scroll-list-container__list clearfix">
+
+     <li class="o-scroll-list-container__list-item o-scroll-list-container__list-item--striped o-scroll-list-container__list-item--with-hover u-text-style__size--medium clearfix js-${waypoint.loc} ${waypoint.active ? 'is-active' : ''}" repeat.for="waypoint of viewConversationStore.conversationJourney" click.delegate="viewInteraction(waypoint, $index)">
+       
+       <a class="o-waypoint-locator"></a>
+                    
+      <div if.bind="waypoint.waypointType === 'status'">
+
+       <div class="o-item-split o-item-split--left">
+        <div class="" title="">Status Update:</div>
+        <div class="u-text-style__color--tertiary" title="${waypoint.startTime.date}">${waypoint.startTime.date}</div>
+       </div>
+       <div class="o-light o-light--conversation-journey o-light--${waypoint.status}">
+        <div class="o-light__bulb">
+         <span class="o-light__bulb-shine"></span>
+        </div>
+       </div>
+       <div class="o-item-split o-item-split--right">
+        <div class="" title="${waypoint.status}">${waypoint.status}</div>
+        <div class="" title="${waypoint.startTime.date}">${waypoint.startTime.date}</div>
+
+       </div>
+      </div>
+
+      <div>
+
+       <div class="o-item-split o-item-split--left">
+
+        <div class="u-text-style__color--grey" title="${waypoint.startTime.date}">${waypoint.startTime.date}</div>
+        <div class="" title="${waypoint.members[0].name}">${waypoint.members[0].name}</div>
+        <div class="u-text-style__color--tertiary" title="Start time: ${waypoint.startTime.time}">Start time: ${waypoint.startTime.time}</div>
+        <div class="u-text-style__color--tertiary" show.bind="waypoint.channel !== 'SMS'" title="Duration: ${waypoint.duration}">Duration: ${waypoint.duration}</div>
+        <div class="u-text-style__color--grey" title="${waypoint.callOutcome}">${waypoint.callOutcome}</div>
+       </div>
+       <div class="o-light o-light--conversation-journey o-light--${waypoint.status}">
+        <div class="o-light__bulb">
+         <span class="o-light__bulb-shine"></span>
+        </div>
+       </div>
+       <div class="o-item-split o-item-split--right">
+
+        <div class="" title="${waypoint.channel}">
+         <span show.bind="waypoint.channel === 'Inbound Call'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline-small o-conversation-search-list__icon--inbound"></span>
+         <span show.bind="waypoint.channel === 'Outbound Call'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline-small o-conversation-search-list__icon--outbound"></span>
+         <span show.bind="waypoint.channel === 'Kiosk Call'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline-small o-conversation-search-list__icon--kiosk_call"></span>
+         <span show.bind="waypoint.channel === 'SMS'" class="o-conversation-search-list__icon o-conversation-search-list__icon--inline-small o-conversation-search-list__icon--sms"></span>
+         <span class="o-conversation-search-list__nested-list-item--icon-text">${waypoint.channel}</span>
+        </div>
+
+        <div class="" title="${waypoint.type}">${waypoint.type && waypoint.type.toLowerCase() === 'private' ? waypoint.type : waypoint.taskName}</div>
+         
+        <div class="" title="From: ${waypoint.from}">From: ${waypoint.from}</div>
+         
+        <div class="" title="To: ${waypoint.to}">To: ${waypoint.to}</div>
+       </div>
+      </div>
+     </li>
+
+    </ul>
+   </div>
+
+   <div class="col-md-12 o-no-data" style="height: 89%;">
+    <div class="o-no-data__display" style="padding: 0;" show.bind="!viewConversationStore.conversationJourney.length > 0">
+     <span class="u-text-style__size--medium">No data to display.</span>
+    </div>
+   </div>
+  </div>
+  <!-- Second block - height 40% -->
+  <div class="o-conversation-details__box o-conversation-details__box--height-40 o-conversation-details__box--border o-conversation-details__box--background">
+
+   <div class="o-item-split__line o-item-split__line--horizontal" show.bind="viewConversationStore.interactionJourney.length > 0"></div>
+
+   <div class="o-information-list__title o-text__conversation-list-title u-text-style__align--center">
+    <span>Contact Journey</span>
+   </div>
+
+   <div class="o-scroll-list-container o-scroll-list-container--horizontal clearfix" id="js-interactionJourney" show.bind="viewConversationStore.interactionJourney.length > 0">
+    <ul class="o-scroll-list-container__list clearfix" style="width: calc(${viewConversationStore.conversationJourneyItemWidth} * ${viewConversationStore.interactionJourney.length})">
+     <li class="o-scroll-list-container__list-item u-text-style__size--medium clearfix" style="max-width:${viewConversationStore.conversationJourneyItemWidth}" repeat.for="waypoint of viewConversationStore.interactionJourney">
+      <div>
+       <div class="o-item-split o-item-split--horizontal o-item-split--top">
+        <div class="o-scroll-list-container__icon-container">
+         <span class="o-scroll-list-container__icon o-scroll-list-container__icon--${waypoint.icon}"></span>
+         <!--								<img src="/target/_assets/img/icon_interaction-${waypoint.icon}.png">-->
+        </div>
+        <div>${waypoint.label}</div>
+       </div>
+       <div class="o-light o-light--contact-journey o-light--${waypoint.status}">
+        <div class="o-light__bulb">
+         <span class="o-light__bulb-shine"></span>
+        </div>
+       </div>
+       <div class="o-item-split o-item-split--horizontal o-item-split--bottom">
+        <div class="u-text-style__color--tertiary" title="${waypoint.description}">${waypoint.description}</div>
+        <div class="u-text-style__color--grey" title="${waypoint.time}">${waypoint.time}</div>
+       </div>
+      </div>
+     </li>
+    </ul>
+   </div>
+
+   <div class="col-md-12 o-no-data" style="height: 89%;" show.bind="!viewConversationStore.interactionJourney.length > 0">
+    <div class="o-no-data__display" style="padding: 0;">
+     <span class="u-text-style__size--medium">No data to display.</span>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="col-sm-5 o-conversation-details" if.bind="conversationStore.isVideoConversation">
+  <div class="o-conversation-details__box o-conversation-details__box--border o-conversation-details__box--background">
+   <div class="o-information-list__title u-text-style__align--center">
+    <span>Agent View</span>
+   </div>
+
+   <div class="col-sm-12 aurelia-hide" show.bind="peerService.remoteStream">
+    <require from="hud/_custom/peer.video"></require>
+    <peer-video></peer-video>
+    <div class="o-video__button-container">
+     <div class="o-navigation-list__item" click.delegate="endCall()">
+      <button class="o-button o-button__navigate o-text__button--small">
+							<span class="o-button o-button__navigate o-button__navigate-inner o-button__navigate--end-call">
+				<span class="o-icon-container o-icon-container--end-call"></span>
+							</span>
+      </button>
+      <p class="o-text__button--small u-text-style__align--center">End Call</p>
+     </div>
+    </div>
+   </div>
+
+  </div>
+ </div>
+
+</template>

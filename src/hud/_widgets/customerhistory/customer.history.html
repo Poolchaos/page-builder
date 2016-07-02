@@ -1,0 +1,23 @@
+<template>
+
+  <section data-ui-component="messages_list_item_view">
+    <div class="list_item_title_wrap col-lg-10 col-md-12 col-sm-12">
+      <h6 class="list_items_title pull-right"> Customer History</h6>
+    </div>
+
+    <div class="no_data" show.bind="!taskHistoryStore.taskHistory[0].fromNumber">
+      <span>No customer history.</span>
+    </div>
+
+    <ul class="list_items task_history" show.bind="taskHistoryStore.taskHistory[0].fromNumber">
+      <li repeat.for="task of taskHistoryStore.taskHistory">
+        <span class="kiosk_icon"></span>
+        <div class="task_details">
+          <div>From: ${task.fromNumber}</div>
+          <div>To: ${task.toNumber}</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+</template>

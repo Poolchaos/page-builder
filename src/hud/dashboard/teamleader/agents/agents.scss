@@ -1,0 +1,218 @@
+@import "../../../../../node_modules/sass-bem-constructor/dist/_bem-constructor.scss";
+@import "../../../../_common/styles/_variables.scss";
+
+/* agent scss */
+
+h6.list_items_title {
+	border-bottom: 0;
+	@media screen and (min-width: 1921px) {
+		font-size: 1.543em;
+	}
+	@media screen and (max-width: 1024px) {
+		font-size: 1em;
+		margin-bottom: 4px;
+	}
+	@media screen and (min-width: 1921px) {
+		font-size: 1.714em;
+	}
+}
+// ---- Team Leader Dashboard ----
+.agentStats {
+	padding-left: 40px;
+}
+.percentageDisplay {
+	background: url(../img/percentage_display.png) no-repeat;
+	background-position: 7px;
+	color: #fff;
+	display: block;
+	height: 76px;
+	margin-top: 15px;
+	@media screen and (max-width: 1024px) {
+		background-size: contain;
+		background-position-x: 38%;
+		height: 50px;
+	}
+	@media screen and (min-width: 1921px) {
+		background-size: contain;
+		background-position-x: 29%;
+		height: 118px;
+	}
+	.percentageNumber {
+		font-size: 16px;
+		width: 50px;
+		margin-top: 27px;
+		margin-left: 3px;
+		height: 75px;
+		float: left;
+		text-align: center;
+		@media screen and (max-width: 1024px) {
+			margin: 20px 0 0 19px;
+			height: 20px;
+			width: 30px;
+			font-size: .7em;
+		}
+		@media screen and (min-width: 1921px) {
+			height: 36px;
+			margin: 47px 0 0 24px;
+			font-size: 22px;
+		}
+	}
+	.percentageTitle {
+		font-size: 12px;
+		text-align: left;
+		margin-left: 62px;
+		margin-top: 5px;
+		margin-right: 0;
+		width: 80px;
+		display: block;
+		position: relative;
+		line-height: 15px;
+		@media screen and (max-width: 1024px) {
+			margin: 10px 0 0 59px;
+			padding: 0;
+			font-size: .7em;
+		}
+		@media screen and (min-width: 1921px) {
+			width: 122px;
+			margin: 13px 0 0 114px;
+			font-size: 18px;
+		}
+	}
+}
+.rateCounter {
+	display: block;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	font-size: 14px;
+	color: #fff;
+	text-align: center;
+	background: url(../img/rate_counter.png) no-repeat;
+	background-position: 50% 0;
+	@media screen and (max-width: 1024px) {
+		margin-top: 5px;
+		margin-bottom: 28px;
+		font-size: .7em;
+		background-size: contain;
+		background-position-y: 0;
+	}
+	@media screen and (min-width: 1921px) {
+		height: 56px;
+		margin-top: 20px;
+		margin-bottom: 60px;
+		font-size: 1.429em;
+		background-size: contain;
+	}
+	.rateNumber {
+		position: relative;
+		top: 20px;
+		@media screen and (max-width: 1024px) {
+			top: 17px;
+			height: 16px;
+		}
+		@media screen and (min-width: 1921px) {
+			top: 33px;
+		}
+	}
+	.rateTitle {
+		position: relative;
+		top: 25px;
+		width: 100%;
+		@media screen and (max-width: 1024px) {
+			top: 14px;
+		}
+		@media screen and (min-width: 1921px) {
+			top: 39px;
+		}
+	}
+}
+.teamLeader_panel_wrapper {
+	text-align: center;
+	.teamLeader_panel {
+		display: inline-block;
+		li.teamLeader_buttons {
+			display: block;
+			float: left;
+			width: 92px;
+			margin: 0 8px 10px;
+			@media screen and (max-width: 1024px) {
+				width: 88px;
+				padding: 0;
+				margin: 0 0 5px;
+			}
+			@media screen and (min-width: 1921px) {
+				width: 129px;
+				margin: 0 13px 10px;
+			}
+			button {
+				display: block;
+				float: none;
+				width: 70%;
+				height: 69px;
+				margin: 0 auto 7px;
+				background: url(../img/confirm_btn.png) no-repeat;
+				background-position: 0 0%;
+				background-size: 100%;
+				border: none;
+				outline: 0;
+				position: relative;
+				left: 0;
+				right: 0;
+				@media screen and (max-width: 1024px) {
+					width: 59px;
+					height: 63px;
+					margin: 0 14px 5px;
+				}
+				@media screen and (min-width: 1921px) {
+					height: 138px;
+					margin: 0 0 15px;
+				}
+				&:hover {
+					background-position: 0 100%;
+				}
+				img {
+					display: block;
+					margin: 0 auto;
+					@media screen and (max-width: 1024px) {
+						width: 30px;
+					}
+					@media screen and (min-width: 1921px) {
+						width: 56px;
+					}
+				}
+			}
+			span {
+				display: block;
+				text-align: center;
+				font-size: 12px;
+				@media screen and (max-width: 1024px) {
+					padding: 0 5px;
+					font-size: .7em;
+				}
+				@media screen and (min-width: 1921px) {
+					font-size: 1.429em;
+				}
+			}
+		}
+	}
+}
+//Temporary fix to hide mood data for agentframe.away
+.agentFrame.away {
+	.breakAgent_counter,
+	.AgentMood,
+	.clientMood {
+		opacity: 0;
+	}
+}
+ul.list_item.scroll {
+	margin-bottom: -30px;
+	height: calc(100vh - 429px) !important;
+}
+//Temporary fix End
+
+// ---- Team Leader Dashboard End----
+.crud-container {
+	position: relative;
+	display: block;
+	width: 100%;
+	min-height: 525px;
+}

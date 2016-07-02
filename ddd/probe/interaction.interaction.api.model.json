@@ -1,0 +1,12 @@
+{
+  "interaction": {
+    "interaction": {
+      "views": [
+        {
+          "display": "InteractionFlows",
+          "findBy": "organisationId"
+        }
+      ]
+    }
+  }
+}

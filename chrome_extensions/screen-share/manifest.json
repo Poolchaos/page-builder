@@ -1,0 +1,27 @@
+{
+   "author": [ "Muaz Khan", "pvdberg" ],
+   "background": {
+      "persistent": false,
+      "scripts": [ "background-script.js" ]
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "content-script.js" ],
+      "matches": [ "*://127.0.0.1/*", "*://*.zailab.com/*", "*://djchaz.co.za/*" ],
+      "run_at": "document_start"
+   } ],
+   "description": "This WebRTC screen capturing extension can be used within any WebRTC library/application! Use getScreenId.js!",
+   "homepage_url": "https://www.webrtc-experiment.com/getScreenId/",
+   "icons": {
+      "48": "icon.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoG3Ji/x3+8xWRyuvrUtmBZxBdX59wIOF6/mkAPutrRFnIllogPsdNUfgR3MIc63z0Qzy34rbqlQBNc6aeiF23n32ejIyLJaQJmwLHPqSiAhX3Glg3DEnJHafuUe2yaEwIk85lOhErGhq0Sf3KRY+Fr3FrLqaG1GlY4wtea6IWEv2L5hAtiP07AJiLx/zOVPJO3Lc5D3cVg3ghlaY2K2qAzUvu9QLYQGK5of9JQK7CfmaSzfNi6235la6c7kmhhu6pPDVbetAps7NS4/HgfYSUxaOE2Llud77FC3ckkNAKVNS5JgCGn5/Fex2JLCXtuYX2c4b5oEnwrHdTr+eUtnWTwIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "34",
+   "name": "Zai Screen Sharing",
+   "permissions": [ "desktopCapture" ],
+   "short_name": "Screen Share",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "3.4.0.5",
+   "web_accessible_resources": [ "icon.png" ]
+}

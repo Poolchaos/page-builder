@@ -1,0 +1,144 @@
+<template>
+
+  <section>
+    <div class="row">
+
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="list_item_title_wrap col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h6 class="list_items_title u-text-style__align--left pull-left">
+            Workforce Management
+          </h6>
+        </div>
+      </div>
+
+    </div>
+    <!-- /row -->
+
+    <div class="row">
+
+      <div class="col-sm-4 col-md-4 col-lg-3">
+        <!-- Services Dropdown -->
+        <div class="dropdown o-dropdown">
+          <label class="o-dropdown__label o-text__dropdown o-text__dropdown--label clearfix">Services</label>
+          <div class="o-dropdown__button o-text__dropdown" type="button" id="dropdownMenuServices" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            ${workforceDashboardStore.services.length > 0 ? workforceDashboardStore.selectedService.serviceName : 'No Services to display'}
+          </div>
+          <ul class="dropdown-menu o-dropdown__menu o-text__dropdown" aria-labelledby="dropdownMenuServices" show.bind="workforceDashboardStore.services.length > 0">
+            <li class="o-dropdown__list-item" repeat.for="service of workforceDashboardStore.services" click.delegate="selectService(service)">
+              <a class="o-dropdown__option o-text__dropdown">
+                  ${service.serviceName}
+                  </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-md-4 col-lg-3">
+        <!-- Tasks Dropdown -->
+        <div class="dropdown o-dropdown">
+          <label class="o-dropdown__label o-text__dropdown o-text__dropdown--label clearfix">Tasks</label>
+          <div class="${taskNoDataClass} o-dropdown__button o-text__dropdown" type="button" id="dropdownMenuTasks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            ${workforceDashboardStore.selectedTask.taskName ? workforceDashboardStore.selectedTask.taskName : 'No Tasks to display'}
+          </div>
+          <ul class="dropdown-menu o-dropdown__menu o-text__dropdown" aria-labelledby="dropdownMenuTasks" show.bind="workforceDashboardStore.workforceViewTasks.length > 0">
+            <li class="o-dropdown__list-item" repeat.for="task of workforceDashboardStore.workforceViewTasks" click.delegate="selectTask(task)">
+              <a class="o-dropdown__option o-text__dropdown">${task.taskName}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-md-4 col-lg-3">
+        <!-- Day of Week Dropdown -->
+        <div class="dropdown o-dropdown">
+          <label class="o-dropdown__label o-text__dropdown o-text__dropdown--label clearfix">Day of Week</label>
+          <div class="o-dropdown__button o-text__dropdown" type="button" id="dropdownMenuDayOfWeek" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            ${workforceDashboardStore.selectedDate.dayOfWeek} (${workforceDashboardStore.selectedDate.dateText})
+          </div>
+          <ul class="dropdown-menu o-dropdown__menu o-text__dropdown" aria-labelledby="dropdownMenuDayOfWeek">
+            <li class="o-dropdown__list-item" repeat.for="date of workforceDashboardStore.dates" click.delegate="selectDate(date)">
+              <a class="o-dropdown__option o-text__dropdown">${date.dayOfWeek} (${date.dateText})</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <p class="list_items_title pull-right aurelia-hide" show.bind="!workforceDashboardStore.services">
+          No services within your organisation
+        </p>
+        <div show.bind="workforceDashboardStore.noData" class="u-text-style__size--medium" style="margin: 23% auto; width: 300px; text-align: center; position: absolute; left: 0; right: 0;">
+          No data to display.
+        </div>
+      </div>
+
+    </div>
+    <!-- /row -->
+
+  </section>
+  <section>
+
+    <div class="row">
+
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="o-chart">
+          <div class="o-chart__sla o-text u-text-style__align--center u-text-style__size--large aurelia-hide" show.bind="workforceDashboardStore.selectedTask">
+            Service Level: ${workforceDashboardStore.selectedTask.sla.answeredCalls}% in ${workforceDashboardStore.selectedTask.sla.waitTime}
+          </div>
+          <div class="o-chart__wrapper" ref="workforceChart" id="workforceChart">
+            <!--<div show.bind="!workforceDashboardStore.noData && workforceDashboardStore.workforceViewTasks.length === 0" class="loader loader__center-page__invite" style="position:absolute;left: 0;right: 0;margin: 0 auto;top: 36%;padding-top: 7px;color: grey;"> loading... </div>-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /row -->
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="o-chart-legend">
+         
+          <span class="o-chart-legend__line o-chart-legend__line--left"></span>
+          
+          <div class="o-chart-legend__description-wrapper">
+            <span class="o-chart-legend__description u-text-style__size--medium">Agent Utilisation</span>
+            <div class="o-chart-legend__icon-wrapper">
+              <img class="o-chart-legend__icon" src="target/_assets/img/icon_legend_agent-utilisation.png">
+            </div>
+          </div>
+          
+          <span class="o-chart-legend__line"></span>
+          
+          <div class="o-chart-legend__description-wrapper">
+            <span class="o-chart-legend__description u-text-style__size--medium">Number of Agents</span>
+            <div class="o-chart-legend__icon-wrapper">
+              <img class="o-chart-legend__icon" src="target/_assets/img/icon_legend_number-agents.png">
+            </div>
+          </div>
+          
+          <span class="o-chart-legend__line"></span>
+          
+          <div class="o-chart-legend__description-wrapper">
+            <span class="o-chart-legend__description u-text-style__size--medium">Wait Time</span>
+            <div class="o-chart-legend__icon-wrapper">
+              <img class="o-chart-legend__icon" src="target/_assets/img/icon_legend_call-time.png">
+            </div>
+          </div>
+          
+          <span class="o-chart-legend__line"></span>
+          
+          <div class="o-chart-legend__description-wrapper">
+            <span class="o-chart-legend__description u-text-style__size--medium">Call Volume</span>
+            <div class="o-chart-legend__icon-wrapper">
+              <img class="o-chart-legend__icon" src="target/_assets/img/icon_legend_call-volume.png">
+            </div>
+          </div>
+          
+          <span class="o-chart-legend__line o-chart-legend__line--right"></span>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+</template>

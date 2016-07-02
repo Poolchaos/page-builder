@@ -1,0 +1,14 @@
+.brackets.json
+.npmignore
+.log
+**/Thumbs.db
+/.idea
+/build/reports
+/dist
+/generated
+/jspm_packages
+/node_modules
+/scratch
+/target
+/.vscode
+/.sass-cache
