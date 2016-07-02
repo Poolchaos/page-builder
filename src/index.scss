@@ -9,10 +9,27 @@ ul {
 }
 
 .main {
-  border: 1px solid red;
   position: absolute;
   top: 28px;
   bottom: 0px;
   left: 0px;
   right: 0px;
+}
+
+.toolbar {
+  position: absolute;
+  border-right: 1px solid rgba(0, 0, 0, 0.7);
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 200px;
+}
+
+.content {
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 200px;
+  top: 0px;
+  bottom: 0px;
+  width: calc(100% - 201px);
 }
