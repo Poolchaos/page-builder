@@ -3,7 +3,12 @@ export class ComponentService {
   
   createComponent(attrs) {
     
-    return components(attrs).textField();
+//    console.log(' attrs >>>> ', attrs);;
+    
+    return {
+      textField: components(attrs).textField,
+      div: components(attrs).div
+    }
   }
 }
 /*
@@ -13,8 +18,20 @@ function components(attrs) {
   let textField = () => {
     
     let template = document.createElement('input');
-    template.type = 'text';
     
+    template.type = 'text';
+//    this.setAttributes(template);
+    
+    return template;
+  };
+  
+  let div = () => {
+    
+    let template = document.createElement('div');
+    
+    template.style.width = '100px';
+    template.style.height = '100px';
+    template.style.background = 'lightblue';
 //    this.setAttributes(template);
     
     return template;
@@ -29,6 +46,7 @@ function components(attrs) {
 //  }
   
   return {
-    textField: textField
+    textField: textField,
+    div: div
   };
 }

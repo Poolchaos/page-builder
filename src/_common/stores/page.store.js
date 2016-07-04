@@ -28,8 +28,11 @@ let STATE = {
     display: 'components',
     active: true,
     items: [{
-      _id: 'comp1',
+      _id: 'textField',
       text: 'textfield'
+    }, {
+      _id: 'div',
+      text: 'div'
     }]
   }]
 };

@@ -68,8 +68,21 @@ export class Builder {
   @handle(BUILDER_ACTIONS.GET_COMPONENT)
   handleGetComponent(action, component) {
     
+    
     let componentId = component.id.split('draggable_')[1];
-    let template = this.componentService.createComponent({});
-    this.content.appendChild(template);
+    
+    console.log(' GET_COMPONENT >> componentId = ', componentId);
+    console.log(' this.componentService.createComponent({}) >>>> ', this.componentService.createComponent({}));
+//    console.log(' this.componentService.createComponent({})[componentId] >>>> ', this.componentService.createComponent({})[componentId]);
+    
+//    try {
+      
+      let template = this.componentService.createComponent({})[componentId]();
+      this.content.appendChild(template);
+//    } catch(e) {
+//      
+//      console.log(' error occurred ', e);
+//    }
+//    [componentId]();//
   }
 }

@@ -33,80 +33,58 @@ export class DraggableService {
 
   events(el) {
     
-    console.log(' events > el = ', el);
-    
     this._on(el, 'mousedown', (e) => {
       
       el.isDragReady = true;
-      
-      console.log(' isDragReady ');
+      this.draggingElement = el;
+      this.dragoffset.x = e.pageX - el.offsetLeft;
+      this.dragoffset.y = e.pageY - el.offsetTop;
+      el.style['z-index'] = '999';
+      el.style.position = 'fixed';
     });
-    this._on(document, 'mouseup', () => {
+    this._on(document, 'mouseup', (e) => {
       
-      el.isDragReady = false;
-      console.log(' notDragReady ');
+      if(!this.draggingElement) return;
+      
+      this.draggingElement.isDragReady = false;
       this.resetPosition(el);
+      this.draggingElement.style.position = 'relative';
       
-      if(this.data && this.inContent) {
+      if(this.inContent) {
         
-        this.data.service.addComponent(el);
-        this.data = null;
+        this.data.service.addComponent(this.draggingElement);
         this.inContent = null;
-      }
-      
-      if(!this.data && this.inContent) {
-        
-        this.data = this.initData;
       }
     });
     this._on(document, 'mousemove', (e) => {
       
-      if (el.isDragReady) {
+      if (this.draggingElement && this.draggingElement.isDragReady) {
         
-        console.log(' is drag ready', e.pageY, ' - ' , e.pageX);
+//        console.log('el >>> ', el);
         
-//        var top = e.pageY - el.dragoffset.y;
-//        var left = e.pageX - el.dragoffset.x;
+        var top = e.pageY - this.dragoffset.y;
+        var left = e.pageX - this.dragoffset.x;
         var w = this.content.innerWidth;
         var h = this.content.innerHeight;
 
         if (e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w) {
           this.inContent = false;
-          console.log(' out of content ');
           return;
         }
         
         this.inContent = true;
-//
-//        el.style.top = top + "px";
-//        el.style.bottom = "auto";
-//        el.style.left = left + "px";
+        this.draggingElement.style.top = top + "px";
+        this.draggingElement.style.bottom = "auto";
+        this.draggingElement.style.left = left + "px";
       }
     });
   };
 
-//  initialise(id, data) { // make single draggable element
-//    
-//    this.el = document.getElementById(id);
-//    this.data = data;
-//    this.initData = data;
-//    
-//    if(!this.el) {
-//      
-//      setTimeout(() => {
-//        this.initialise(id, data);
-//      }, 10);
-//      
-//      return;
-//    }
-//    
-//    this.init();
-//  }
 
   initialiseMultiple(className, data) { // make multiple draggable elements
     
     this.els = document.getElementsByClassName(className);
-    this.data = data;
+    this.data = data ? data : '';
     this.initData = data;
     
     if(!this.els) {
