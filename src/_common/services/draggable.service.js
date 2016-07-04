@@ -59,13 +59,14 @@ export class DraggableService {
         this.data = this.initData;
       }
     });
-    this._on(el, 'mousemove', (e) => {
-      if (this.isDragReady) {
+    this._on(document, 'mousemove', (e) => {
+      
+      if (el.isDragReady) {
         
         console.log(' is drag ready', e.pageY, ' - ' , e.pageX);
         
-        var top = e.pageY - el.dragoffset.y;
-        var left = e.pageX - el.dragoffset.x;
+//        var top = e.pageY - el.dragoffset.y;
+//        var left = e.pageX - el.dragoffset.x;
         var w = this.content.innerWidth;
         var h = this.content.innerHeight;
 
@@ -75,14 +76,11 @@ export class DraggableService {
           return;
         }
         
-        console.log(' mousemove ');
-        console.log(' inContent ');
-        
         this.inContent = true;
-
-        el.style.top = top + "px";
-        el.style.bottom = "auto";
-        el.style.left = left + "px";
+//
+//        el.style.top = top + "px";
+//        el.style.bottom = "auto";
+//        el.style.left = left + "px";
       }
     });
   };
