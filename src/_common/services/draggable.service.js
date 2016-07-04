@@ -37,15 +37,14 @@ export class DraggableService {
     
     this._on(el, 'mousedown', (e) => {
       
-      console.log(' mousedown > el = ', el);
-      console.log(' mousedown.dragoffset > el = ', el.dragoffset);
-      
       el.isDragReady = true;
-      el.dragoffset.x = e.pageX - el.offsetLeft;
-      el.dragoffset.y = e.pageY - el.offsetTop;
+      
+      console.log(' isDragReady ');
     });
-    this._on(el, 'mouseup', () => {
+    this._on(document, 'mouseup', () => {
+      
       el.isDragReady = false;
+      console.log(' notDragReady ');
       this.resetPosition(el);
       
       if(this.data && this.inContent) {
@@ -60,22 +59,26 @@ export class DraggableService {
         this.data = this.initData;
       }
     });
-    this._on(document, 'mousemove', (e) => {
+    this._on(el, 'mousemove', (e) => {
       if (this.isDragReady) {
         
-        let content = document.getElementsByClassName('content')[0];
-
-        if (e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w) {
-          this.inContent = false;
-          return;
-        }
-        
-        this.inContent = true;
+        console.log(' is drag ready', e.pageY, ' - ' , e.pageX);
         
         var top = e.pageY - el.dragoffset.y;
         var left = e.pageX - el.dragoffset.x;
-        var w = content.innerWidth;
-        var h = content.innerHeight;
+        var w = this.content.innerWidth;
+        var h = this.content.innerHeight;
+
+        if (e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w) {
+          this.inContent = false;
+          console.log(' out of content ');
+          return;
+        }
+        
+        console.log(' mousemove ');
+        console.log(' inContent ');
+        
+        this.inContent = true;
 
         el.style.top = top + "px";
         el.style.bottom = "auto";
@@ -116,6 +119,8 @@ export class DraggableService {
       
       return;
     }
+        
+    this.content = document.getElementsByClassName('content')[0];
     
     for(let el of this.els) {
       
