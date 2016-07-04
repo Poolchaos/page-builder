@@ -8,18 +8,22 @@ const logger = LogManager.getLogger('PageStore');
 let STATE = {
   toolbar: [{
     display: 'layouts',
-    items: [{
-      text: '1'
-    }, {
-      text: '2'
-    }]
+    items: [
+//      {
+//      text: '1'
+//    }, {
+//      text: '2'
+//    }
+    ]
   }, {
     display: 'themes',
-    items: [{
-      text: 'theme 1'
-    }, {
-      text: 'theme 2'
-    }]
+    items: [
+//      {
+//      text: 'theme 1'
+//    }, {
+//      text: 'theme 2'
+//    }
+           ]
   }, {
     display: 'components',
     active: true,

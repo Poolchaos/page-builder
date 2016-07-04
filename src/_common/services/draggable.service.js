@@ -8,42 +8,49 @@ export class DraggableService {
   el;
   inContent = false;
 
-  init() {
-    this.getInitPosition();
-    this.events();
+  init(el) {
+    this.getInitPosition(el);
+    this.events(el);
   };
 
-  getInitPosition() {
+  getInitPosition(el) {
     
-    this.initPos = {
-      position: this.el.style.position,
-      top: this.el.style.top,
-      bottom: this.el.style.bottom,
-      left: this.el.style.left
+    el.initPos = {
+      position: el.style.position,
+      top: el.style.top,
+      bottom: el.style.bottom,
+      left: el.style.left
     };
   };
 
-  resetPosition() {
+  resetPosition(el) {
     
-    this.el.style.position = this.initPos.position;
-    this.el.style.top = this.initPos.top;
-    this.el.style.bottom = this.initPos.bottom;
-    this.el.style.left = this.initPos.left;
+    el.style.position = el.initPos.position;
+    el.style.top = el.initPos.top;
+    el.style.bottom = el.initPos.bottom;
+    el.style.left = el.initPos.left;
   }
 
-  events() {
-    this._on(this.el, 'mousedown', (e) => {
-      this.isDragReady = true;
-      this.dragoffset.x = e.pageX - this.el.offsetLeft;
-      this.dragoffset.y = e.pageY - this.el.offsetTop;
+  events(el) {
+    
+    console.log(' events > el = ', el);
+    
+    this._on(el, 'mousedown', (e) => {
+      
+      console.log(' mousedown > el = ', el);
+      console.log(' mousedown.dragoffset > el = ', el.dragoffset);
+      
+      el.isDragReady = true;
+      el.dragoffset.x = e.pageX - el.offsetLeft;
+      el.dragoffset.y = e.pageY - el.offsetTop;
     });
-    this._on(document, 'mouseup', () => {
-      this.isDragReady = false;
-      this.resetPosition();
+    this._on(el, 'mouseup', () => {
+      el.isDragReady = false;
+      this.resetPosition(el);
       
       if(this.data && this.inContent) {
         
-        this.data.service.addComponent(this.el);
+        this.data.service.addComponent(el);
         this.data = null;
         this.inContent = null;
       }
@@ -55,15 +62,8 @@ export class DraggableService {
     });
     this._on(document, 'mousemove', (e) => {
       if (this.isDragReady) {
-
-//        console.log(' e >>>> ', e);
         
         let content = document.getElementsByClassName('content')[0];
-        
-        var top = e.pageY - this.dragoffset.y;
-        var left = e.pageX - this.dragoffset.x;
-        var w = content.innerWidth;
-        var h = content.innerHeight;
 
         if (e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w) {
           this.inContent = false;
@@ -71,21 +71,44 @@ export class DraggableService {
         }
         
         this.inContent = true;
+        
+        var top = e.pageY - el.dragoffset.y;
+        var left = e.pageX - el.dragoffset.x;
+        var w = content.innerWidth;
+        var h = content.innerHeight;
 
-        this.el.style.top = top + "px";
-        this.el.style.bottom = "auto";
-        this.el.style.left = left + "px";
+        el.style.top = top + "px";
+        el.style.bottom = "auto";
+        el.style.left = left + "px";
       }
     });
   };
 
-  initialise(id, data) {
+//  initialise(id, data) { // make single draggable element
+//    
+//    this.el = document.getElementById(id);
+//    this.data = data;
+//    this.initData = data;
+//    
+//    if(!this.el) {
+//      
+//      setTimeout(() => {
+//        this.initialise(id, data);
+//      }, 10);
+//      
+//      return;
+//    }
+//    
+//    this.init();
+//  }
+
+  initialiseMultiple(className, data) { // make multiple draggable elements
     
-    this.el = document.getElementById(id);
+    this.els = document.getElementsByClassName(className);
     this.data = data;
     this.initData = data;
     
-    if(!this.el) {
+    if(!this.els) {
       
       setTimeout(() => {
         this.initialise(id, data);
@@ -94,7 +117,10 @@ export class DraggableService {
       return;
     }
     
-    this.init();
+    for(let el of this.els) {
+      
+      this.init(el);
+    }
   }
   
   _on(el, event, fn) {

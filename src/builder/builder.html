@@ -21,7 +21,7 @@
           <div show.bind="tool.active">
             
             <ul>
-              <li id="draggable_${item._id}" repeat.for="item of tool.items" style="position:fixed;width:40px;height:40px;background:rgba(0,0,0,0.2);text-align:center;font-size:10px;border:1px solid rgba(0,0,0,0.8);margin-bottom:1px;z-index:999;">
+              <li id="draggable_${item._id}" class="draggable_comp_create" repeat.for="item of tool.items" style="position:fixed;width:40px;height:40px;background:rgba(0,0,0,0.2);text-align:center;font-size:10px;border:1px solid rgba(0,0,0,0.8);margin-bottom:1px;z-index:999;">
                 ${item.text}
               </li>
             </ul>

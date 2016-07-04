@@ -55,7 +55,7 @@ export class Builder {
     console.log(' this.content 1 >>> ', this.content);
     this.content = content;
     
-    this.draggableService.initialise('draggable_comp1', {
+    this.draggableService.initialiseMultiple('draggable_comp_create', {
       service: this.builderService
     });
   }
