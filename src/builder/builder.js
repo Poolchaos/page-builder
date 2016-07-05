@@ -52,7 +52,6 @@ export class Builder {
       }, 50);
     }
     
-    console.log(' this.content 1 >>> ', this.content);
     this.content = content;
     
     this.draggableService.initialiseMultiple('draggable_comp_create', {
@@ -71,18 +70,13 @@ export class Builder {
     
     let componentId = component.id.split('draggable_')[1];
     
-    console.log(' GET_COMPONENT >> componentId = ', componentId);
-    console.log(' this.componentService.createComponent({}) >>>> ', this.componentService.createComponent({}));
-//    console.log(' this.componentService.createComponent({})[componentId] >>>> ', this.componentService.createComponent({})[componentId]);
-    
-//    try {
+    try {
       
       let template = this.componentService.createComponent({})[componentId]();
       this.content.appendChild(template);
-//    } catch(e) {
-//      
-//      console.log(' error occurred ', e);
-//    }
-//    [componentId]();//
+    } catch(e) {
+      
+      console.error(' error occurred ', e);
+    }
   }
 }

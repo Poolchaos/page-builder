@@ -29,9 +29,10 @@ function components(attrs) {
     
     let template = document.createElement('div');
     
+    template.className = 'default_comp';
+    
     template.style.width = '100px';
     template.style.height = '100px';
-    template.style.background = 'lightblue';
 //    this.setAttributes(template);
     
     return template;

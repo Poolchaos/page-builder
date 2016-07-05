@@ -1,7 +1,6 @@
 ul {
   list-style-type: none;
   padding: 0px;
-  
   li {
     display: block;
     padding: 4px 10px;
@@ -32,4 +31,30 @@ ul {
   top: 0px;
   bottom: 0px;
   width: calc(100% - 201px);
+}
+
+.tool_item {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  margin-bottom: 1px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.default_comp {
+  border: 1px dotted #63E2FF;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.default_comp:hover {
+  border: 1px dotted #63E2FF;
+  background: #fff;
+}
+
+.draggable_comp_create {
+  cursor: move;
 }
