@@ -50,6 +50,29 @@ ul {
   border: 1px dotted #63E2FF;
   background: rgba(255, 255, 255, 0.6);
   display: block;
+  
+  &:hover {
+    .btn_close {
+      display: block;
+    }
+  }
+  
+  .btn_close {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    border-radius: 2px;
+    padding: 0px 4px;
+    background: #D46868;
+    color: #fff;
+    font-size: 8px;
+
+    &:hover {
+      cursor: pointer;
+      background: #C75656;
+    }
+  }
 }
 
 .default_comp:hover {
@@ -59,20 +82,4 @@ ul {
 
 .draggable_comp_create {
   cursor: move;
-}
-
-.btn_close {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  border-radius: 2px;
-  padding: 0px 4px;
-  background: #D46868;
-  color: #fff;
-  font-size: 8px;
-  
-  &:hover {
-    cursor: pointer;
-    background: #C75656;
-  }
 }
