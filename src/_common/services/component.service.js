@@ -85,11 +85,18 @@ function addFunctionality(el) {
     btn.innerHTML = 'x';
     btn.className = 'btn_close';
     
-    btn.onclick = () => {
+    clickEvent(btn, () => {
       removeElement(el.id);
-    };
+    });
     
     el.appendChild(btn);
+  };
+  
+  let clickEvent = (el, callback) => {
+    
+    el.onclick = () => {
+      callback();
+    };
   };
   
   return {
