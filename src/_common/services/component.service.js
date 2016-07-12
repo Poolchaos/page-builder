@@ -1,9 +1,10 @@
+let compCount = 0;
 
 export class ComponentService {
   
   createComponent(attrs) {
     
-//    console.log(' attrs >>>> ', attrs);;
+    compCount++;
     
     return {
       textField: components(attrs).textField,
@@ -13,41 +14,112 @@ export class ComponentService {
 }
 /*
 */
+function content() {
+    
+  let el = document.getElementsByClassName('content')[0];
+
+  if(!el) {
+    
+    setTimeout(() => {
+      
+      content();
+    }, 20);
+  } else {
+    
+    return el;
+  }
+}
+/*
+*/
 function components(attrs) {
   
-  let textField = () => {
-    
-    let template = document.createElement('input');
-    
-    template.type = 'text';
-//    this.setAttributes(template);
-    
-    return template;
+  return {
+    textField: new textField,
+    div: new div
   };
+}
+/*
+*/
+function div() {
   
-  let div = () => {
-    
-    let template = document.createElement('div');
-    
-    template.className = 'default_comp';
-    
-    template.style.width = '100px';
-    template.style.height = '100px';
-//    this.setAttributes(template);
-    
-    return template;
+  this.template = document.createElement('div');
+  this.template.className = 'default_comp';
+  
+  defaultStyle(this.template);
+  
+  addFunctionality(this.template).delete();
+  
+  this.element = () => { 
+    return this.template;
   };
+
+  return {
+    el: this.element
+  };
+}
+/*
+*/
+function textField() {
+    
+  this.template = document.createElement('input');
+  this.template.type = 'text';
   
-//  let setAttributes(template) {
-//    
-//    for(let attr of attrs) {
-//      
-//      template.
-//    }
-//  }
+  // Wrap textfield in a div
+  //  addFunctionality(this.template).delete();
+  
+  this.element = () => { 
+    return this.template;
+  };
+
+  return {
+    el: this.element
+  };
+}
+/*
+*/
+function addFunctionality(el) {
+  
+  let remove = () => {
+    
+    let btn = document.createElement('div');
+    btn.innerHTML = 'x';
+    btn.className = 'btn_close';
+    
+    btn.onclick = () => {
+      removeElement(el.id);
+    };
+    
+    el.appendChild(btn);
+  };
   
   return {
-    textField: textField,
-    div: div
+    delete: remove
   };
+}
+/*
+*/
+function defaultStyle(el) {
+  
+  el.style.width = '100px';
+  el.style.height = '100px';
+  el.style.cursor = 'default';
+  el.id = 'ui_' + compCount + '_comp';
+}
+/*
+*/
+function removeElement(id) {
+  
+  let el = document.getElementById(id);
+  
+  if(!el) {
+    
+    setTimeout(() => {
+      
+      remove(id);
+    }, 20);
+    
+    return;
+  }
+  
+  content().removeChild(el);
 }

@@ -72,8 +72,8 @@ export class Builder {
     
     try {
       
-      let template = this.componentService.createComponent({})[componentId]();
-      this.content.appendChild(template);
+      let obj = this.componentService.createComponent({})[componentId];
+      this.content.appendChild(obj.el());
     } catch(e) {
       
       console.error(' error occurred ', e);

@@ -60,19 +60,18 @@ export class DraggableService {
       
       if (this.draggingElement && this.draggingElement.isDragReady) {
         
-//        console.log('el >>> ', el);
-        
         var top = e.pageY - this.dragoffset.y;
         var left = e.pageX - this.dragoffset.x;
-        var w = this.content.getElement().width;
-        var h = this.content.getElement().height;
+        var w = this.content.width();
+        var h = this.content.height();
 
-        if (e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w) {
-          this.inContent = false;
+        this.inContent = !isElement(e, this.dragoffset).overContent();
+        
+        if (isElement(e, this.dragoffset).inView()) {
+          
           return;
         }
         
-        this.inContent = true;
         this.draggingElement.style.top = top + "px";
         this.draggingElement.style.bottom = "auto";
         this.draggingElement.style.left = left + "px";
@@ -110,23 +109,35 @@ export class DraggableService {
 }
 /*
 */
-function isElement() {
+function isElement(e, dragoffset) {
   
-  this.overContent = () => {
+  var top = e.pageY - dragoffset.y;
+  var left = e.pageX - dragoffset.x;
+  var winW = window.innerWidth;
+  var winH = window.innerHeight;
+  var w = content().width;
+  var h = content().height;
+  
+  let overContent = () => {
     
+    return e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w;
+  };
+  
+  let inView = () => {
     
+    return e.pageY < 28 || e.pageY > winH - 10 || e.pageX < 10 || e.pageX > winW - 10;
   };
   
   return {
-    overContent: this.overContent,
-    inView: this.inview
+    overContent: overContent,
+    inView: inView
   };
 }
 /*
 */
 function content() {
 
-  this.el = () => {
+  let content = () => {
     
     let el = document.getElementsByClassName('content')[0];
     
@@ -135,17 +146,17 @@ function content() {
     return document.getElementsByClassName('content')[0];
   };
 
-  this.width = () => {
-    return this.el() ? this.el().innerWidth : 0;
+  let width = () => {
+    return content().innerWidth;
   };
 
-  this.height = () => {
-    return this.el() ? this.el().innerHeight : 0;
+  let height = () => {
+    return content().innerHeight;
   };
   
   return {
-    getElement: this.el,
-    width: this.width(),
-    height: this.height()
+    getElement: content,
+    width: width,
+    height: height
   };
 }
