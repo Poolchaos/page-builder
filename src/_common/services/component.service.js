@@ -1,34 +1,132 @@
+let compCount = 0;
 
 export class ComponentService {
   
   createComponent(attrs) {
     
-    return components(attrs).textField();
+    compCount++;
+    
+    return {
+      textField: components(attrs).textField,
+      div: components(attrs).div
+    }
+  }
+}
+/*
+*/
+function content() {
+    
+  let el = document.getElementsByClassName('content')[0];
+
+  if(!el) {
+    
+    setTimeout(() => {
+      
+      content();
+    }, 20);
+  } else {
+    
+    return el;
   }
 }
 /*
 */
 function components(attrs) {
   
-  let textField = () => {
+  return {
+    textField: new textField,
+    div: new div
+  };
+}
+/*
+*/
+function div() {
+  
+  this.template = document.createElement('div');
+  this.template.className = 'default_comp';
+  
+  defaultStyle(this.template);
+  
+  addFunctionality(this.template).delete();
+  
+  this.element = () => { 
+    return this.template;
+  };
+
+  return {
+    el: this.element
+  };
+}
+/*
+*/
+function textField() {
     
-    let template = document.createElement('input');
-    template.type = 'text';
+  this.template = document.createElement('input');
+  this.template.type = 'text';
+  
+  // Wrap textfield in a div
+  //  addFunctionality(this.template).delete();
+  
+  this.element = () => { 
+    return this.template;
+  };
+
+  return {
+    el: this.element
+  };
+}
+/*
+*/
+function addFunctionality(el) {
+  
+  let remove = () => {
     
-//    this.setAttributes(template);
+    let btn = document.createElement('div');
+    btn.innerHTML = 'x';
+    btn.className = 'btn_close';
     
-    return template;
+    clickEvent(btn, () => {
+      removeElement(el.id);
+    });
+    
+    el.appendChild(btn);
   };
   
-//  let setAttributes(template) {
-//    
-//    for(let attr of attrs) {
-//      
-//      template.
-//    }
-//  }
+  let clickEvent = (el, callback) => {
+    
+    el.onclick = () => {
+      callback();
+    };
+  };
   
   return {
-    textField: textField
+    delete: remove
   };
+}
+/*
+*/
+function defaultStyle(el) {
+  
+  el.style.width = '100px';
+  el.style.height = '100px';
+  el.style.cursor = 'default';
+  el.id = 'ui_' + compCount + '_comp';
+}
+/*
+*/
+function removeElement(id) {
+  
+  let el = document.getElementById(id);
+  
+  if(!el) {
+    
+    setTimeout(() => {
+      
+      remove(id);
+    }, 20);
+    
+    return;
+  }
+  
+  content().removeChild(el);
 }

@@ -15,17 +15,22 @@ let STATE = {
     }]
   }, {
     display: 'themes',
-    items: [{
-      text: 'theme 1'
-    }, {
-      text: 'theme 2'
-    }]
+    items: [
+//      {
+//      text: 'theme 1'
+//    }, {
+//      text: 'theme 2'
+//    }
+           ]
   }, {
     display: 'components',
     active: true,
     items: [{
-      _id: 'comp1',
+      _id: 'textField',
       text: 'textfield'
+    }, {
+      _id: 'div',
+      text: 'div'
     }]
   }]
 };

@@ -52,10 +52,9 @@ export class Builder {
       }, 50);
     }
     
-    console.log(' this.content 1 >>> ', this.content);
     this.content = content;
     
-    this.draggableService.initialise('draggable_comp1', {
+    this.draggableService.initialiseMultiple('draggable_comp_create', {
       service: this.builderService
     });
   }
@@ -68,8 +67,16 @@ export class Builder {
   @handle(BUILDER_ACTIONS.GET_COMPONENT)
   handleGetComponent(action, component) {
     
+    
     let componentId = component.id.split('draggable_')[1];
-    let template = this.componentService.createComponent({});
-    this.content.appendChild(template);
+    
+    try {
+      
+      let obj = this.componentService.createComponent({})[componentId];
+      this.content.appendChild(obj.el());
+    } catch(e) {
+      
+      console.error(' error occurred ', e);
+    }
   }
 }
