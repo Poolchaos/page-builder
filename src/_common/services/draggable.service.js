@@ -64,8 +64,8 @@ export class DraggableService {
         
         var top = e.pageY - this.dragoffset.y;
         var left = e.pageX - this.dragoffset.x;
-        var w = this.content.innerWidth;
-        var h = this.content.innerHeight;
+        var w = this.content.getElement().width;
+        var h = this.content.getElement().height;
 
         if (e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w) {
           this.inContent = false;
@@ -90,13 +90,13 @@ export class DraggableService {
     if(!this.els) {
       
       setTimeout(() => {
-        this.initialise(id, data);
+        this.initialiseMultiple(className, data);
       }, 10);
       
       return;
     }
         
-    this.content = document.getElementsByClassName('content')[0];
+    this.content = new content();
     
     for(let el of this.els) {
       
@@ -107,5 +107,45 @@ export class DraggableService {
   _on(el, event, fn) {
     document.attachEvent ? el.attachEvent('on' + event, fn) : el.addEventListener(event, fn, !0);
   }
+}
+/*
+*/
+function isElement() {
+  
+  this.overContent = () => {
+    
+    
+  };
+  
+  return {
+    overContent: this.overContent,
+    inView: this.inview
+  };
+}
+/*
+*/
+function content() {
 
+  this.el = () => {
+    
+    let el = document.getElementsByClassName('content')[0];
+    
+    if(!el) return false;
+    
+    return document.getElementsByClassName('content')[0];
+  };
+
+  this.width = () => {
+    return this.el() ? this.el().innerWidth : 0;
+  };
+
+  this.height = () => {
+    return this.el() ? this.el().innerHeight : 0;
+  };
+  
+  return {
+    getElement: this.el,
+    width: this.width(),
+    height: this.height()
+  };
 }
