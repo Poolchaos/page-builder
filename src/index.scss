@@ -1,6 +1,8 @@
 ul {
   list-style-type: none;
   padding: 0px;
+  margin: 0px;
+  
   li {
     display: block;
     padding: 4px 10px;
@@ -82,4 +84,33 @@ ul {
 
 .draggable_comp_create {
   cursor: move;
+}
+
+.context_menu {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: -1000px;
+  left: -1000px;
+  padding: 10px 20px;
+  background: #fff;
+  border: 1px solid #222;
+  border-radius: 4px;
+  pointer-events: auto;
+  
+  li {
+    background: #222;
+    color: #fff;
+    border: 1px solid #5E5E5E;
+    border-radius: 3px;
+    cursor: pointer;
+    
+    &:hover {
+      background: #333232;
+    }
+  }
+}
+
+.context_menu.active {
+  display: block;
 }

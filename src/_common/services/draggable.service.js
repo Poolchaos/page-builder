@@ -77,7 +77,7 @@ export class DraggableService {
         this.draggingElement.style.left = left + "px";
       }
     });
-  };
+  }
 
 
   initialiseMultiple(className, data) { // make multiple draggable elements

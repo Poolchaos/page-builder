@@ -7,7 +7,7 @@ import {inject, LogManager} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 /*
 */
-import {DraggableService, PageStore} from 'zailab.common';
+import {DraggableService, PageStore, ContextMenuService} from 'zailab.common';
 /*
 */
 import {BuilderStore} from './builder.store';
@@ -19,10 +19,10 @@ import {BUILDER_ACTIONS} from './builder.actions';
 const logger = LogManager.getLogger('Builder');
 /*
 */
-@inject(Router, PageStore, DraggableService, BuilderStore, ComponentService, BuilderService)
+@inject(Router, PageStore, DraggableService, BuilderStore, ComponentService, BuilderService, ContextMenuService)
 export class Builder {
   
-  constructor(router, pageStore, draggableService, builderStore, componentService, builderService) {
+  constructor(router, pageStore, draggableService, builderStore, componentService, builderService, contextMenuService) {
     
     this.router = router;
     this.pageStore = pageStore;
@@ -30,6 +30,8 @@ export class Builder {
     this.builderStore = builderStore;
     this.componentService = componentService;
     this.builderService = builderService;
+    this.contextMenuService = contextMenuService;
+    
     this.init();
   }
   
@@ -74,6 +76,8 @@ export class Builder {
       
       let obj = this.componentService.createComponent({})[componentId];
       this.content.appendChild(obj.el());
+      
+      this.contextMenuService.addContextMenu(obj.el());
     } catch(e) {
       
       console.error(' error occurred ', e);
