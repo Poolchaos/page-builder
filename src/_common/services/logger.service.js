@@ -1,8 +1,16 @@
 let styles = {
-  debug: 'color:#4DACFF; padding:3px 10px;',
+  debug: 'color:#4D5BFF; padding:3px 10px;',
   error: 'color:#FF4D4D; padding:3px 10px;',
   warn: 'color:#FFBB4D; padding:3px 10px; font-weight: bold;',
-  view: 'color:#4D5BFF; padding:3px 10px; font-weight: bold;'
+};
+/*
+*/
+let logStyleTypes = {
+  string: '',
+  integer: '%i',
+  float: '%f',
+  object: '%O',
+  default: '%c'
 };
 
 export class LoggerManager {
@@ -16,36 +24,59 @@ export class LoggerManager {
 */
 function debug(content, view) {
   
-  console.log('%c' + view + ': ' + '%c' + content, styles.view, styles.debug);
+  console.log('debug >>>> ', content);
+  
+  console.log('%c' + view + ': ', styles.debug, content);
 }
 /*
 */
 function warn(content, view) {
   
-  console.log('%c' + view + ': ' + '%c' + content, styles.view, styles.warn);
+  console.log('%c' + view + ': ', styles.warn, content);
 }
 /*
 */
 function error(content, view) {
   
-  console.log('%c' + view + ': ' + '%c' + content, styles.view, styles.error);
+  console.log('%c' + view + ': ', styles.error, content);
 }
 /*
 */
 function logger(view) {
   
   return {
-    debug: content => {
+    debug: function() { // es5 to get arguments
       
-      debug(content, view);
+      debug(createList(arguments), view);
     },
-    warn: content => {
+    warn: function() { // es5 to get arguments
       
-      warn(content, view);
+//      let data = [];
+//      
+//      for(let arg of arguments) {
+//        
+//        data.push(arg);
+//      }
+      warn(createList(arguments), view);
+//      warn(data, view);
     },
-    error: content => {
+    error: function() { // es5 to get arguments
       
-      error(content, view);
+      error(createList(arguments), view);
+//      error(data, view);
     }
   };
+}
+/*
+*/
+function createList(args) {
+  
+  let data = [];
+  
+  for(let arg of args) {
+
+    data.push(arg);
+  }
+  
+  return args;
 }

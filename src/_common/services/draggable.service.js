@@ -1,4 +1,19 @@
+import {inject} from 'aurelia-framework';
+/*
+*/
+import {LoggerManager} from 'zailab.common';
+/*
+*/
+let logger;
+/*
+*/
+@inject(LoggerManager)
 export class DraggableService {
+  
+  constructor(loggerManager) {
+    
+    logger = loggerManager.createInstance('Draggable Service');
+  }
   
   isDragReady = false;
   dragoffset = {
@@ -59,6 +74,11 @@ export class DraggableService {
     this._on(document, 'mousemove', (e) => {
       
       if (this.draggingElement && this.draggingElement.isDragReady) {
+        
+        logger.error(' test 1', {
+          action: 'yes',
+          key: 'no'
+        });
         
         var top = e.pageY - this.dragoffset.y;
         var left = e.pageX - this.dragoffset.x;
@@ -125,7 +145,7 @@ function isElement(e, dragoffset) {
   
   let inView = () => {
     
-    return e.pageY < 28 || e.pageY > winH - 10 || e.pageX < 10 || e.pageX > winW - 10;
+    return e.pageY < 28 || e.pageY > winH || e.pageX < 10 || e.pageX > winW - 10;
   };
   
   return {
