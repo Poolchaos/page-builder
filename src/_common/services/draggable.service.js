@@ -75,8 +75,6 @@ export class DraggableService {
       
       if (this.draggingElement && this.draggingElement.isDragReady) {
         
-        logger.debug(' get offset ', this.dragoffset);
-        
         var top = e.pageY - this.dragoffset.y;
         var left = e.pageX - this.dragoffset.x;
         var w = this.content.width();
@@ -128,21 +126,22 @@ export class DraggableService {
 */
 function isElement(e, dragoffset) {
   
-  var top = e.pageY - dragoffset.y;
-  var left = e.pageX - dragoffset.x;
   var winW = window.innerWidth;
   var winH = window.innerHeight;
-  var w = content().width;
-  var h = content().height;
+  
+  let checkTop = e.pageY < dragoffset.y;
+  let checkBottom = e.pageY > (winH - (38 - dragoffset.y)); // 38 hardcoded because the source changes :: e.srcElement.clientHeight
+  let checkLeft = e.pageX < dragoffset.x;
+  let checkRight = e.pageX > winW - (38 - dragoffset.x); // 38 hardcoded because the source changes :: e.srcElement.clientWidth
   
   let overContent = () => {
     
-    return e.pageY < 28 || e.pageY > h || e.pageX < 200 || e.pageX > w;
+    return checkTop || checkBottom || e.pageX < 200 || checkRight;
   };
   
   let inView = () => {
     
-    return e.pageY < 28 || e.pageY > winH || e.pageX < 10 || e.pageX > winW - 10;
+    return checkTop || checkBottom || checkLeft || checkRight;
   };
   
   return {
