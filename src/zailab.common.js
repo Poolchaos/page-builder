@@ -1,6 +1,7 @@
 /*
 */
 export * from './_common/stores/page.store';
+export * from './builder/builder.store';
 /*
 */
 export * from './_common/tools/compare.tools';

@@ -1,6 +1,20 @@
+import {handle} from 'aurelia-flux';
+import {inject} from 'aurelia-framework';
+/*
+*/
+import {BuilderStore} from 'zailab.common';
+/*
+*/
 let compCount = 0;
-
+/*
+*/
+@inject(BuilderStore)
 export class ComponentService {
+  
+  constructor(builderStore) {
+    
+    this.builderStore = builderStore;
+  }
   
   createComponent(attrs) {
     
@@ -10,6 +24,12 @@ export class ComponentService {
       textField: components(attrs).textField,
       div: components(attrs).div
     }
+  }
+  
+  @handle('builder.component.remove')
+  handleRemoveComponent() {
+    
+    removeElement(this.builderStore.itemContextMenu);
   }
 }
 /*
@@ -47,7 +67,7 @@ function div() {
   
   defaultStyle(this.template);
   
-  addFunctionality(this.template).delete();
+//  addFunctionality(this.template).delete();
   
   this.element = () => { 
     return this.template;

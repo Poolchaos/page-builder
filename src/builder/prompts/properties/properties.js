@@ -13,11 +13,12 @@ export class Properties {
   
   constructor(dialogController, loggerManager) {
     
-    this.controller = dialogController;
-    
     logger = loggerManager.createInstance('Properties');
     
-//    logger.error('Is this an error??? ');
-//    logger.debug('This is a notification ');
+    this.controller = dialogController;
+    
+    logger.error('This is an error!!!');
+    logger.warn('This is a WARNING!!!');
+    logger.debug('This is a notification!!!');
   }
 }

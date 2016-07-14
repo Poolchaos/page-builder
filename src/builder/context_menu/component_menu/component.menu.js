@@ -1,20 +1,27 @@
 import {inject} from 'aurelia-framework';
+import {Dispatcher} from 'aurelia-flux';
 /*
 */
-import {ContextMenuService} from 'zailab.common';
+import {ContextMenuService, LoggerManager} from 'zailab.common';
 /*
 */
 import {DialogService} from 'aurelia-dialog';
 import {Properties} from '../../prompts/properties/properties';
 /*
 */
-@inject(DialogService, ContextMenuService)
+let logger;
+/*
+*/
+@inject(Dispatcher, DialogService, ContextMenuService, LoggerManager)
 export class ComponentMenu {
   
-  constructor(dialogService, contextMenuService) {
+  constructor(dispatcher, dialogService, contextMenuService, loggerManager) {
     
-    this.dialogService = dialogService;
+    logger = loggerManager.createInstance('Component Menu');
+    
     this.contextMenuService = contextMenuService;
+    this.dialogService = dialogService;
+    this.dispatcher = dispatcher;
   }
   
   open(option) {
@@ -30,15 +37,21 @@ export class ComponentMenu {
     
     this.dialogService.open({ viewModel: Properties, model: 'Good or Bad?'}).then(response => {
       
-      console.log(response.output);
+      logger.debug(response.output);
       
       if (!response.wasCancelled) {
         
-        console.log('good');
+        logger.debug('good');
       } else {
         
         // do nothing
       }
     });
+  }
+  
+  removeElement() {
+    
+    this.contextMenuService.hideCentextMenu();
+    this.dispatcher.dispatch('builder.component.remove');
   }
 }
