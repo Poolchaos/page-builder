@@ -159,7 +159,7 @@ function content() {
     
     if(!el) return false;
     
-    return document.getElementsByClassName('content')[0];
+    return el;
   };
 
   let width = () => {
