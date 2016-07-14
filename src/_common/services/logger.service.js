@@ -1,7 +1,8 @@
 let styles = {
-  debug: 'color:#4D5BFF; padding:3px 10px;',
-  error: 'color:#FF4D4D; padding:3px 10px;',
+  debug: 'color:#4DACFF; padding:3px 10px; font-weight: bold;',
+  error: 'color:#FF4D4D; padding:3px 10px; font-weight: bold;',
   warn: 'color:#FFBB4D; padding:3px 10px; font-weight: bold;',
+  view: 'color:#4D5BFF; padding:3px 10px;'
 };
 /*
 */
@@ -24,21 +25,19 @@ export class LoggerManager {
 */
 function debug(content, view) {
   
-  console.log('debug >>>> ', content);
-  
-  console.log('%c' + view + ': ', styles.debug, content);
+  console.log('%c' + view + ': ' + '%c' + content.string, styles.debug, styles.view, content.obj ? content.obj : '');
 }
 /*
 */
 function warn(content, view) {
   
-  console.log('%c' + view + ': ', styles.warn, content);
+  console.log('%c' + view + ': ' + '%c' + content.string, styles.warn, styles.view, content.obj ? content.obj : '');
 }
 /*
 */
 function error(content, view) {
   
-  console.log('%c' + view + ': ', styles.error, content);
+  console.log('%c' + view + ': ' + '%c' + content.string, styles.error, styles.view, content.obj ? content.obj : '');
 }
 /*
 */
@@ -51,19 +50,11 @@ function logger(view) {
     },
     warn: function() { // es5 to get arguments
       
-//      let data = [];
-//      
-//      for(let arg of arguments) {
-//        
-//        data.push(arg);
-//      }
       warn(createList(arguments), view);
-//      warn(data, view);
     },
     error: function() { // es5 to get arguments
       
       error(createList(arguments), view);
-//      error(data, view);
     }
   };
 }
@@ -71,12 +62,22 @@ function logger(view) {
 */
 function createList(args) {
   
-  let data = [];
+  let string = '';
+  let obj = null;
   
   for(let arg of args) {
 
-    data.push(arg);
+    if(typeof arg !== 'object') {
+      
+      string += arg + ' ';
+    } else {
+    
+      obj = arg;
+    }
   }
   
-  return args;
+  return {
+    obj: obj,
+    string: string
+  };
 }

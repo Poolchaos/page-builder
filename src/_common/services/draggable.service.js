@@ -75,10 +75,7 @@ export class DraggableService {
       
       if (this.draggingElement && this.draggingElement.isDragReady) {
         
-        logger.error(' test 1', {
-          action: 'yes',
-          key: 'no'
-        });
+        logger.debug(' get offset ', this.dragoffset);
         
         var top = e.pageY - this.dragoffset.y;
         var left = e.pageX - this.dragoffset.x;
