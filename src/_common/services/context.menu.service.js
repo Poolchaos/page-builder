@@ -1,6 +1,9 @@
 import {inject} from 'aurelia-framework';
 /*
 */
+import {Dispatcher} from 'aurelia-flux';
+/*
+*/
 let menuState = {
   default_comp: false,
   active: null
@@ -10,21 +13,24 @@ classes = {
 };
 /*
 */
-@inject()
+@inject(Dispatcher)
 export class ContextMenuService {
   
-  constructor() {
+  constructor(dispatcher) {
     
     listenForClickEvents();
     
     return {
-      addContextMenu: addContextMenu
+      addContextMenu: el => {
+        addContextMenu(el, dispatcher);
+      },
+      hideCentextMenu: hideCentextMenu
     };
   }
 }
 /*
 */
-function addContextMenu(el) {
+function addContextMenu(el, dispatcher) {
   
   el.addEventListener('contextmenu', function(e) {
     
@@ -33,6 +39,8 @@ function addContextMenu(el) {
     if(clickingInsideContextMenu(e)) {
       return;
     }
+        
+    dispatcher.dispatch('builder.component.context.menu', el.id);
     
     toggleMenuOn('component', el, e);
   });
@@ -47,14 +55,15 @@ function toggleMenuOn(option, el, e) {
   
   menuState[className] = !menuState[className];
     
-    let left = e.pageX + 'px';
-    let top = e.pageY + 'px';
-    
-    menu.style.left = left;
-    menu.style.top = top;
-    menu.className = menu.className + ' active';
-}
+  let left = e.pageX + 'px';
+  let top = e.pageY + 'px';
 
+  menu.style.left = left;
+  menu.style.top = top;
+  menu.className = menu.className + ' active';
+}
+/*
+*/
 function mouseDownCallback(evt) {
   
   if(clickingInsideContextMenu(evt) === 'undefined') {
@@ -67,7 +76,13 @@ function mouseDownCallback(evt) {
   }
   
   if(clickingInsideContextMenu(evt)) return true;
-
+  
+  hideCentextMenu();
+}
+/*
+*/
+function hideCentextMenu() {
+  
   let menus = document.getElementsByClassName('context_menu');
 
   for(let menu of menus) {
@@ -75,7 +90,8 @@ function mouseDownCallback(evt) {
     menu.className = menu.className.replace(' active', '');
   }
 }
-  
+/*
+*/
 function listenForClickEvents() {
   
   document.addEventListener('mousedown', (evt) => {

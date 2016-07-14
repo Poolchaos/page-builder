@@ -1,0 +1,35 @@
+<template>
+
+  <div style="width: 760px; margin-left: 257.5px; margin-top: 499.5px;">
+    <div class="o-view-border o-view-border--prompt">
+      <div class="o-prompt">
+        
+            <button type="button" class="dialog-close" aria-label="Close" click.trigger="controller.cancel()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div class="dialog-header-content">
+              <div class="o-prompt-header clearfix">
+                <h6 class="o-prompt-header__title o-text__header pull-left">Properties</h6> 
+              </div>
+            </div>
+          
+            <form role="form" validate.bind="validation" class="o-form">
+              <div class="row">
+                
+                view
+                
+              </div>
+            </form>
+          
+            <div class="row">
+              <div class="o-prompt-button-row">
+                <button id="acceptBtn" class="o-button o-button--in-prompt-footer o-button__action o-button__action--accept pull-right" show.bind="showAccept" click.trigger="validate()">
+                  save
+                </button>
+              </div>
+            </div>
+          
+      </div>
+    </div>
+  </div>
+</template>

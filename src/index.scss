@@ -1,3 +1,6 @@
+//@import "builder/prompts/promts";
+/*
+*/
 ul {
   list-style-type: none;
   padding: 0px;
@@ -113,4 +116,11 @@ ul {
 
 .context_menu.active {
   display: block;
+}
+
+.o-prompt {
+  background: #ddd;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 20px;
 }
