@@ -2,16 +2,20 @@ import {handle} from 'aurelia-flux';
 import {inject} from 'aurelia-framework';
 /*
 */
-import {BuilderStore} from 'zailab.common';
+import {BuilderStore, LoggerManager} from 'zailab.common';
 /*
 */
-let compCount = 0;
+let compCount = 0,
+logger,
+foundParent = false;
 /*
 */
-@inject(BuilderStore)
+@inject(BuilderStore, LoggerManager)
 export class ComponentService {
   
-  constructor(builderStore) {
+  constructor(builderStore, loggerManager) {
+    
+    logger = loggerManager.createInstance('Component Service');
     
     this.builderStore = builderStore;
   }
@@ -29,7 +33,8 @@ export class ComponentService {
   @handle('builder.component.remove')
   handleRemoveComponent() {
     
-    removeElement(this.builderStore.itemContextMenu);
+    foundParent = false;
+    removeElement(this.builderStore.itemContextMenu, content());
   }
 }
 /*
@@ -97,32 +102,32 @@ function textField() {
 }
 /*
 */
-function addFunctionality(el) {
-  
-  let remove = () => {
-    
-    let btn = document.createElement('div');
-    btn.innerHTML = 'x';
-    btn.className = 'btn_close';
-    
-    clickEvent(btn, () => {
-      removeElement(el.id);
-    });
-    
-    el.appendChild(btn);
-  };
-  
-  let clickEvent = (el, callback) => {
-    
-    el.onclick = () => {
-      callback();
-    };
-  };
-  
-  return {
-    delete: remove
-  };
-}
+//function addFunctionality(el) {
+//  
+//  let remove = () => {
+//    
+//    let btn = document.createElement('div');
+//    btn.innerHTML = 'x';
+//    btn.className = 'btn_close';
+//    
+//    clickEvent(btn, () => {
+//      removeElement(el.id);
+//    });
+//    
+//    el.appendChild(btn);
+//  };
+//  
+//  let clickEvent = (el, callback) => {
+//    
+//    el.onclick = () => {
+//      callback();
+//    };
+//  };
+//  
+//  return {
+//    delete: remove
+//  };
+//}
 /*
 */
 function defaultStyle(el) {
@@ -134,19 +139,42 @@ function defaultStyle(el) {
 }
 /*
 */
-function removeElement(id) {
+function removeElement(item, parent) {
   
-  let el = document.getElementById(id);
+  let el = document.getElementById(item);
   
   if(!el) {
     
     setTimeout(() => {
       
-      remove(id);
+      remove(item);
     }, 20);
     
     return;
   }
   
-  content().removeChild(el);
+  if(is(item).childOf(parent)) {
+    
+    foundParent = true;
+    $('.' + parent.className).find('#' + item)[0].parentNode.removeChild(el);
+  } else if(!foundParent) {
+    
+    for(let node of parent.childNodes) {
+      
+      removeElement(item, node);
+    }
+  }
+}
+/*
+*/
+function is(item) {
+  
+  let hasChild = (parent) => {
+    
+    return $('.' + parent.className).find('#' + item).length;
+  };
+  
+  return {
+    childOf: hasChild
+  }
 }

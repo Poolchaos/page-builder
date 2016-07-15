@@ -119,18 +119,22 @@ ul {
 }
 
 .header_wrap {
-  height: 20%;
-  background: lightgreen;
+  height: calc(20% - 2px);
 }
 
 .content_wrap {
-  height: 60%;
-  background: lightblue;
+  height: calc(60% - 2px);
 }
 
 .footer_wrap {
-  height: 20%;
-  background: lightgreen;
+  height: calc(20% - 2px); 
+}
+
+.content_sec {
+  border: dashed 2px #00FBFF;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 
 /*  DIALOG STYLING  */
