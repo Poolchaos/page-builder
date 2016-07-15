@@ -228,6 +228,35 @@ ul {
   }
 }
 
+.preview {
+  width: calc(100% - 2px);
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  margin-bottom: 10px;
+  
+  .box {
+    height: 30px;
+  }
+}
+
+.dropDown {
+  position: relative;
+  display: inline-block;
+  
+  ul {
+    position: absolute;
+    top: 100%;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.3);
+    
+    li:hover {
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
 /*  DIALOG STYLING  */
 .o-prompt {
   position: relative;

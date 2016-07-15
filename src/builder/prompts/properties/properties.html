@@ -46,6 +46,36 @@
           </div>
         </div>
 
+        <div show.bind="tabs.border">
+          
+          <div>
+            <label>width</label>
+            <input type="number" value.bind="borderWidth" min="1" />
+          </div>
+          
+          <div>
+            <label>style</label>
+
+            <div class="dropDown">
+              <label click.delegate="showBorderStyles=!showBorderStyles">${borderStyle}</label>
+              <ul class="aurelia-hide" show.bind="showBorderStyles">
+                <li click.delegate="selectBorderStyle(style)" repeat.for="style of borderStyles">${style}</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div>
+            <label>color (rgb)</label>
+            <input type="text" value.bind="borderColor" />
+          </div>
+
+          <h6>Preview</h6>
+          <div class="preview">
+            <div class="box" style="${'border-width:' + borderWidth + 'px; border-style:' + borderStyle + '; border-color: rgb(' +  borderColor + ')'}"></div>
+          </div>
+          
+        </div>
+
         <div class="row">
           <div class="o-prompt-button-row">
             <button id="acceptBtn" class="" click.trigger="update()">
