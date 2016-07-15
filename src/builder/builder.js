@@ -60,6 +60,17 @@ export class Builder {
     
     events(componentId, this.componentService, this.contextMenuService).addEventListener();
   }
+
+  @handle('builder.component.style.change')
+  handleChangeComponentStyle(action, options) {
+    
+    let component = document.getElementById(this.builderStore.itemContextMenu);
+    
+    for(let prop in options) {
+      
+      component.style[prop] = options[prop];
+    }
+  }
 }
 
 function events(componentId, componentService, contextMenuService) {

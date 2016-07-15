@@ -37,11 +37,9 @@ export class ComponentMenu {
     
     this.dialogService.open({ viewModel: Properties, model: 'Good or Bad?'}).then(response => {
       
-      logger.debug(response.output);
-      
       if (!response.wasCancelled) {
         
-        logger.debug('good');
+//        logger.debug('good');
       } else {
         
         // do nothing

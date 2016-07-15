@@ -71,7 +71,6 @@ export class DraggableService {
         
         this.data.service.addComponent(this.draggingElement);
         this.inContent = null;
-        logger.debug(' mouseup ', e);
       }
     });
     this._on(document, 'mousemove', (e) => {

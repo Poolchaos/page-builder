@@ -4,41 +4,64 @@
     <div class="o-view-border o-view-border--prompt">
       <div class="o-prompt">
         
-            <button type="button" class="dialog-close" aria-label="Close" click.trigger="controller.cancel()">
-              <span aria-hidden="true">×</span>
-            </button>
-            <div class="dialog-header-content">
-              <div class="o-prompt-header clearfix">
-                <h6 class="o-prompt-header__title o-text__header pull-left">Properties</h6> 
+        <button type="button" class="dialog-close" aria-label="Close" click.trigger="controller.cancel()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <div class="dialog-header-content">
+          <div class="o-prompt-header clearfix">
+            <h4 class="o-prompt-header__title o-text__header pull-left">Properties</h4> 
+          </div>
+        </div>
+        
+        <form role="form" class="o-form">
+
+          <div class="">
+
+            <div class="prop">
+              <label>width</label>
+              <input type="number" value.bind="width" min="0" />
+              
+              <div class="two-prong-slider">
+                <div class="slider ${widthClass}"></div>
+                <label click.delegate="widthClass='pixel'">px</label>
+                <label click.delegate="widthClass='percentage'">%</label>
               </div>
             </div>
-          
-            <form role="form" class="o-form">
-              <div class="row">
-                
-                ::: IN PROGRESS :::
-                
-                width
-                height
-                background
-                border
-                position
-                float
-                
-                
-                preview?
-                
-              </div>
-            </form>
-          
-            <div class="row">
-              <div class="o-prompt-button-row">
-                <button id="acceptBtn" class="o-button o-button--in-prompt-footer o-button__action o-button__action--accept pull-right" show.bind="showAccept" click.trigger="validate()">
-                  save
-                </button>
+
+            <div class="prop">
+              <label>height</label>
+              <input type="number" value.bind="height" min="0" />
+              
+              <div class="two-prong-slider">
+                <div class="slider ${heightClass}"></div>
+                <label click.delegate="heightClass='pixel'">px</label>
+                <label click.delegate="heightClass='percentage'">%</label>
               </div>
             </div>
-          
+
+            ::: IN PROGRESS :::
+
+            width
+            height
+            background
+            border
+            position
+            float
+
+
+            preview?
+
+          </div>
+
+          <div class="row">
+            <div class="o-prompt-button-row">
+              <button id="acceptBtn" class="" click.trigger="update()">
+                save
+              </button>
+            </div>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>

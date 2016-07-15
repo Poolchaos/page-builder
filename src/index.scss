@@ -137,6 +137,46 @@ ul {
   border-radius: 2px;
 }
 
+.prop {
+  label {
+    width: 100px;
+  }
+}
+
+.two-prong-slider {
+  position: relative;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  
+  label {
+    position: relative;
+    margin-top: 5px;
+    text-align: center;
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  .slider {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0px;
+    background: #E8A2A2;
+    border-radius: 3px;
+    transition: 1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+  }
+  
+  .slider.pixel {
+    left: 0px;
+  }
+  
+  .slider.percentage {
+    left: 102px;
+  }
+}
+
 /*  DIALOG STYLING  */
 .o-prompt {
   position: relative;

@@ -4,7 +4,11 @@ import {inject} from 'aurelia-framework';
 import {Dispatcher} from 'aurelia-flux';
 /*
 */
-let menuState = {
+import {LoggerManager} from 'zailab.common';
+/*
+*/
+let logger,
+menuState = {
   default_comp: false,
   active: null
 },
@@ -13,10 +17,12 @@ classes = {
 };
 /*
 */
-@inject(Dispatcher)
+@inject(Dispatcher, LoggerManager)
 export class ContextMenuService {
   
-  constructor(dispatcher) {
+  constructor(dispatcher, loggerManager) {
+    
+    logger = loggerManager.createInstance('Context Menu Service');
     
     listenForClickEvents();
     
@@ -94,11 +100,23 @@ function hideCentextMenu() {
 */
 function listenForClickEvents() {
   
-  document.addEventListener('mousedown', (evt) => {
+  document.addEventListener('mousedown', addMouseDownListener);
+}
+/**/
+//function removeMouseDownListener() {
+//  
+//  document.removeEventListener('mousedown', addMouseDownListener);
+//}
+/**/
+function addMouseDownListener(evt) {
   
-    evt.preventDefault();
-    mouseDownCallback(evt);
-  });
+  if(evt.srcElement.tagName === 'INPUT') {
+    return true;
+  }
+  
+  evt.preventDefault();
+  mouseDownCallback(evt);
+//  removeMouseDownListener();
 }
 /*
 */
