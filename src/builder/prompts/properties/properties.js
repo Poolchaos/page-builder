@@ -15,8 +15,8 @@ export class Properties {
   widthClass = 'pixel';
   heightClass = 'pixel';
   tabs = {
-    size: false,
-    background: true,
+    size: true,
+    background: false,
     border: false
   };
   borderStyle = 'none';
