@@ -1,6 +1,14 @@
 //@import "builder/prompts/promts";
 /*
 */
+.pull_left {
+  float: left;
+}
+
+.pull_right {
+  float: right;
+}
+
 ul {
   list-style-type: none;
   padding: 0px;
@@ -48,6 +56,11 @@ ul {
   margin-bottom: 1px;
   z-index: 999;
   cursor: pointer;
+}
+
+.tool_item.selected {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.6);
 }
 
 .default_comp {
@@ -131,6 +144,7 @@ ul {
 }
 
 .content_sec {
+  position: relative;
   border: dashed 2px #00FBFF;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -138,6 +152,8 @@ ul {
 }
 
 .prop {
+  padding: 5px 0px;
+  
   label {
     width: 100px;
   }
@@ -156,6 +172,10 @@ ul {
     cursor: pointer;
   }
   
+  label.selected {
+    cursor: default;
+  }
+  
   .slider {
     position: absolute;
     width: 50%;
@@ -163,9 +183,9 @@ ul {
     top: 0px;
     background: #E8A2A2;
     border-radius: 3px;
-    transition: 1s;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
   }
   
   .slider.pixel {
@@ -173,7 +193,38 @@ ul {
   }
   
   .slider.percentage {
-    left: 102px;
+    left: 50%;
+  }
+}
+
+.tabbing {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+  
+  ul {
+    height: 26px;
+    
+    li {
+      float: left;
+      background: rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    
+    li:first-child {
+      border-radius: 3px 0px 0px 0px;
+    }
+    
+    li:last-child {
+      border-radius: 0px 3px 0px 0px;
+      float: clear;
+    }
+    
+    li.selected {
+      cursor: default;
+      background: black;
+      color: #fff;
+      border-radius: 3px 3px 0px 0px;
+    }
   }
 }
 

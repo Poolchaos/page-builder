@@ -9,7 +9,8 @@ let STATE = {
   toolbar: [{
     display: 'layouts',
     items: [{
-      text: '1'
+      text: 'basic',
+      selected: true
     }, {
       text: '2'
     }]

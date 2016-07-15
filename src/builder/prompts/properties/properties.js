@@ -14,6 +14,11 @@ export class Properties {
   
   widthClass = 'pixel';
   heightClass = 'pixel';
+  tabs = {
+    size: true,
+    background: false,
+    border: false
+  };
   
   constructor(dialogController, loggerManager, dispatcher, builderStore) {
     
@@ -35,6 +40,16 @@ export class Properties {
     
     this.width = parseInt(element.style.width.replace('px', ''));
     this.height = parseInt(element.style.height.replace('px', ''));
+  }
+
+  view(view) {
+    
+    for(let tab in this.tabs) {
+      
+      this.tabs[tab] = false;
+    }
+    
+    this.tabs[view] = true;
   }
   
   update() {

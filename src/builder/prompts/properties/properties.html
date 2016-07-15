@@ -12,55 +12,47 @@
             <h4 class="o-prompt-header__title o-text__header pull-left">Properties</h4> 
           </div>
         </div>
-        
-        <form role="form" class="o-form">
+          
+        <div class="tabbing">
+          <ul>
+            <li class.bind="tabs.size ? 'selected' : ''" class="pull_left" click.delegate="view('size')">size</li>
+            <li class.bind="tabs.background ? 'selected' : ''" class="pull_left" click.delegate="view('background')">background</li>
+            <li class.bind="tabs.border ? 'selected' : ''" class="pull_left" click.delegate="view('border')">border</li>
+          </ul>
+        </div>
 
-          <div class="">
+        <div show.bind="tabs.size">
 
-            <div class="prop">
-              <label>width</label>
-              <input type="number" value.bind="width" min="0" />
-              
-              <div class="two-prong-slider">
-                <div class="slider ${widthClass}"></div>
-                <label click.delegate="widthClass='pixel'">px</label>
-                <label click.delegate="widthClass='percentage'">%</label>
-              </div>
-            </div>
+          <div class="prop">
+            <label>width</label>
+            <input type="number" value.bind="width" min="0" />
 
-            <div class="prop">
-              <label>height</label>
-              <input type="number" value.bind="height" min="0" />
-              
-              <div class="two-prong-slider">
-                <div class="slider ${heightClass}"></div>
-                <label click.delegate="heightClass='pixel'">px</label>
-                <label click.delegate="heightClass='percentage'">%</label>
-              </div>
-            </div>
-
-            ::: IN PROGRESS :::
-
-            width
-            height
-            background
-            border
-            position
-            float
-
-
-            preview?
-
-          </div>
-
-          <div class="row">
-            <div class="o-prompt-button-row">
-              <button id="acceptBtn" class="" click.trigger="update()">
-                save
-              </button>
+            <div class="two-prong-slider pull_right">
+              <div class="slider ${widthClass}"></div>
+              <label class.bind="widthClass==='pixel' ? 'selected' : ''" click.delegate="widthClass='pixel'">px</label>
+              <label class.bind="widthClass==='percentage' ? 'selected' : ''" click.delegate="widthClass='percentage'">%</label>
             </div>
           </div>
-        </form>
+
+          <div class="prop">
+            <label>height</label>
+            <input type="number" value.bind="height" min="0" />
+
+            <div class="two-prong-slider pull_right">
+              <div class="slider ${heightClass}"></div>
+              <label class.bind="heightClass==='pixel' ? 'selected' : ''" click.delegate="heightClass='pixel'">px</label>
+              <label class.bind="heightClass==='percentage' ? 'selected' : ''" click.delegate="heightClass='percentage'">%</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="o-prompt-button-row">
+            <button id="acceptBtn" class="" click.trigger="update()">
+              save
+            </button>
+          </div>
+        </div
 
       </div>
     </div>
