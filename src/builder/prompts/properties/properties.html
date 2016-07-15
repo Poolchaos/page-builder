@@ -97,6 +97,33 @@
         </div
 
       </div>
+        
+      <div class="saving-data">
+        <h6>Current Styles</h6>
+
+        <div class="prop">
+          <div>
+            <label>height:</label>${height + (heightClass === 'pixel' ? 'px' : '%')}
+          </div>
+          <div>
+            <label>width:</label>${width + (widthClass === 'pixel' ? 'px' : '%')}
+          </div>
+          
+          <div>
+            <label>border-width:</label>${borderWidth}
+          </div>
+          <div>
+            <label>border-style:</label>${borderStyle}
+          </div>
+          <div>
+            <label>border-color:</label>${borderColor}
+          </div>
+           
+          <div>
+            <label>background:</label>${'rgb(' + backgroundColor + ')'}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

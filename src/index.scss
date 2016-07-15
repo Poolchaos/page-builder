@@ -236,7 +236,7 @@ ul {
   margin-bottom: 10px;
   
   .border {
-    height: 30px;
+    height: 250px;
   }
   
   .background {
@@ -268,6 +268,28 @@ ul {
   border: 3px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 20px;
+  width: 550px;
+  display: inline-block;
+  min-height: 593px;
+}
+
+.saving-data {
+  position: absolute;
+  left: 100%;
+  bottom: 0px;
+  width: 200px;
+  padding: 10px;
+  border-radius: 0px 5px 5px 0px;
+  background: #fff;
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
+  
+  .prop {
+    font-size: 11px;
+    
+    label {
+      width: 75px;
+    }
+  }
 }
 
 .dialog-close {
@@ -278,4 +300,10 @@ ul {
 
 ai-dialog-overlay {
   background: rgba(0, 0, 0, 0.2)
+}
+
+.o-prompt-button-row {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
