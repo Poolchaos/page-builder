@@ -46,6 +46,19 @@
           </div>
         </div>
 
+        <div show.bind="tabs.background">
+          
+          <div>
+            <label>color (rgb)</label>
+            <input type="text" value.bind="backgroundColor" />
+          </div>
+
+          <h6>Preview</h6>
+          <div class="preview">
+            <div class="background" style="${backgroundColor ? 'background: rgb(' + backgroundColor + ')' : (backgroundImage ? url(backgroundImage) : '')}"></div>
+          </div>
+        </div>
+
         <div show.bind="tabs.border">
           
           <div>
@@ -71,9 +84,8 @@
 
           <h6>Preview</h6>
           <div class="preview">
-            <div class="box" style="${'border-width:' + borderWidth + 'px; border-style:' + borderStyle + '; border-color: rgb(' +  borderColor + ')'}"></div>
+            <div class="border" style="${'border-width:' + borderWidth + 'px; border-style:' + borderStyle + '; border-color: rgb(' +  borderColor + ')'}"></div>
           </div>
-          
         </div>
 
         <div class="row">
