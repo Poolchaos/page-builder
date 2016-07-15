@@ -153,28 +153,18 @@ function removeElement(item, parent) {
     return;
   }
   
-  if(is(item).childOf(parent)) {
-    
-    foundParent = true;
-    $('.' + parent.className).find('#' + item)[0].parentNode.removeChild(el);
-  } else if(!foundParent) {
-    
-    for(let node of parent.childNodes) {
-      
-      removeElement(item, node);
-    }
-  }
+  $('.' + parent.className).find('#' + item)[0].parentNode.removeChild(el);
 }
 /*
 */
-function is(item) {
-  
-  let hasChild = (parent) => {
-    
-    return $('.' + parent.className).find('#' + item).length;
-  };
-  
-  return {
-    childOf: hasChild
-  }
-}
+//function is(item) {
+//  
+//  let hasChild = (parent) => {
+//    
+//    return $('.' + parent.className).find('#' + item).length;
+//  };
+//  
+//  return {
+//    childOf: hasChild
+//  }
+//}
