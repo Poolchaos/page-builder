@@ -23,16 +23,15 @@ export class Properties {
     this.dispatcher = dispatcher;
     this.builderStore = builderStore;
     
-//    logger.error('This is an error!!!');
-//    logger.warn('This is a WARNING!!!');
-//    logger.debug('This is a notification!!!');
-    
     this.init();
   }
   
   init() {
     
     let element = document.getElementById(this.builderStore.itemContextMenu);
+    
+    this.widthClass = element.style.width.indexOf('%') !== -1 ? 'percentage' : 'pixel';
+    this.heightClass = element.style.height.indexOf('%') !== -1 ? 'percentage' : 'pixel';
     
     this.width = parseInt(element.style.width.replace('px', ''));
     this.height = parseInt(element.style.height.replace('px', ''));
