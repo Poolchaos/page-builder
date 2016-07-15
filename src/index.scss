@@ -118,6 +118,22 @@ ul {
   display: block;
 }
 
+.header_wrap {
+  height: 20%;
+  background: lightgreen;
+}
+
+.content_wrap {
+  height: 60%;
+  background: lightblue;
+}
+
+.footer_wrap {
+  height: 20%;
+  background: lightgreen;
+}
+
+/*  DIALOG STYLING  */
 .o-prompt {
   position: relative;
   background: #ddd;
@@ -126,7 +142,6 @@ ul {
   padding: 20px;
 }
 
-/*  DIALOG STYLING  */
 .dialog-close {
   position: absolute;
   top: 10px;

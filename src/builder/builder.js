@@ -39,26 +39,12 @@ export class Builder {
     
     logger.debug(' builder initialised ');
     
-    this.getContentArea();
-  }
-  
-  getContentArea() {
-    
-    let content = document.getElementsByClassName('content')[0];
-    
-    if(!this.content) {
+    setTimeout(() => {
       
-      setTimeout(() => {
-        
-        this.getContentArea();
-      }, 50);
-    }
-    
-    this.content = content;
-    
-    this.draggableService.initialiseMultiple('draggable_comp_create', {
-      service: this.builderService
-    });
+      this.draggableService.initialiseMultiple('draggable_comp_create', {
+        service: this.builderService
+      });
+    }, 100);
   }
   
   back() {
@@ -69,18 +55,53 @@ export class Builder {
   @handle(BUILDER_ACTIONS.GET_COMPONENT)
   handleGetComponent(action, component) {
     
-    
+    this.component = component;
     let componentId = component.id.split('draggable_')[1];
     
+    events(componentId, this.componentService, this.contextMenuService).addEventListener();
+  }
+}
+
+function events(componentId, componentService, contextMenuService) {
+  
+  let addEventListener = () => {
+    
+    document.addEventListener('mousemove', eventCallback);
+  }
+  
+  let removeEventListener = () => {
+    
+    document.removeEventListener('mousemove', eventCallback);
+  }
+  
+  let eventCallback = (e) => {
+    
+    let contentSection = e.srcElement.className.replace('content_sec ', '');
+    addComponent(contentSection, componentId);
+  }
+  
+  
+  
+  let addComponent = (contentSection, componentId) => {
+    
     try {
+
+      let obj = componentService.createComponent({})[componentId];
+      let content = document.getElementsByClassName(contentSection)[0];
       
-      let obj = this.componentService.createComponent({})[componentId];
-      this.content.appendChild(obj.el());
+      content.appendChild(obj.el());
+      contextMenuService.addContextMenu(obj.el());
       
-      this.contextMenuService.addContextMenu(obj.el());
+      removeEventListener();
+
     } catch(e) {
-      
+
       console.error(' error occurred ', e);
     }
+  };
+  
+  return {
+    addEventListener: addEventListener,
+    removeEventListener: removeEventListener
   }
 }

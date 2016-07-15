@@ -24,6 +24,7 @@ export class DraggableService {
   inContent = false;
 
   init(el) {
+    
     this.getInitPosition(el);
     this.events(el);
   };
@@ -53,7 +54,7 @@ export class DraggableService {
       el.isDragReady = true;
       this.draggingElement = el;
       this.dragoffset.x = e.pageX - el.offsetLeft;
-      this.dragoffset.y = e.pageY - el.offsetTop;
+      this.dragoffset.y = e.pageY - el.offsetTop - 27;
       el.style['z-index'] = '999';
       el.style.position = 'fixed';
     });
@@ -67,8 +68,10 @@ export class DraggableService {
       
       if(this.inContent) {
         
+        
         this.data.service.addComponent(this.draggingElement);
         this.inContent = null;
+        logger.debug(' mouseup ', e);
       }
     });
     this._on(document, 'mousemove', (e) => {
