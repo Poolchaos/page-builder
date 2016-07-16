@@ -91,8 +91,6 @@ function events(componentId, componentService, contextMenuService) {
     addComponent(contentSection, componentId);
   }
   
-  
-  
   let addComponent = (contentSection, componentId) => {
     
     try {

@@ -12,6 +12,11 @@ let logger;
 @inject(DialogController, LoggerManager, Dispatcher, BuilderStore)
 export class Properties {
   
+  paddingTop = 0;
+  paddingRight = 0;
+  paddingBottom = 0;
+  paddingLeft = 0;
+  margin = 0;
   widthClass = 'pixel';
   heightClass = 'pixel';
   tabs = {
@@ -47,6 +52,14 @@ export class Properties {
     // size tab
     this.width = parseInt(element.style.width.replace('px', ''));
     this.height = parseInt(element.style.height.replace('px', ''));
+//    this.margin = element.style.margin ? parseInt(element.style.margin.replace('px', '')) : this.margin;
+    
+        // set padding
+    let splitPadding = element.style.padding ? element.style.padding.split(' ') : null;
+    this.paddingTop = splitPadding && splitPadding[0] ? parseInt(splitPadding[0].replace('px', '')) : this.paddingTop;
+    this.paddingRight = splitPadding && splitPadding[1] ? parseInt(splitPadding[1].replace('px', '')) : (splitPadding && splitPadding[0] ? this.paddingTop : this.paddingRight);
+    this.paddingBottom = splitPadding && splitPadding[2] ? parseInt(splitPadding[2].replace('px', '')) : (splitPadding && splitPadding[0] ? this.paddingTop : this.paddingBottom);
+    this.paddingLeft = splitPadding && splitPadding[3] ? parseInt(splitPadding[3].replace('px', '')) : (splitPadding && splitPadding[1] ? this.paddingRight : (splitPadding && splitPadding[0] ? this.paddingTop : this.paddingLeft));
     
     // background tab
     this.backgroundColor = element.style.background ? element.style.background.substring(element.style.background.lastIndexOf('(') + 1, element.style.background.lastIndexOf(')')) : this.backgroundColor;
@@ -78,6 +91,8 @@ export class Properties {
     this.dispatcher.dispatch('builder.component.style.change', {
       height: this.height + (this.heightClass === 'pixel' ? 'px' : '%'),
       width: this.width + (this.widthClass === 'pixel' ? 'px' : '%'),
+      padding: this.paddingTop + 'px ' + this.paddingRight + 'px ' + this.paddingBottom + 'px ' + this.paddingLeft + 'px',
+      margin: this.margin + 'px',
       'border-width': this.borderWidth + 'px',
       'border-style': this.borderStyle,
       'border-color': 'rgb(' + this.borderColor + ')',
