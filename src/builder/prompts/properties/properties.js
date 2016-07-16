@@ -16,6 +16,10 @@ export class Properties {
   paddingRight = 0;
   paddingBottom = 0;
   paddingLeft = 0;
+  marginTop = 0;
+  marginRight = 0;
+  marginBottom = 0;
+  marginLeft = 0;
   margin = 0;
   widthClass = 'pixel';
   heightClass = 'pixel';
@@ -52,7 +56,6 @@ export class Properties {
     // size tab
     this.width = parseInt(element.style.width.replace('px', ''));
     this.height = parseInt(element.style.height.replace('px', ''));
-//    this.margin = element.style.margin ? parseInt(element.style.margin.replace('px', '')) : this.margin;
     
         // set padding
     let splitPadding = element.style.padding ? element.style.padding.split(' ') : null;
@@ -60,6 +63,13 @@ export class Properties {
     this.paddingRight = splitPadding && splitPadding[1] ? parseInt(splitPadding[1].replace('px', '')) : (splitPadding && splitPadding[0] ? this.paddingTop : this.paddingRight);
     this.paddingBottom = splitPadding && splitPadding[2] ? parseInt(splitPadding[2].replace('px', '')) : (splitPadding && splitPadding[0] ? this.paddingTop : this.paddingBottom);
     this.paddingLeft = splitPadding && splitPadding[3] ? parseInt(splitPadding[3].replace('px', '')) : (splitPadding && splitPadding[1] ? this.paddingRight : (splitPadding && splitPadding[0] ? this.paddingTop : this.paddingLeft));
+    
+        // set margin
+    let splitMargin = element.style.margin ? element.style.margin.split(' ') : null;
+    this.marginTop = splitMargin && splitMargin[0] ? parseInt(splitMargin[0].replace('px', '')) : this.marginTop;
+    this.marginRight = splitMargin && splitMargin[1] ? parseInt(splitMargin[1].replace('px', '')) : (splitMargin && splitMargin[0] ? this.marginTop : this.marginRight);
+    this.marginBottom = splitMargin && splitMargin[2] ? parseInt(splitMargin[2].replace('px', '')) : (splitMargin && splitMargin[0] ? this.marginTop : this.marginBottom);
+    this.marginLeft = splitMargin && splitMargin[3] ? parseInt(splitMargin[3].replace('px', '')) : (splitMargin && splitMargin[1] ? this.marginRight : (splitMargin && splitMargin[0] ? this.marginTop : this.marginLeft));
     
     // background tab
     this.backgroundColor = element.style.background ? element.style.background.substring(element.style.background.lastIndexOf('(') + 1, element.style.background.lastIndexOf(')')) : this.backgroundColor;
@@ -92,7 +102,7 @@ export class Properties {
       height: this.height + (this.heightClass === 'pixel' ? 'px' : '%'),
       width: this.width + (this.widthClass === 'pixel' ? 'px' : '%'),
       padding: this.paddingTop + 'px ' + this.paddingRight + 'px ' + this.paddingBottom + 'px ' + this.paddingLeft + 'px',
-      margin: this.margin + 'px',
+      margin: this.marginTop + 'px ' + this.marginRight + 'px ' + this.marginBottom + 'px ' + this.marginLeft + 'px',
       'border-width': this.borderWidth + 'px',
       'border-style': this.borderStyle,
       'border-color': 'rgb(' + this.borderColor + ')',
