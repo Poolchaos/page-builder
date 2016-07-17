@@ -55,21 +55,17 @@ export class DraggableService {
       this.draggingElement = el;
       this.dragoffset.x = e.pageX - el.offsetLeft;
       this.dragoffset.y = e.pageY - el.offsetTop - 27;
-      el.style['z-index'] = '999';
-      el.style.position = 'fixed';
     });
     this._on(document, 'mouseup', (e) => {
       
       if(!this.draggingElement) return;
       
       this.draggingElement.isDragReady = false;
-      this.resetPosition(el);
-      this.draggingElement.style.position = 'relative';
+      this.dragBox.style.display = 'none';
       
       if(this.inContent) {
         
-        
-        this.data.service.addComponent(this.draggingElement);
+        this.data.service.addComponent({component: this.draggingElement, container: e.srcElement});
         this.inContent = null;
       }
     });
@@ -77,7 +73,7 @@ export class DraggableService {
       
       if (this.draggingElement && this.draggingElement.isDragReady) {
         
-        var top = e.pageY - this.dragoffset.y;
+        var top = (e.pageY - this.dragoffset.y);
         var left = e.pageX - this.dragoffset.x;
         var w = this.content.width();
         var h = this.content.height();
@@ -89,9 +85,10 @@ export class DraggableService {
           return;
         }
         
-        this.draggingElement.style.top = top + "px";
-        this.draggingElement.style.bottom = "auto";
-        this.draggingElement.style.left = left + "px";
+        this.dragBox.style.display = 'block';
+        this.dragBox.style.top = top + 'px';
+        this.dragBox.style.bottom = 'auto';
+        this.dragBox.style.left = left + 'px';
       }
     });
   }
@@ -100,6 +97,7 @@ export class DraggableService {
   initialiseMultiple(className, data) { // make multiple draggable elements
     
     this.els = document.getElementsByClassName(className);
+    this.dragBox = document.getElementsByClassName('drag-box')[0];
     this.data = data ? data : '';
     this.initData = data;
     

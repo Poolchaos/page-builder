@@ -53,12 +53,23 @@ export class Builder {
   }
   
   @handle(BUILDER_ACTIONS.GET_COMPONENT)
-  handleGetComponent(action, component) {
+  handleGetComponent(action, els) {
     
-    this.component = component;
-    let componentId = component.id.split('draggable_')[1];
+    let componentId = els.component.id.split('draggable_')[1];
+    let contentSection = els.container.className.replace('content_sec ', '');
     
-    events(componentId, this.componentService, this.contextMenuService).addEventListener();
+    try {
+
+      let obj = this.componentService.createComponent({})[componentId];
+      let content = document.getElementsByClassName(contentSection)[0];
+      
+      content.appendChild(obj.el());
+      this.contextMenuService.addContextMenu(obj.el());
+      
+    } catch(e) {
+
+      console.error(' error occurred ', e);
+    }
   }
 
   @handle('builder.component.style.change')
@@ -70,47 +81,5 @@ export class Builder {
       
       component.style[prop] = options[prop];
     }
-  }
-}
-
-function events(componentId, componentService, contextMenuService) {
-  
-  let addEventListener = () => {
-    
-    document.addEventListener('mousemove', eventCallback);
-  }
-  
-  let removeEventListener = () => {
-    
-    document.removeEventListener('mousemove', eventCallback);
-  }
-  
-  let eventCallback = (e) => {
-    
-    let contentSection = e.srcElement.className.replace('content_sec ', '');
-    addComponent(contentSection, componentId);
-  }
-  
-  let addComponent = (contentSection, componentId) => {
-    
-    try {
-
-      let obj = componentService.createComponent({})[componentId];
-      let content = document.getElementsByClassName(contentSection)[0];
-      
-      content.appendChild(obj.el());
-      contextMenuService.addContextMenu(obj.el());
-      
-      removeEventListener();
-
-    } catch(e) {
-
-      console.error(' error occurred ', e);
-    }
-  };
-  
-  return {
-    addEventListener: addEventListener,
-    removeEventListener: removeEventListener
   }
 }

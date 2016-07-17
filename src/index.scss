@@ -265,6 +265,48 @@ ul {
   width: 45px!important;
 }
 
+.box-border {
+  position: absolute;
+}
+
+.drag-box {
+  position: fixed;
+  width: 0px;
+  height: 0px;
+  
+  .top-border {
+    top: 0px;
+    left: 0px;
+  }
+  
+  .right-border {
+    top: 0px;
+    left: 40px;
+  }
+  
+  .bottom-border {
+    top: 40px;
+    left: 0px;
+  }
+  
+  .left-border { /*  can merge with .top-border  */
+    top: 0px;
+    left: 0px;
+  }
+  
+  .box-side-width {
+    width: 40px;
+    height: 0px;
+    border-top: 1px solid #125687;
+  }
+
+  .box-side-height {
+    height: 40px;
+    width: 0px;
+    border-left: 1px solid #125687;
+  }
+}
+
 /*  DIALOG STYLING  */
 .o-prompt {
   position: relative;
