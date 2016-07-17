@@ -71,7 +71,13 @@ export class DraggableService {
     });
     this._on(document, 'mousemove', (e) => {
       
+      $('.content_sec.active').removeClass('active');
+      
       if (this.draggingElement && this.draggingElement.isDragReady) {
+      
+        if(e.srcElement.className.indexOf('content_sec') !== -1) {
+          e.srcElement.className = e.srcElement.className + ' active'
+        }
         
         var top = (e.pageY - this.dragoffset.y);
         var left = e.pageX - this.dragoffset.x;
