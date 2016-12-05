@@ -64,7 +64,14 @@ ul {
 }
 
 .default_comp {
-  position: relative;
+
+  position: absolute;
+  left: 250px;
+  top: 112px;
+  width: 180px;
+  height: 80px;
+  cursor: default;
+  padding: 25px 15px;
   border: 1px dotted #63E2FF;
   background: rgba(255, 255, 255, 0.6);
   display: block;
@@ -73,6 +80,12 @@ ul {
     .btn_close {
       display: block;
     }
+  }
+
+  .icon {
+    display: inline-block;
+    width: 25px;
+    margin-right: 5px;
   }
   
   .btn_close {
@@ -98,7 +111,7 @@ ul {
   background: #fff;
 }
 
-.draggable_comp_create {
+.draggable {
   cursor: move;
 }
 
@@ -357,4 +370,52 @@ ai-dialog-overlay {
   position: absolute;
   bottom: 10px;
   left: 10px;
+}
+
+// connectors
+.connectorGroup {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 20px;
+}
+.connectorGroup.in {
+  right: -10px;
+}
+.connectorGroup.out {
+  left: -10px;
+}
+
+.connector {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: lightblue;
+  border-radius: 20px;
+  margin-top: 5px;
+  z-index: 3;
+}
+
+.connector.hover {
+  background: rgba(60, 243, 255, 0.3);
+  border: 1px solid #3CF3FF;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0px;
+  border-right: 1px solid #1b6d85;
+  -webkit-transform-origin: 0% 0%;
+  z-index: 4;
+}
+
+.layer {
+  z-index: 2;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
 }

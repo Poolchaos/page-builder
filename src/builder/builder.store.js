@@ -22,9 +22,12 @@ export class BuilderStore {
     
   }
   
-  @handle('builder.component.context.menu')
+  @handle('builder.component.*')
   handleOpenContextMenuForComponent(action, id) {
     
-    STATE.itemContextMenu = id;
+    if(action.indexOf('context.menu') !== -1) {
+    
+      STATE.itemContextMenu = id;
+    }
   }
 }

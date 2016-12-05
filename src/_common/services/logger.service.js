@@ -36,7 +36,7 @@ function warn(content, view) {
 /*
 */
 function error(content, view) {
-  
+
   console.log('%c' + view + ': ' + '%c' + content.string, styles.error, styles.view, content.obj ? content.obj : '');
 }
 /*

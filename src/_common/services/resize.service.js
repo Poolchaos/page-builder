@@ -8,7 +8,7 @@ let logger;
 /*
 */
 @inject(LoggerManager)
-export ResizeService {
+export class ResizeService {
   
   constructor(loggerManager) {
     

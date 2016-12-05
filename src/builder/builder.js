@@ -38,10 +38,11 @@ export class Builder {
   init() {
     
     logger.debug(' builder initialised ');
+    // logger.error('some error');
     
     setTimeout(() => {
       
-      this.draggableService.initialiseMultiple('draggable_comp_create', {
+      this.draggableService.initialiseMultiple('draggable', {
         service: this.builderService
       });
     }, 100);
@@ -54,21 +55,23 @@ export class Builder {
   
   @handle(BUILDER_ACTIONS.GET_COMPONENT)
   handleGetComponent(action, els) {
-    
+
     let componentId = els.component.id.split('draggable_')[1];
     let contentSection = els.container.className.replace('content_sec ', '');
-    
+
     try {
 
-      let obj = this.componentService.createComponent({})[componentId];
+      let obj = this.componentService.createComponent({x: els.x, y: els.y, eventId: componentId})['div'];// componentId
       let content = document.getElementsByClassName(contentSection)[0];
       
       content.appendChild(obj.el());
-      this.contextMenuService.addContextMenu(obj.el());
-      
+      // this.contextMenuService.addContextMenu(obj.el());
+
+      this.draggableService.initialiseMultiple('draggable');
+
     } catch(e) {
 
-      console.error(' error occurred ', e);
+      logger.error(' contextMenu could not be added ', e);
     }
   }
 
@@ -78,7 +81,7 @@ export class Builder {
     let component = document.getElementById(this.builderStore.itemContextMenu);
     
     for(let prop in options) {
-      
+
       component.style[prop] = options[prop];
     }
   }

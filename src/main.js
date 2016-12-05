@@ -39,7 +39,7 @@ export function configure(aurelia) {
       config.setEnvironments({
         local:       ['localhost'],
         vagrant:     ['192.168.33.10'],
-        dev1:        ['dev1.zailab.com'],
+        dev1:        ['localhost'],
         dev2:        ['dev2.zailab.com'],
         dev3:        ['dev3.zailab.com'],
         qa:          ['qa.zailab.com'],

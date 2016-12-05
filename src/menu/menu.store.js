@@ -11,8 +11,11 @@ let STATE = {
     active: true,
     view: 'menu'
   }, {
-    text: 'create',
+    text: 'new',
     view: 'builder'
+  }, {
+    text: 'import',
+    view: 'import'
   }]
 };
 

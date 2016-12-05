@@ -3,11 +3,13 @@ import {inject} from 'aurelia-framework';
 /*
 */
 import {BuilderStore, LoggerManager} from 'zailab.common';
+import {PAGE_LAYOUT} from '../stores/page.layout';
 /*
 */
 let compCount = 0,
 logger,
-foundParent = false;
+foundParent = false,
+numConnectors = 0;
 /*
 */
 @inject(BuilderStore, LoggerManager)
@@ -26,7 +28,8 @@ export class ComponentService {
     
     return {
       textField: components(attrs).textField,
-      div: components(attrs).div
+      div: components(attrs).div,
+      img: components(attrs).img
     }
   }
   
@@ -60,17 +63,35 @@ function components(attrs) {
   
   return {
     textField: new textField,
-    div: new div
+    div: new div(attrs),
+    img: new img
   };
 }
 /*
 */
-function div() {
-  
+function div(attrs) {
+
   this.template = document.createElement('div');
-  this.template.className = 'default_comp';
-  
-  defaultStyle(this.template);
+  this.template.className = 'default_comp draggable';
+
+  var layer = document.createElement('div');
+  layer.className = 'layer';
+
+  this.template.style.position = 'absolute';
+  this.template.style.left = attrs.x + 'px';
+  this.template.style.top = attrs.y + 'px';
+
+  var icon = document.createElement('img');
+  icon.setAttribute('src', './src/_assets/img/' + attrs.eventId + '_icon.png');
+  icon.className = 'icon';
+  this.template.appendChild(icon);
+  this.template.appendChild(layer);
+  var newComp = addConnectors(this.template, attrs);
+
+  var label = document.createElement('label');
+  label.innerHTML = newComp.name;
+  this.template.appendChild(label);
+  // defaultStyle(this.template);
   
 //  addFunctionality(this.template).delete();
   
@@ -84,6 +105,61 @@ function div() {
 }
 /*
 */
+function addConnectors(template, attrs) {
+
+  let comp;
+
+  PAGE_LAYOUT.items.forEach(function(event) {
+    if(event.eventId === attrs.eventId) {
+      comp = event;
+    }
+  });
+
+  var outCount = 0, inCount = 0, connectorGroupOut, connectorGroupIn, inConnector, outConnector;
+
+  if(comp && comp.type === 'startEvent') {
+    inCount = 0;
+    outCount = 1;
+  } else if(comp && comp.type === 'intermediateEvent') {
+    inCount = 1;
+    outCount = 1;
+  }
+
+  for(var incoming = 0; incoming < inCount; incoming++) {
+    connectorGroupOut = document.createElement('ul');
+    inConnector = document.createElement('li');
+    inConnector.className = 'connector';
+    inConnector.id = 'connector_' + numConnectors;
+    inConnector.onmouseover = connectorMouseOver;
+    inConnector.onmouseout = connectorMouseLeave;
+    connectorGroupOut.appendChild(inConnector);
+    connectorGroupOut.className = 'connectorGroup out';
+    numConnectors++;
+  }
+
+  for(var outgoing = 0; outgoing < outCount; outgoing++) {
+    connectorGroupIn = document.createElement('ul');
+    outConnector = document.createElement('li');
+    outConnector.className = 'connector';
+    outConnector.id = 'connector_' + numConnectors;
+    outConnector.onmouseover = connectorMouseOver;
+    outConnector.onmouseout = connectorMouseLeave;
+    connectorGroupIn.appendChild(outConnector);
+    connectorGroupIn.className = 'connectorGroup in';
+    numConnectors++;
+  }
+
+  if(connectorGroupIn) {
+    template.appendChild(connectorGroupIn);
+  }
+  if(connectorGroupOut) {
+    template.appendChild(connectorGroupOut);
+  }
+
+  return comp;
+}
+/*
+*/
 function textField() {
     
   this.template = document.createElement('input');
@@ -92,7 +168,22 @@ function textField() {
   // Wrap textfield in a div
   //  addFunctionality(this.template).delete();
   
-  this.element = () => { 
+  this.element = (x, y) => {
+    return this.template;
+  };
+
+  return {
+    el: this.element
+  };
+}
+/*
+*/
+function img() {
+
+  this.template = document.createElement('img');
+
+  this.template.src = 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwiEge6toofQAhVBtBoKHUBECqMQjBwIBA&url=https%3A%2F%2Fwww.royalcanin.com%2F~%2Fmedia%2FRoyal-Canin%2FProduct-Categories%2Fcat-adult-landing-hero.ashx&psig=AFQjCNFIlqjAxqSK_wL9T0dBvoFQpm7lKg&ust=1478079765969232';
+  this.element = () => {
     return this.template;
   };
 
@@ -168,3 +259,9 @@ function removeElement(item, parent) {
 //    childOf: hasChild
 //  }
 //}
+function connectorMouseOver(e) {
+  e.srcElement.className = e.srcElement.className + ' hover';
+}
+function connectorMouseLeave(e) {
+  e.srcElement.className = e.srcElement.className.replace('hover', '');
+}

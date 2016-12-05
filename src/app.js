@@ -35,6 +35,7 @@ export class App {
     config.map([
       {route: '', redirect: 'menu'},
       {route: ['menu'],  name: 'menu',        moduleId: 'menu/menu',       nav: false, title: 'Menu'},
+      {route: 'new',     name: 'new', moduleId: 'new/new', nav: false, title: 'Import Project'},
       {route: 'builder',     name: 'builder', moduleId: 'builder/builder', nav: false, title: 'Page Builder'}
     ]);
 

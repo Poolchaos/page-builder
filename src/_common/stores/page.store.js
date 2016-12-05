@@ -3,43 +3,17 @@
 import {inject, LogManager} from 'aurelia-framework';
 /*
 */
+import {PAGE_LAYOUT} from './page.layout';
+/*
+*/
 const logger = LogManager.getLogger('PageStore');
 
-let STATE = {
-  toolbar: [{
-    display: 'layouts',
-    items: [{
-      text: 'basic',
-      selected: true
-    }, {
-      text: '2'
-    }]
-  }, {
-    display: 'themes',
-    items: [
-//      {
-//      text: 'theme 1'
-//    }, {
-//      text: 'theme 2'
-//    }
-           ]
-  }, {
-    display: 'components',
-    active: true,
-    items: [{
-      _id: 'textField',
-      text: 'textfield'
-    }, {
-      _id: 'div',
-      text: 'div'
-    }]
-  }]
-};
+let STATE = PAGE_LAYOUT;
 
 export class PageStore {
   
-  get toolbar() {
+  get events() {
     
-    return STATE.toolbar;
+    return STATE.items;
   }
 }

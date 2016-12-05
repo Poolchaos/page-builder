@@ -11,24 +11,11 @@
   </div>
   
   <div class="main">
-  
     <div class="toolbar">
       
       <ul>
-        <li repeat.for="tool of pageStore.toolbar">
-          <span click.delegate="tool.active=!tool.active">
-            ${tool.display}
-          </span>
-          
-          <div show.bind="tool.active">
-            
-            <ul>
-              <li id="draggable_${item._id}" class="${tool.display === 'components' ? 'draggable_comp_create' : ''} tool_item ${item.selected ? 'selected' : ''}" repeat.for="item of tool.items">
-                ${item.text}
-              </li>
-            </ul>
-            
-          </div>
+        <li id="draggable_${event.eventId}" class="draggable tool_item" repeat.for="event of pageStore.events">
+          ${event.name}
         </li>
       </ul>
       
@@ -41,11 +28,11 @@
       
     </div>
   
-    <div class="content">
+    <div class="content content_sec">
     
-      <div class="content_sec header_wrap"></div>
-      <div class="content_sec content_wrap"></div>
-      <div class="content_sec footer_wrap"></div>
+      <!--<div class="content_sec header_wrap"></div>-->
+      <!--<div class="content_sec content_wrap"></div>-->
+      <!--<div class="content_sec footer_wrap"></div>-->
       
     </div>
     
