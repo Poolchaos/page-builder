@@ -54,8 +54,11 @@ export class DraggableService {
     
     this._on(el, 'mousedown', (e) => {
 
-      if(e.which === 3) return;
+      if(e.which === 3 || e.srcElement.className.indexOf('open_prompt') !== -1) return;
 
+      if(e.srcElement.className.indexOf('line') !== -1) {
+        return;
+      }
       if(e.srcElement.className.indexOf('connector') !== -1) {
         this.drawConnection = true;
         this.drawConnector = e.srcElement;
@@ -64,8 +67,13 @@ export class DraggableService {
       this.drawConnection = false;
       this.drawConnector = null;
 
-      if(e.srcElement.className.indexOf('default_comp') !== -1 || e.srcElement.className.indexOf('layer') !== -1) {
+      if(e.srcElement.className.indexOf('default_comp') !== -1) {
         this.existing = true;
+        this.selectedElement = e.srcElement;
+      }
+      if(e.srcElement.className.indexOf('layer') !== -1) {
+        this.existing = true;
+        this.selectedElement = e.srcElement.parentNode;
       }
 
       el.isDragReady = true;
@@ -78,6 +86,9 @@ export class DraggableService {
 
       if(this.drawConnection && e.srcElement.className.indexOf('connector') !== -1) {
         this.drawLineService.draw(null, null, e.srcElement);
+        this.drawLineService.reset();
+      } else {
+        this.drawLineService.remove();
         this.drawLineService.reset();
       }
 
@@ -95,6 +106,7 @@ export class DraggableService {
         }
         this.inContent = null;
         this.existing = false;
+        this.selectedElement = false;
         this.drawLineService.reset();
       }
     });
@@ -110,13 +122,13 @@ export class DraggableService {
         return;
       }
       
-      $('.content_sec.active').removeClass('active');
+      // $('.content_sec.active').removeClass('active');
       
       if (this.draggingElement && this.draggingElement.isDragReady) {
       
-        if(e.srcElement.className.indexOf('content_sec') !== -1) {
-          e.srcElement.className = e.srcElement.className + ' active'
-        }
+        // if(e.srcElement.className.indexOf('content_sec') !== -1) {
+        //   e.srcElement.className = e.srcElement.className + ' active'
+        // }
 
         var w = this.content.width();
         var h = this.content.height();
@@ -139,13 +151,13 @@ export class DraggableService {
           return;
         }
 
-        top = e.clientY - (e.srcElement.clientHeight / 2)- 20;
-        left = e.clientX - (e.srcElement.clientWidth / 2);
+        top = e.clientY - (this.selectedElement.clientHeight / 2)- 20;
+        left = e.clientX - (this.selectedElement.clientWidth / 2);
 
         if(top < 0 || left < 0) return;
 
-        this.draggingElement.style.top = top + 'px';
-        this.draggingElement.style.left = left + 'px';
+        this.selectedElement.style.top = (top - 10) + 'px';
+        this.selectedElement.style.left = (left - 200) + 'px';
 
         if(this.drawLineService.hasConnectors()) {
           this.drawLineService.resetConnectors();
@@ -158,8 +170,9 @@ export class DraggableService {
     document.attachEvent ? el.attachEvent('on' + event, fn) : el.addEventListener(event, fn, !0);
   }
 
-  initialiseMultiple(className, data) { // make multiple draggable elements
+  initialiseMultiple(className, data, existing) { // make multiple draggable elements
 
+    this.isExisting = existing;
     this.els = document.getElementsByClassName(className);
     this.dragBox = document.getElementsByClassName('drag-box')[0];
     this.data = this.data ? this.data: (data? data : '');

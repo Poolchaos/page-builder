@@ -18,7 +18,8 @@ export class DrawLineService {
       draw: draw,
       resetConnectors: resetConnectors,
       hasConnectors: hasConnectors,
-      reset: reset
+      reset: reset,
+      remove: removeLine
     };
   }
 }
@@ -54,6 +55,11 @@ function draw(e, connector, connector_two) {
   line.setAttribute('class', 'line');
   line.setAttribute('id', 'line');
 
+  line.onclick = function(e) {
+    e.selected = true;
+    console.log('>>>>>> ', e);
+  };
+
   currentConnector.innerHTML = '';
   currentConnector.appendChild(line);
 
@@ -81,6 +87,9 @@ function draw(e, connector, connector_two) {
       idOut: idOut
     });
   }
+}
+function removeLine() {
+
 }
 /*
  */

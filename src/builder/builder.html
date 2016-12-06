@@ -1,41 +1,56 @@
 <template>
-  
-  <compose view="./context_menu/component_menu/component.menu.html" view-model="./context_menu/component_menu/component.menu.js"></compose>
-  
-  <div style="background: rgba(0,0,0,0.8);color:#fff;padding:">
-    <ul>
-      <li style="cursor:pointer;" click.delegate="back()">
-        back
-      </li>
-    </ul>
-  </div>
-  
-  <div class="main">
-    <div class="toolbar">
-      
-      <ul>
-        <li id="draggable_${event.eventId}" class="draggable tool_item" repeat.for="event of pageStore.events">
-          ${event.name}
-        </li>
-      </ul>
-      
-      <div class="drag-box">
-        <div class="box-border top-border box-side-width"></div>
-        <div class="box-border right-border box-side-height"></div>
-        <div class="box-border bottom-border box-side-width"></div>
-        <div class="box-border left-border box-side-height"></div>
-      </div>
-      
+
+    <compose view="./context_menu/component_menu/component.menu.html"
+             view-model="./context_menu/component_menu/component.menu.js"></compose>
+
+    <div style="background: rgba(0,0,0,0.8);color:#fff;padding:">
+        <ul>
+            <li style="cursor:pointer;" click.delegate="back()">
+                back
+            </li>
+        </ul>
     </div>
-  
-    <div class="content content_sec">
-    
-      <!--<div class="content_sec header_wrap"></div>-->
-      <!--<div class="content_sec content_wrap"></div>-->
-      <!--<div class="content_sec footer_wrap"></div>-->
-      
+
+    <div class="main">
+        <div class="toolbar">
+
+            <ul>
+                <li id="draggable_${event.eventId}" class="draggable tool_item" repeat.for="event of pageStore.events">
+                    ${event.name}
+                </li>
+            </ul>
+
+            <div class="drag-box">
+                <div class="box-border top-border box-side-width"></div>
+                <div class="box-border right-border box-side-height"></div>
+                <div class="box-border bottom-border box-side-width"></div>
+                <div class="box-border left-border box-side-height"></div>
+            </div>
+
+        </div>
+
+        <div class="content content_sec">
+
+            <div class="default_comp draggable" style="position:absolute;left:${event.left};top:${event.top};" repeat.for="event of events.properties">
+                <img src="./src/_assets/img/${event.nodeIcon}" class="icon">
+                <div class="layer"></div>
+                <ul class="connectorGroup in">
+                    <li class="connector" id="${conn.id}" repeat.for="conn of event.inConnectors"></li>
+                </ul>
+                <ul class="connectorGroup out">
+                    <li class="connector " id="${conn.id}" repeat.for="conn of event.outConnectors"></li>
+                </ul>
+                <div class="open_prompt">edit</div>
+                <label>${event.name}</label>
+            </div>
+
+
+            <!--<div class="content_sec header_wrap"></div>-->
+            <!--<div class="content_sec content_wrap"></div>-->
+            <!--<div class="content_sec footer_wrap"></div>-->
+
+        </div>
+
     </div>
-    
-  </div>
-  
+
 </template>

@@ -69,7 +69,24 @@ function components(attrs) {
 }
 /*
 */
+function getEvent(attrs) {
+
+  for(var event in PAGE_LAYOUT.items) {
+
+    if(!PAGE_LAYOUT.items[event] || !PAGE_LAYOUT.items[event].eventId) continue;
+
+    if(PAGE_LAYOUT.items[event].eventId === attrs.eventId) {
+      return PAGE_LAYOUT.items[event];
+    }
+  }
+}
+/*
+*/
 function div(attrs) {
+
+  var event = (JSON.parse(JSON.stringify(getEvent(attrs))));
+  event.left = attrs.x + 'px';
+  event.top = attrs.y + 'px';
 
   this.template = document.createElement('div');
   this.template.className = 'default_comp draggable';
@@ -86,7 +103,16 @@ function div(attrs) {
   icon.className = 'icon';
   this.template.appendChild(icon);
   this.template.appendChild(layer);
+
   var newComp = addConnectors(this.template, attrs);
+
+  if(newComp.hasPopup) {
+    var view = document.createElement('div');
+    view.className = 'open_prompt';
+    view.innerHTML = 'edit';
+    // view.setAttribute('click.delegate', editNode(newComp));
+    this.template.appendChild(view);
+  }
 
   var label = document.createElement('label');
   label.innerHTML = newComp.name;
@@ -96,11 +122,15 @@ function div(attrs) {
 //  addFunctionality(this.template).delete();
   
   this.element = () => { 
-    return this.template;
+    return {
+      template: this.template,
+      event: event
+    };
   };
 
   return {
-    el: this.element
+    el: this.template,
+    event: event
   };
 }
 /*
@@ -114,6 +144,9 @@ function addConnectors(template, attrs) {
       comp = event;
     }
   });
+
+  comp.inConnectors = [];
+  comp.outConnectors = [];
 
   var outCount = 0, inCount = 0, connectorGroupOut, connectorGroupIn, inConnector, outConnector;
 
@@ -134,6 +167,7 @@ function addConnectors(template, attrs) {
     inConnector.onmouseout = connectorMouseLeave;
     connectorGroupOut.appendChild(inConnector);
     connectorGroupOut.className = 'connectorGroup out';
+    comp.inConnectors.push({id: 'connector_' + numConnectors});
     numConnectors++;
   }
 
@@ -146,6 +180,7 @@ function addConnectors(template, attrs) {
     outConnector.onmouseout = connectorMouseLeave;
     connectorGroupIn.appendChild(outConnector);
     connectorGroupIn.className = 'connectorGroup in';
+    comp.outConnectors.push({id: 'connector_' + numConnectors});
     numConnectors++;
   }
 

@@ -21,6 +21,10 @@ const logger = LogManager.getLogger('Builder');
 */
 @inject(Router, PageStore, DraggableService, BuilderStore, ComponentService, BuilderService, ContextMenuService)
 export class Builder {
+
+  events = {
+    properties: []
+  };
   
   constructor(router, pageStore, draggableService, builderStore, componentService, builderService, contextMenuService) {
     
@@ -62,12 +66,20 @@ export class Builder {
     try {
 
       let obj = this.componentService.createComponent({x: els.x, y: els.y, eventId: componentId})['div'];// componentId
-      let content = document.getElementsByClassName(contentSection)[0];
+      // let content = document.getElementsByClassName(contentSection)[0];
+
+      obj.event.id = 'node_' + this.events.properties.length;
+      console.log('obj.event >>>>> ', obj.event);
+      this.events.properties.push(obj.event);
+
+      console.log('this.events.properties >>>> ', this.events.properties);
       
-      content.appendChild(obj.el());
+      // content.appendChild(obj.el);
       // this.contextMenuService.addContextMenu(obj.el());
 
-      this.draggableService.initialiseMultiple('draggable');
+      setTimeout(() => {
+        this.draggableService.initialiseMultiple('draggable', null, true);
+      }, 200);
 
     } catch(e) {
 

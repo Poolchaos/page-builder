@@ -11,7 +11,7 @@ export const PAGE_LAYOUT = {
     group: '',
     controller: 'IncomingCallModalController',
     hasPopup: true,
-    nodeIcon: 'startFlow_icon.png',
+    nodeIcon: 'incomingCall_icon.png',
     properties: {
       name: '',
       numbers: [],
@@ -24,7 +24,7 @@ export const PAGE_LAYOUT = {
     group: '',
     controller: 'PublicHolidaysModalController',
     hasPopup: true,
-    nodeIcon: 'publicHoliday_icon.png',
+    nodeIcon: 'publicHolidays_icon.png',
     properties: {
       publicHolidays: []
     }
@@ -35,7 +35,7 @@ export const PAGE_LAYOUT = {
     group: '',
     controller: 'OfficeHoursModalController',
     hasPopup: true,
-    nodeIcon: 'office_icon.png',
+    nodeIcon: 'officeHours_icon.png',
     properties: {
       daysOfWeek: {}
     }

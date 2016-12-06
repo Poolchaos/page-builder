@@ -42,12 +42,12 @@ ul {
   position: absolute;
   left: 200px;
   top: 0px;
-  bottom: 0px;
+  height: 100%;
   width: calc(100% - 201px);
 }
 
 .tool_item {
-  width: 40px;
+  width: 80px;
   height: 40px;
   background: rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -299,7 +299,7 @@ ul {
   
   .right-border {
     top: 0px;
-    left: 40px;
+    left: 80px;
   }
   
   .bottom-border {
@@ -313,7 +313,7 @@ ul {
   }
   
   .box-side-width {
-    width: 40px;
+    width: 80px;
     height: 0px;
     border-top: 1px solid #125687;
   }
@@ -380,10 +380,10 @@ ai-dialog-overlay {
   width: 20px;
 }
 .connectorGroup.in {
-  right: -10px;
+  left: -10px;
 }
 .connectorGroup.out {
-  left: -10px;
+  right: -10px;
 }
 
 .connector {
@@ -394,6 +394,7 @@ ai-dialog-overlay {
   border-radius: 20px;
   margin-top: 5px;
   z-index: 3;
+  cursor: pointer;
 }
 
 .connector.hover {
@@ -408,7 +409,7 @@ ai-dialog-overlay {
   width: 0px;
   border-right: 1px solid #1b6d85;
   -webkit-transform-origin: 0% 0%;
-  z-index: 4;
+  z-index: 0;
 }
 
 .layer {
@@ -418,4 +419,18 @@ ai-dialog-overlay {
   left: 0px;
   bottom: 0px;
   right: 0px;
+}
+
+.open_prompt {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 50px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  font-size: 9px;
+  padding: 5px 0px;
+  cursor: pointer;
 }
